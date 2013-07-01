@@ -19,20 +19,4 @@ extern int frameCounter;
 
 int InitializeGlobals();
 
-
-enum BULLET_TYPE
-{
-    B_BULLET1
-};
-
-enum ENEMY_TYPE
-{
-    E_ENEMY1
-};
-
-enum EFFECT_TYPE
-{
-    EF_EFFECT1
-};
-
 #endif // GLOBALS_H

@@ -42,6 +42,12 @@ class BulletManager
         std::vector<std::unique_ptr<Bullet>> playerBullets;
 };
 
+enum BULLET_TYPE
+{
+    B_BULLET1
+};
+
+
 class EffectManager
 {
     public:
@@ -54,6 +60,11 @@ class EffectManager
     protected:
     private:
         std::vector<std::unique_ptr<Effect>> effects;
+};
+
+enum EFFECT_TYPE
+{
+    EF_EFFECT1
 };
 
 class EnemyManager
@@ -70,6 +81,11 @@ class EnemyManager
     protected:
     private:
         std::vector<std::unique_ptr<Enemy>> enemies;
+};
+
+enum ENEMY_TYPE
+{
+    E_ENEMY1
 };
 
 
