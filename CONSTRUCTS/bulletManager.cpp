@@ -80,7 +80,7 @@ void BulletManager::AddEnemyComplexBullet(int type, double x, double y, double v
 void BulletManager::AddEnemyBulletData(int time, double v, double angle, double angularV, double accel)
 {enemyBullets.back()->AddData(time, v, angle, angularV, accel);}
 
-void BulletManager::AddEnemyBulletTiming(int delay, int lifetime)
+void BulletManager::SetEnemyBulletTiming(int delay, int lifetime)
 {enemyBullets.back()->SetTiming(delay, lifetime);}
 
 

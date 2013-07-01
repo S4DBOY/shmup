@@ -30,7 +30,7 @@ class BulletManager
                                     double accel, double minmaxV);
 
         void AddEnemyBulletData(int time, double v, double angle, double angularV, double accel);
-        void AddEnemyBulletTiming(int delay, int lifetime);
+        void SetEnemyBulletTiming(int delay, int lifetime);
 
         void AddPlayerBullet(int type, double x, double y, double vx, double vy, int damage);
 
