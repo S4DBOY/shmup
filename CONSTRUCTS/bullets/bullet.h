@@ -26,8 +26,11 @@ class Bullet
         double vx, vy;
         int time=0, delay=0, lifetime=0;
         double angle;
-        SDL_Rect loc, source;
+        SDL_Rect loc, source, hitbox;
         int damage=1;
+
+        double X1, Y1, X2, Y2, X3, Y3, X4, Y4; //hitbox
+        double dx1, dx2, dy1, dy2;
     private:
 };
 
