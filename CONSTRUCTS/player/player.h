@@ -23,6 +23,8 @@ class Player
 
         bool shooting=0;
         bool focus=0;
+        int shootingCounter=1;      //makes sure that the player fires at least one shot
+
         bool up, down, left, right;
 };
 

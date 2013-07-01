@@ -35,7 +35,7 @@ void Player::Input()
     {
         switch( event.key.keysym.sym )
         {
-            case SDLK_z: {shooting=0;} break;
+            case SDLK_z: {shooting=0;shootingCounter=0;} break;
             case SDLK_LSHIFT: {focus=0;} break;
             case SDLK_LEFT:     {left=0; if(right==1) vx=v; else vx = 0;} break;
             case SDLK_RIGHT:    {right=0; if(left==1)vx=-v; else vx = 0;} break;
@@ -62,15 +62,16 @@ void Player::Logic()
 {
     int v=-32, v1=-28;
     int mod=!focus;
-    if((shooting==1) && (frameCounter%4==1))
+    if((shooting==1 || shootingCounter<1) && (frameCounter%4==0))
     {
         bulletManager->AddPlayerBullet(B_BULLET1, x+10, y, 0, v, 5);
         bulletManager->AddPlayerBullet(B_BULLET1, x-10, y, 0, v, 5);
 
-            bulletManager->AddPlayerBullet(B_BULLET1, x+30, y, 5*mod-2, v1, 2);
-        bulletManager->AddPlayerBullet(B_BULLET1, x-30, y, -5*mod+2, v1, 2);
-        bulletManager->AddPlayerBullet(B_BULLET1, x+30, y, 10*mod-4, v1, 2);
-        bulletManager->AddPlayerBullet(B_BULLET1, x-30, y, -10*mod+4, v1, 2);
+            bulletManager->AddPlayerBullet(B_BULLET1, x+50, y-40, 5*mod-2, v1, 2);
+        bulletManager->AddPlayerBullet(B_BULLET1, x-50, y-40, -5*mod+2, v1, 2);
+        bulletManager->AddPlayerBullet(B_BULLET1, x+80, y+20, 10*mod-4, v1, 2);
+        bulletManager->AddPlayerBullet(B_BULLET1, x-80, y+20, -10*mod+4, v1, 2);
+        shootingCounter=1;
     }
 }
 
@@ -89,5 +90,15 @@ void Player::Draw()
     SDL_Rect loc={int(x)-32, int(y)-48, 64, 96};
     SDL_Rect source={0, 0, 32, 48};
     SDL_RenderCopy(ren, imgplayer, &source, &loc);
+
+    SDL_Rect loc1={int(x)-80-16, int(y)+20-16, 32, 32};
+    SDL_Rect source1={64, 144, 16, 16};
+    SDL_RenderCopy(ren, imgplayer, &source1, &loc1);
+    loc1.x=int(x)+80-16; loc1.y=int(y)+20-16;
+    SDL_RenderCopy(ren, imgplayer, &source1, &loc1);
+    loc1.x=int(x)+50-16; loc1.y=int(y)-40-16;
+    SDL_RenderCopy(ren, imgplayer, &source1, &loc1);
+    loc1.x=int(x)-50-16; loc1.y=int(y)-40-16;
+    SDL_RenderCopy(ren, imgplayer, &source1, &loc1);
 
 }
