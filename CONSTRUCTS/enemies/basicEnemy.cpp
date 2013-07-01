@@ -24,17 +24,17 @@ void BasicEnemy::Move()
 
 void BasicEnemy::Logic()
 {
-    double a=rand()%360, b=rand()%360;
-    double basev=10;
+    double a=0, b=0;//double a=rand()%360, b=rand()%360;
+    double basev=2;
     if(frameCounter%30==0)
-    for(int i=0;i<360;i+=8)
+    for(int i=0;i<360;i+=10)
     {
         bulletManager->AddEnemyComplexBullet(B_BULLET1, x, y, basev, i+a, 0, 0, 0);
-        bulletManager->AddEnemyBulletData(45, 0, 0, 5, -0.7);
-        bulletManager->AddEnemyBulletData(55, 0, 0, 0.0001, 0.0001);
+        //bulletManager->AddEnemyBulletData(45, 0, 0, 5, -0.7);
+        //bulletManager->AddEnemyBulletData(55, 0, 0, 0.0001, 0.0001);
         bulletManager->AddEnemyComplexBullet(B_BULLET1, x, y, basev, i+b, 0, 0, 0);
-        bulletManager->AddEnemyBulletData(45, 0, 0, -5, -0.7);
-        bulletManager->AddEnemyBulletData(55, 0, 0, 0.0001, 0.0001);
+        //bulletManager->AddEnemyBulletData(45, 0, 0, -5, -0.7);
+        //bulletManager->AddEnemyBulletData(55, 0, 0, 0.0001, 0.0001);
     }
 }
 

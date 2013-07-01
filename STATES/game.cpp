@@ -36,11 +36,10 @@ void Game::Handle_events()
 void Game::Logic()
 {
     player->Move();
-    player->Logic();
-
     enemyManager->Move();
     bulletManager->Move();
 
+    player->Logic();
     bulletManager->Logic();
     enemyManager->Logic();
     effectManager->Logic();

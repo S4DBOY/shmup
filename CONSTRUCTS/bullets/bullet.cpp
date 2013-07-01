@@ -51,4 +51,6 @@ void Bullet::Draw()
     if(time<=delay) return;
     loc.x=x-32/2; loc.y=y-32/2;
     SDL_RenderCopyEx(ren, bulletSheet, &source, &loc, angle, NULL, SDL_FLIP_NONE);
+
+    SDL_RenderDrawRect(ren, &loc);
 };

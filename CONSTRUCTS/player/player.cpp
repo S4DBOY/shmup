@@ -8,6 +8,8 @@ Player::Player()
     x=SCREEN_WIDTH/2;y=SCREEN_HEIGHT-50;
     left=0;right=0;up=0;down=0;
     vx=0;vy=0;
+    loc.w=64; loc.h= 96;
+    hitbox.w=6; hitbox.h=6;
 }
 
 Player::~Player()
@@ -56,10 +58,12 @@ void Player::Move()
     if(focus==1) {vx=vx/focusmod; vy=vy/focusmod;}
     if( ( x < 0 ) || ( x > SCREEN_WIDTH ) )  x -= vx;
     if( ( y < 0 ) || ( y > SCREEN_HEIGHT ) ) y -= vy;
+    hitbox.x=x-3; hitbox.y=y-3;
 }
 
 void Player::Logic()
 {
+    if(bulletManager->IsPlayerHit(&hitbox)) {/*bulletManager->EraseAllBullets();*/ return; }
     int v=-32, v1=-28;
     int mod=!focus;
     if((shooting==1 || shootingCounter<1) && (frameCounter%4==0))
@@ -67,7 +71,7 @@ void Player::Logic()
         bulletManager->AddPlayerBullet(B_BULLET1, x+10, y, 0, v, 5);
         bulletManager->AddPlayerBullet(B_BULLET1, x-10, y, 0, v, 5);
 
-            bulletManager->AddPlayerBullet(B_BULLET1, x+50, y-40, 5*mod-2, v1, 2);
+        bulletManager->AddPlayerBullet(B_BULLET1, x+50, y-40, 5*mod-2, v1, 2);
         bulletManager->AddPlayerBullet(B_BULLET1, x-50, y-40, -5*mod+2, v1, 2);
         bulletManager->AddPlayerBullet(B_BULLET1, x+80, y+20, 10*mod-4, v1, 2);
         bulletManager->AddPlayerBullet(B_BULLET1, x-80, y+20, -10*mod+4, v1, 2);
@@ -83,11 +87,13 @@ void Player::DrawHitBox()
         SDL_Rect source1={0, 16, 64, 64};
         SDL_RenderCopy(ren, effectsSheet, &source1, &loc1);
     }
+    SDL_SetRenderDrawColor(ren, 0, 0, 0, 0);
+    SDL_RenderFillRect(ren, &hitbox);
 }
 
 void Player::Draw()
 {
-    SDL_Rect loc={int(x)-32, int(y)-48, 64, 96};
+    loc.x=int(x)-32; loc.y=int(y)-48;
     SDL_Rect source={0, 0, 32, 48};
     SDL_RenderCopy(ren, imgplayer, &source, &loc);
 
@@ -100,5 +106,4 @@ void Player::Draw()
     SDL_RenderCopy(ren, imgplayer, &source1, &loc1);
     loc1.x=int(x)-50-16; loc1.y=int(y)-40-16;
     SDL_RenderCopy(ren, imgplayer, &source1, &loc1);
-
 }

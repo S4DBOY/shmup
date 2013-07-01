@@ -27,7 +27,7 @@ class Bullet
         int time=0, delay=0, lifetime=0;
         double angle;
         SDL_Rect loc, source;
-        int damage=0;
+        int damage=1;
     private:
 };
 

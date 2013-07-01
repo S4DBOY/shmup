@@ -19,7 +19,7 @@ class Player
         int type;
         double x, y;
         double vx, vy;
-        SDL_Rect loc;
+        SDL_Rect loc, hitbox;
 
         bool shooting=0;
         bool focus=0;
