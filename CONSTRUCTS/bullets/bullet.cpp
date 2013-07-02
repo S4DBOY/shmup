@@ -21,6 +21,7 @@ void Bullet::SetDamage(int n_damage)
 
 void Bullet::SetTiming(int n_delay, int n_lifetime)
 {
+    time=0;
     delay=n_delay;
     lifetime=n_lifetime;
 }
@@ -50,7 +51,7 @@ int Bullet::IsEnemyHit(SDL_Rect *r)
 
 void Bullet::Draw()
 {
-    if(time<=delay) return;
+    if(time<delay) return;
     if(y>SCREEN_HEIGHT+40|| y<-40 || x<-40 || x>SCREEN_WIDTH+40) return;
     loc.x=x-32/2; loc.y=y-32/2;
     SDL_RenderCopyEx(ren, bulletSheet, &source, &loc, angle, NULL, SDL_FLIP_NONE);

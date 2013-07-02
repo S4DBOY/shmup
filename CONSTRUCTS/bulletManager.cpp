@@ -59,7 +59,11 @@ int BulletManager::IsPlayerHit(SDL_Rect *hitbox)
 {
     for(int i=0; i<int(enemyBullets.size()); i++)
     {
-        if(enemyBullets[i]->IsEnemyHit(hitbox)) {enemyBullets.erase(enemyBullets.begin()+i); i=i-1; return 1;}
+        if(enemyBullets[i]->IsEnemyHit(hitbox))
+        {
+            enemyBullets.erase(enemyBullets.begin()+i); i=i-1;
+            return 1;
+        }
     }
     return 0;
 }
