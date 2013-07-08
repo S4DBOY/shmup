@@ -6,6 +6,7 @@
 #include "../STATES/states.h"
 
 #include "SDL2/SDL_mixer.h"
+#include "SDL2/SDL_image.h"
 
 #include <ctime>
 #include <cstdio>
@@ -90,6 +91,8 @@ bool System::Setup()
 {
     if (SDL_Init( SDL_INIT_EVERYTHING ) < 0)
         {printf("SDL_Init: %s\n", SDL_GetError()); return 1;}
+
+    IMG_Init(IMG_INIT_PNG);
 
     Mix_OpenAudio( 22050, MIX_DEFAULT_FORMAT, 2, 512 );
 
