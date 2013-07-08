@@ -52,9 +52,10 @@ int Bullet::IsEnemyHit(SDL_Rect *r)
 void Bullet::Draw()
 {
     if(time<delay) return;
-    if(y>SCREEN_HEIGHT+40|| y<-40 || x<-40 || x>SCREEN_WIDTH+40) return;
+    if(y-loc.h/2>SCREEN_HEIGHT|| y<-loc.h/2 || x<-loc.w/2 || x>SCREEN_WIDTH+loc.w/2) return;
     loc.x=x-32/2; loc.y=y-32/2;
     SDL_RenderCopyEx(ren, bulletSheet, &source, &loc, angle, NULL, SDL_FLIP_NONE);
+    //SDL_RenderDrawRect(ren, &loc);
 
     double t_cos=cos(angle*(M_PI/180)); double t_sin=sin(angle*(M_PI/180));
     dx1=(hitbox.w/2)*t_cos-(hitbox.h/2)*t_sin;
