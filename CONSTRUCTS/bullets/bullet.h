@@ -16,9 +16,9 @@ class Bullet
         virtual void AddData(int, double, double, double, double){};
 
         virtual void Move();
-        virtual bool CheckBounds();
-        virtual int IsEnemyHit(SDL_Rect *r);
-        virtual void Draw();
+        bool CheckBounds();
+        int IsEnemyHit(SDL_Rect *r);
+        void Draw();
 
     protected:
         int type;
