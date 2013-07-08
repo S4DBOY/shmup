@@ -11,8 +11,11 @@
 #include <ctime>
 #include <cstdio>
 #include <sstream>
+#include <fstream>
 
 System *SDLsystem;
+
+std::ofstream debugData ("debugData.txt");
 
 System::System()
 {
@@ -23,6 +26,7 @@ System::System()
     enemyManager=new EnemyManager();
     bulletManager=new BulletManager();
     effectManager=new EffectManager();
+
 
     old=SDL_GetPerformanceCounter();
 }
@@ -39,6 +43,10 @@ System::~System()
     SDL_DestroyWindow(window);
     Mix_CloseAudio();
     SDL_Quit();
+
+    debugData<<sumEmptyLoops/(frameCounter-120)<<" empty loops per frame on average"<<std::endl;
+    debugData<<nSlowDowns<<" slowdowns, "<<60*nSlowDowns/(frameCounter-120.0)<<" per sec"<<std::endl;
+    debugData.close();
 }
 
 bool System::RegulateFPS()
@@ -53,6 +61,11 @@ bool System::RegulateFPS()
     std::stringstream performance;
     performance << 1/dt<<" "<<emptyloop;
     SDL_SetWindowTitle(window, performance.str().c_str());
+
+    if(frameCounter>120) sumEmptyLoops+=emptyloop;
+    if(frameCounter>120 && 1/dt<59.9) {debugData<<emptyloop<<" "<<1/dt<<std::endl; nSlowDowns++;}
+
+
     emptyloop=0;
     return 0;
 }

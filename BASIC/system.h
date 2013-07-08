@@ -20,6 +20,9 @@ class System
         uint64_t now, old;
         double dt;
         int emptyloop;
+
+        int sumEmptyLoops=0;
+        int nSlowDowns=0;
     private:
 };
 
