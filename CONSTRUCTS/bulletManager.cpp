@@ -27,6 +27,7 @@ void BulletManager::Move()
 
 void BulletManager::Logic()
 {
+    if(int(enemyBullets.size())>maxBullets) maxBullets=enemyBullets.size();
     for(int i=0; i<int(enemyBullets.size()); i++)
     {
         if(enemyBullets[i]->CheckBounds()) {enemyBullets.erase(enemyBullets.begin()+i); i=i-1;}
@@ -57,15 +58,16 @@ int BulletManager::IsEnemyHit(SDL_Rect *loc)
 
 int BulletManager::IsPlayerHit(SDL_Rect *hitbox)
 {
+    bool result=0;
     for(int i=0; i<int(enemyBullets.size()); i++)
     {
         if(enemyBullets[i]->IsEnemyHit(hitbox))
         {
             enemyBullets.erase(enemyBullets.begin()+i); i=i-1;
-            return 1;
+            result=1;
         }
     }
-    return 0;
+    return result;
 }
         /*                 ENEMY BULLET CREATION                */
 void BulletManager::AddEnemyBulletXY(int type, double x, double y, double vx, double vy)

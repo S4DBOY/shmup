@@ -44,8 +44,11 @@ System::~System()
     Mix_CloseAudio();
     SDL_Quit();
 
+    debugData<<std::endl;
     debugData<<sumEmptyLoops/(frameCounter-120)<<" empty loops per frame on average"<<std::endl;
     debugData<<nSlowDowns<<" slowdowns, "<<60*nSlowDowns/(frameCounter-120.0)<<" per sec"<<std::endl;
+    debugData<<"maximum: "<<maxBullets<<" bullets"<<std::endl;
+    debugData<<"program lasted for "<<frameCounter<<" frames"<<std::endl;
     debugData.close();
 }
 
@@ -63,7 +66,7 @@ bool System::RegulateFPS()
     SDL_SetWindowTitle(window, performance.str().c_str());
 
     if(frameCounter>120) sumEmptyLoops+=emptyloop;
-    if(frameCounter>120 && 1/dt<59.9) {debugData<<emptyloop<<" "<<1/dt<<std::endl; nSlowDowns++;}
+    if(frameCounter>120 && 1/dt<59.9) {debugData<<"frame "<<frameCounter<<" , "<<emptyloop<<" "<<1/dt<<std::endl; nSlowDowns++;}
 
 
     emptyloop=0;

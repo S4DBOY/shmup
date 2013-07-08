@@ -19,4 +19,7 @@ extern int frameCounter;
 
 int InitializeGlobals();
 
+//debug data
+extern int maxBullets;
+
 #endif // GLOBALS_H
