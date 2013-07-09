@@ -45,6 +45,8 @@ System::~System()
     SDL_Quit();
 
     debugData<<std::endl;
+    debugData<<"resolution: "<<SCREEN_WIDTH<<"/"<<SCREEN_HEIGHT<<", "<<FRAMES_PER_SECOND<<" FPS, vsync: "<<VSYNC<<", fullscreen: "<<FULLSCREEN<<std::endl;
+    debugData<<std::endl;
     debugData<<sumEmptyLoops/(frameCounter-120)<<" empty loops per frame on average"<<std::endl;
     debugData<<nSlowDowns<<" slowdowns, "<<60*nSlowDowns/(frameCounter-120.0)<<" per sec"<<std::endl;
     debugData<<"maximum: "<<maxBullets<<" bullets"<<std::endl;
@@ -125,6 +127,8 @@ bool System::Setup()
     else ren = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
     if (ren == 0){printf("SDL_CreateRenderer: %s\n", SDL_GetError()); return 1;}
+
+    SDL_SetHint( SDL_HINT_RENDER_SCALE_QUALITY, "1" );
 
         /* placeholder for loading program icon */
     //SDL_Surface* icon = SDL_LoadBMP("icon.bmp");

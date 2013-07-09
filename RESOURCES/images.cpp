@@ -19,11 +19,11 @@ SDL_Texture *LoadImage( std::string filename)
 
 void LoadImages()
 {
-    bulletSheet=LoadImage("data/bullet.png");
-    background=LoadImage("data/bg.png");
-    //backgroundOverlay=LoadImage("data/bgOverlay.png");
-    imgplayer=LoadImage("data/player.png");
-    effectsSheet=LoadImage("data/effects.png");
+    bulletSheet=LoadImage("data/bullet.dat");
+    background=LoadImage("data/bg.dat");
+    //backgroundOverlay=LoadImage("data/bgOverlay.dat");
+    imgplayer=LoadImage("data/player.dat");
+    effectsSheet=LoadImage("data/effects.dat");
 }
 
 void UnloadImages()
