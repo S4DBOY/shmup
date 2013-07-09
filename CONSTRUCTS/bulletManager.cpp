@@ -49,19 +49,19 @@ int BulletManager::IsEnemyHit(SDL_Rect *loc)
     int change,damage=0;
     for(int i=0; i<int(playerBullets.size()); i++)
     {
-        change=playerBullets[i]->IsEnemyHit(loc);
+        change=playerBullets[i]->IsRectHit(loc);
         damage+=change;
         if(change) {playerBullets.erase(playerBullets.begin()+i); i=i-1;}
     }
     return damage;
 }
 
-int BulletManager::IsPlayerHit(SDL_Rect *hitbox)
+int BulletManager::IsPlayerHit(double x, double y, double radius)
 {
     bool result=0;
     for(int i=0; i<int(enemyBullets.size()); i++)
     {
-        if(enemyBullets[i]->IsEnemyHit(hitbox))
+        if(enemyBullets[i]->IsCircleHit(x, y, radius))
         {
             enemyBullets.erase(enemyBullets.begin()+i); i=i-1;
             result=1;

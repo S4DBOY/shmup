@@ -10,7 +10,7 @@ Player::Player()
     vx=0;vy=0;
     loc.w=64; loc.h= 96;
 
-    hitbox.w=4; hitbox.h=4;
+    hitboxRadius=4;
 }
 
 Player::~Player()
@@ -20,7 +20,7 @@ Player::~Player()
 
 void Player::Input()
 {
-    double v=8;
+    double v=5;
     if( event.type == SDL_KEYDOWN )
     {
         switch( event.key.keysym.sym)
@@ -59,12 +59,11 @@ void Player::Move()
     if(focus==1) {vx=vx/focusmod; vy=vy/focusmod;}
     if( ( x < 0 ) || ( x > SCREEN_WIDTH ) )  x -= vx;
     if( ( y < 0 ) || ( y > SCREEN_HEIGHT ) ) y -= vy;
-    hitbox.x=x-hitbox.w/2; hitbox.y=y-hitbox.h/2;
 }
 
 void Player::Logic()
 {
-    if(bulletManager->IsPlayerHit(&hitbox)) {/*bulletManager->EraseAllBullets();*/ return; }
+    if(bulletManager->IsPlayerHit(x, y, hitboxRadius)) {/*bulletManager->EraseAllBullets();*/ return; }
     int v=-32, v1=-28;
     int mod=!focus;
     if((shooting==1 || shootingCounter<1) && (frameCounter%4==0))

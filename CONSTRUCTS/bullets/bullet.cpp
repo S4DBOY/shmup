@@ -44,7 +44,7 @@ bool Bullet::CheckBounds()
     return 0;
 };
 
-int Bullet::IsEnemyHit(SDL_Rect *r)
+int Bullet::IsRectHit(SDL_Rect *r)
 {
     if(time<=delay) return 0;
 
@@ -87,6 +87,43 @@ int Bullet::IsEnemyHit(SDL_Rect *r)
     return damage;
 };
 
+int Bullet::IsCircleHit(double Cx, double Cy, double Cr)
+{
+    if(time<=delay) return 0;
+
+    double t_cos=cos(angle*(M_PI/180)); double t_sin=sin(angle*(M_PI/180));
+
+    dx1=(hitbox.w/2)*t_cos-(hitbox.h/2)*t_sin;
+    dx2=(hitbox.w/2)*t_cos+(hitbox.h/2)*t_sin;
+    X1=x+dx1; X3=x-dx1; X2=x+dx2; X4=x-dx2;
+    int Xmax=std::max(X1, std::max(X2, std::max(X3, X4))); int Xmin=std::min(X1, std::min(X2, std::min(X3, X4)));
+    if(Cx+Cr<Xmin) return 0;
+    if(Cx-Cr>Xmax) return 0;
+
+    dy1=(hitbox.w/2)*t_sin+(hitbox.h/2)*t_cos;
+    dy2=(hitbox.w/2)*t_sin-(hitbox.h/2)*t_cos;
+    Y1=y+dy1; Y2=y+dy2; Y3=y-dy1; Y4=y-dy2;
+    int Ymax=std::max(Y1, std::max(Y2, std::max(Y3, Y4))); int Ymin=std::min(Y1, std::min(Y2, std::min(Y3, Y4)));
+    if(Cy+Cr<Ymin) return 0;
+    if(Cy-Cr>Ymax) return 0;
+
+    Px=X2-X1; Py=Y2-Y1; P=sqrt(Px*Px+Py*Py);
+    P1=X1*Px+Y1*Py; P2=X2*Px+Y2*Py;
+    A1=Cx*Px+Cy*Py;
+    Amax=A1+Cr*P; Amin=A1-Cr*P;
+
+    if(Amax<P1 && Amin<P2) return 0;
+    if(Amax>P1 && Amin>P2) return 0;
+
+    Px=X3-X2; Py=Y3-Y2; P=sqrt(Px*Px+Py*Py);
+    P1=X2*Px+Y2*Py; P2=X3*Px+Y3*Py;
+    A1=Cx*Px+Cy*Py;
+    Amax=A1+Cr*P; Amin=A1-Cr*P;
+    if(Amax<P1 && Amin<P2) return 0;
+    if(Amax>P1 && Amin>P2) return 0;
+
+    return damage;
+};
 
 void Bullet::Draw()
 {
