@@ -22,6 +22,10 @@ class Enemy
         double x, y;
         double vx, vy;
         SDL_Rect loc, source;
+
+        void GetVectorToPlayer(double &x, double &y);
+        double GetAngleToPlayer();
+
     private:
 
 };

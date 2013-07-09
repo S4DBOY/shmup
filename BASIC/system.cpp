@@ -26,6 +26,7 @@ System::System()
     enemyManager=new EnemyManager();
     bulletManager=new BulletManager();
     effectManager=new EffectManager();
+    playerManager=new PlayerManager();
 
 
     old=SDL_GetPerformanceCounter();
@@ -38,6 +39,7 @@ System::~System()
     delete enemyManager;
     delete bulletManager;
     delete effectManager;
+    delete playerManager;
 
     SDL_DestroyRenderer(ren);
     SDL_DestroyWindow(window);

@@ -14,6 +14,8 @@ class Player
         void Logic();
         void Draw();
         void DrawHitBox();
+
+        void GetLocation(double &nx, double &ny){nx=x; ny=y; return;};
     protected:
     private:
         int type;

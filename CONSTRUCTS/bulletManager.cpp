@@ -4,6 +4,7 @@
 #include "../CONSTRUCTS/bullets/acceleratingBullet.h"
 #include "../CONSTRUCTS/bullets/acceleratingBulletXY.h"
 #include "../CONSTRUCTS/bullets/complexBullet.h"
+#include "../RESOURCES/images.h"
 
 BulletManager *bulletManager;
 
@@ -40,7 +41,9 @@ void BulletManager::Logic()
 
 void BulletManager::Draw()
 {
+    SDL_SetTextureAlphaMod(bulletSheet, 128);
     for(int i=0; i<int(playerBullets.size()); i++){ playerBullets[i]->Draw();}
+    SDL_SetTextureAlphaMod(bulletSheet, 255);
     for(int i=0; i<int(enemyBullets.size()); i++){ enemyBullets[i]->Draw();}
 }
 

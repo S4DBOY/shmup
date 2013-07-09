@@ -6,9 +6,11 @@
 #include <vector>
 #include <memory>
 
+
 class Bullet;
 class Effect;
 class Enemy;
+class Player;
 
 class BulletManager
 {
@@ -89,9 +91,27 @@ enum ENEMY_TYPE
     E_ENEMY1
 };
 
+class PlayerManager
+{
+    public:
+        PlayerManager(){};
+        ~PlayerManager();
+        void Input();
+        void Move();
+        void Logic();
+        void Draw();
+        void DrawHitBox();
+        void AddPlayer(int type);
+
+        void GetPlayerLocation(double &x, double &y);
+    protected:
+    private:
+        Player *player;
+};
 
 extern BulletManager *bulletManager;
 extern EffectManager *effectManager;
 extern EnemyManager *enemyManager;
+extern PlayerManager *playerManager;
 
 #endif // MANAGERS_H

@@ -76,8 +76,6 @@ class Game : public GameState
     void Render();
 
     private:
-    Player *player;
-
 };
 
 #endif

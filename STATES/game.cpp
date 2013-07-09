@@ -2,13 +2,12 @@
 #include "../BASIC/system.h"
 
 #include "../CONSTRUCTS/managers.h"
-#include "../CONSTRUCTS/player/player.h"
 
 #include "../RESOURCES/images.h"
 
 Game::Game()
 {
-    player=new Player();
+    playerManager->AddPlayer(0);
     frameCounter=0;
     enemyManager->AddEnemy(E_ENEMY1, SCREEN_WIDTH/2, 200, 0, 0);
 }
@@ -23,7 +22,7 @@ void Game::Handle_events()
     while(SDL_PollEvent(&event))
     {
         SDLsystem->Input();
-        player->Input();
+        playerManager->Input();
         if( event.type == SDL_KEYDOWN )
         {
             SDL_Keycode key=event.key.keysym.sym;
@@ -35,11 +34,11 @@ void Game::Handle_events()
 
 void Game::Logic()
 {
-    player->Move();
+    playerManager->Move();
     enemyManager->Move();
     bulletManager->Move();
 
-    player->Logic();
+    playerManager->Logic();
     bulletManager->Logic();
     enemyManager->Logic();
     effectManager->Logic();
@@ -52,11 +51,11 @@ void Game::Render()
 
     enemyManager->Draw();
 
-    player->Draw();
+    playerManager->Draw();
 
     bulletManager->Draw();
     effectManager->Draw();
-    player->DrawHitBox();
+    playerManager->DrawHitBox();
 
     SDL_RenderPresent(ren);
 }

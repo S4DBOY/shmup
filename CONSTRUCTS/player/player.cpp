@@ -10,7 +10,7 @@ Player::Player()
     vx=0;vy=0;
     loc.w=64; loc.h= 96;
 
-    hitboxRadius=4;
+    hitboxRadius=3;
 }
 
 Player::~Player()
@@ -63,7 +63,7 @@ void Player::Move()
 
 void Player::Logic()
 {
-    if(bulletManager->IsPlayerHit(x, y, hitboxRadius)) {/*bulletManager->EraseAllBullets();*/ return; }
+    if(bulletManager->IsPlayerHit(x, y, hitboxRadius)) {/*bulletManager->EraseAllBullets(); return;*/ }
     int v=-32, v1=-28;
     int mod=!focus;
     if((shooting==1 || shootingCounter<1) && (frameCounter%4==0))
