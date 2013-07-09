@@ -3,8 +3,6 @@
 
 #include "../../BASIC/globals.h"
 
-#include <cmath>
-
 class Bullet
 {
     public:
@@ -31,6 +29,8 @@ class Bullet
 
         double X1, Y1, X2, Y2, X3, Y3, X4, Y4; //hitbox
         double dx1, dx2, dy1, dy2;
+        double P1, P2, Px, Py, Pmax, Pmin;
+        double A1, A2, A3, A4, Amax, Amin;
     private:
 };
 

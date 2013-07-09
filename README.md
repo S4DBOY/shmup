@@ -5,7 +5,6 @@ A simple shmup foundation thingy. Made purely for learning purposes (for now).
 
 ####TODO:
 
-- Collision detection!
 - Bullet sprite&hitbox choosing
 - Separate players
 - Effects

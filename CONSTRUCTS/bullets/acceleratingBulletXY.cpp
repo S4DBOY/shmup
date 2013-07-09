@@ -1,5 +1,7 @@
 #include "acceleratingBulletXY.h"
 
+#include <cmath>
+
 AcceleratingBulletXY::AcceleratingBulletXY(int n_type, double n_x, double n_y,
                         double n_vx, double n_vy,
                         double n_accelX, double n_accelY,

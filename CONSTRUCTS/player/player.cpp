@@ -9,7 +9,8 @@ Player::Player()
     left=0;right=0;up=0;down=0;
     vx=0;vy=0;
     loc.w=64; loc.h= 96;
-    hitbox.w=6; hitbox.h=6;
+
+    hitbox.w=4; hitbox.h=4;
 }
 
 Player::~Player()
@@ -58,7 +59,7 @@ void Player::Move()
     if(focus==1) {vx=vx/focusmod; vy=vy/focusmod;}
     if( ( x < 0 ) || ( x > SCREEN_WIDTH ) )  x -= vx;
     if( ( y < 0 ) || ( y > SCREEN_HEIGHT ) ) y -= vy;
-    hitbox.x=x-3; hitbox.y=y-3;
+    hitbox.x=x-hitbox.w/2; hitbox.y=y-hitbox.h/2;
 }
 
 void Player::Logic()
@@ -87,8 +88,6 @@ void Player::DrawHitBox()
         SDL_Rect source1={0, 16, 64, 64};
         SDL_RenderCopy(ren, effectsSheet, &source1, &loc1);
     }
-    SDL_SetRenderDrawColor(ren, 0, 0, 0, 0);
-    SDL_RenderFillRect(ren, &hitbox);
 }
 
 void Player::Draw()
