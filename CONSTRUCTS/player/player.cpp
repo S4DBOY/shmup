@@ -10,7 +10,7 @@ Player::Player()
     vx=0;vy=0;
     loc.w=64; loc.h= 96;
 
-    hitboxRadius=3;
+    hitboxRadius=2;
 }
 
 Player::~Player()
@@ -56,9 +56,9 @@ void Player::Move()
     if(focus==1) {vx=vx*focusmod; vy=vy*focusmod;}
     x += vx;
     y += vy;
+    if( ( x-8 < 0 ) || ( x+8 > SCREEN_WIDTH ) )  x -= vx;
+    if( ( y-8 < 0 ) || ( y+8 > SCREEN_HEIGHT ) ) y -= vy;
     if(focus==1) {vx=vx/focusmod; vy=vy/focusmod;}
-    if( ( x < 0 ) || ( x > SCREEN_WIDTH ) )  x -= vx;
-    if( ( y < 0 ) || ( y > SCREEN_HEIGHT ) ) y -= vy;
 }
 
 void Player::Logic()

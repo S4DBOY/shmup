@@ -55,9 +55,11 @@
 		<Unit filename="CONSTRUCTS/effects/effect.h" />
 		<Unit filename="CONSTRUCTS/enemies/basicEnemy.cpp" />
 		<Unit filename="CONSTRUCTS/enemies/basicEnemy.h" />
+		<Unit filename="CONSTRUCTS/enemies/enemy.cpp" />
 		<Unit filename="CONSTRUCTS/enemies/enemy.h" />
 		<Unit filename="CONSTRUCTS/enemyManager.cpp" />
 		<Unit filename="CONSTRUCTS/managers.h" />
+		<Unit filename="CONSTRUCTS/playerManager.cpp" />
 		<Unit filename="CONSTRUCTS/player/player.cpp" />
 		<Unit filename="CONSTRUCTS/player/player.h" />
 		<Unit filename="Config.ini" />
