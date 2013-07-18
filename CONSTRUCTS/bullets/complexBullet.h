@@ -29,6 +29,8 @@ class ComplexBullet : public Bullet
         double angularV;
         double accel;
         std::vector<instructionStruct> instructions;
+
+        void CalculateVelocity();
 };
 
 #endif // COMPLEXBULLET_H

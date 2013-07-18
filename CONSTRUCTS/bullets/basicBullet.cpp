@@ -1,8 +1,6 @@
 #include "basicBullet.h"
 #include <cmath>
 
-#include <cmath>
-
 #include "../../RESOURCES/images.h"
 
 BasicBullet::BasicBullet(int ntype, double nx, double ny, double nv, double nangle):

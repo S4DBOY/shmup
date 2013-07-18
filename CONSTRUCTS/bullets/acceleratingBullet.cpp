@@ -24,13 +24,17 @@ void AcceleratingBullet::Move()
     if((v+accel<minmaxV && accel>0) || (v+accel>minmaxV && accel<0))
     {
         v+=accel;
-        vx=v*cos((angle-90)*(M_PI/180));
-        vy=v*sin((angle-90)*(M_PI/180));
+        CalculateVelocity();
     }
     else
     {
         v=minmaxV;
-        vx=v*cos((angle-90)*(M_PI/180));
-        vy=v*sin((angle-90)*(M_PI/180));
+        CalculateVelocity();
     }
+}
+
+void AcceleratingBullet::CalculateVelocity()
+{
+    vx=v*cos((angle-90)*(M_PI/180));
+    vy=v*sin((angle-90)*(M_PI/180));
 }

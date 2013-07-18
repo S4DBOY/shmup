@@ -25,11 +25,8 @@ void ComplexBullet::Move()
 
     angle+=angularV;
     v+=accel;
-    if(accel || angularV)
-    {
-        vx=v*cos((angle-90)*(M_PI/180));
-        vy=v*sin((angle-90)*(M_PI/180));
-    }
+    if(accel || angularV) CalculateVelocity();
+
     if(instructions.size()!=0)
     {
         instructionStruct i=instructions.front();
@@ -38,10 +35,8 @@ void ComplexBullet::Move()
             int c=i.setOrChange;
             switch (i.instruction)
             {
-                case BULLET_VELOCITY:{v=c*v-(c-1)*i.data+c*i.data;
-                vx=v*cos((angle-90)*(M_PI/180)); vy=v*sin((angle-90)*(M_PI/180));} break;
-                case BULLET_ANGLE:{angle=c*angle-(c-1)*i.data+c*i.data;
-                vx=v*cos((angle-90)*(M_PI/180)); vy=v*sin((angle-90)*(M_PI/180));} break;
+                case BULLET_VELOCITY:{v=c*v-(c-1)*i.data+c*i.data; CalculateVelocity();} break;
+                case BULLET_ANGLE:{angle=c*angle-(c-1)*i.data+c*i.data; CalculateVelocity();} break;
                 case BULLET_ACCEL:{accel=c*accel-(c-1)*i.data+c*i.data;} break;
                 case BULLET_ANGULAR_VELOCITY:{angularV=c*angularV-(c-1)*i.data+c*i.data;} break;
             }
@@ -55,4 +50,10 @@ void ComplexBullet::AddData(int time, int instruction, int setOrChange, double d
 {
     instructionStruct i={time, instruction, setOrChange, data};
     instructions.push_back(i);
+}
+
+void ComplexBullet::CalculateVelocity()
+{
+    vx=v*cos((angle-90)*(M_PI/180));
+    vy=v*sin((angle-90)*(M_PI/180));
 }

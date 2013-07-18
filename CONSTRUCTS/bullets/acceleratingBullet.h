@@ -17,6 +17,8 @@ class AcceleratingBullet : public Bullet
         double v;
         double accel;
         double minmaxV;
+
+        void CalculateVelocity();
 };
 
 #endif // ACCELERATINGBULLET_H
