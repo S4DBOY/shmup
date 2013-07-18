@@ -11,7 +11,7 @@ class Bullet
         void SetDamage(int n_damage);
         void SetTiming(int n_delay, int n_lifetime);
 
-        virtual void AddData(int, double, double, double, double){};
+        virtual void AddData(int, int, int, double){};
 
         virtual void Move();
         bool CheckBounds();

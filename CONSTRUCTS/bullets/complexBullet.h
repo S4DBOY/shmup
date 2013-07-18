@@ -5,13 +5,12 @@
 #include <vector>
 
 
-struct instruction
+struct instructionStruct
 {
     int time;
-    double v;
-    double angle;
-    double angularV;
-    double accel;
+    int instruction;
+    int setOrChange;
+    double data;
 };
 
 class ComplexBullet : public Bullet
@@ -23,13 +22,13 @@ class ComplexBullet : public Bullet
         ~ComplexBullet();
 
         void Move();
-        void AddData(int time, double v, double angle, double angularV, double accel);
+        void AddData(int time, int instruction, int setOrChange, double data);
     protected:
     private:
         double v;
         double angularV;
         double accel;
-        std::vector<instruction> instructions;
+        std::vector<instructionStruct> instructions;
 };
 
 #endif // COMPLEXBULLET_H

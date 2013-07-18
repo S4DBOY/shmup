@@ -90,8 +90,8 @@ void BulletManager::AddEnemyComplexBullet(int type, double x, double y, double v
                         double accel, double minmaxV)
 {enemyBullets.push_back(std::unique_ptr<Bullet>(new ComplexBullet(type, x, y, v, angle, angularV, accel, minmaxV)));}
 
-void BulletManager::AddEnemyBulletData(int time, double v, double angle, double angularV, double accel)
-{enemyBullets.back()->AddData(time, v, angle, angularV, accel);}
+void BulletManager::AddEnemyBulletData(int time, int instruction, int setOrChange, double data)
+{enemyBullets.back()->AddData(time, instruction, setOrChange, data);}
 
 void BulletManager::SetEnemyBulletTiming(int delay, int lifetime)
 {enemyBullets.back()->SetTiming(delay, lifetime);}

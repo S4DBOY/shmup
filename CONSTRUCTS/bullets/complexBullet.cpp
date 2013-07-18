@@ -32,21 +32,27 @@ void ComplexBullet::Move()
     }
     if(instructions.size()!=0)
     {
-        instruction i=instructions.front();
-        if(time==i.time)
+        instructionStruct i=instructions.front();
+        while(time==i.time)
         {
-            if(i.v) v=i.v;
-            if(i.angle) angle=i.angle;
-            if(i.angle || i.v) {vx=v*cos((angle-90)*(M_PI/180)); vy=v*sin((angle-90)*(M_PI/180)); }
-            if(i.angularV) angularV=i.angularV;
-            if(i.accel) accel=i.accel;
+            int c=i.setOrChange;
+            switch (i.instruction)
+            {
+                case BULLET_VELOCITY:{v=c*v-(c-1)*i.data+c*i.data;
+                vx=v*cos((angle-90)*(M_PI/180)); vy=v*sin((angle-90)*(M_PI/180));} break;
+                case BULLET_ANGLE:{angle=c*angle-(c-1)*i.data+c*i.data;
+                vx=v*cos((angle-90)*(M_PI/180)); vy=v*sin((angle-90)*(M_PI/180));} break;
+                case BULLET_ACCEL:{accel=c*accel-(c-1)*i.data+c*i.data;} break;
+                case BULLET_ANGULAR_VELOCITY:{angularV=c*angularV-(c-1)*i.data+c*i.data;} break;
+            }
             instructions.erase(instructions.begin());
+            if(instructions.size()!=0) i=instructions.front(); else break;
         }
     }
 }
 
-void ComplexBullet::AddData(int time, double v, double angle, double angularV, double accel)
+void ComplexBullet::AddData(int time, int instruction, int setOrChange, double data)
 {
-    instruction i={time, v, angle, angularV, accel};
+    instructionStruct i={time, instruction, setOrChange, data};
     instructions.push_back(i);
 }
