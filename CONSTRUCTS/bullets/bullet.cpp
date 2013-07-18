@@ -14,7 +14,7 @@ Bullet::Bullet(int ntype, double nx, double ny, double nvx, double nvy):
 
     angle=atan2(vy, vx)*(180/M_PI)+90;
 
-    hitbox.w=12; hitbox.h=20;
+    hitbox.w=12; hitbox.h=16;
 }
 
 void Bullet::SetDamage(int n_damage)
@@ -108,19 +108,48 @@ int Bullet::IsCircleHit(double Cx, double Cy, double Cr)
     if(Cy-Cr>Ymax) return 0;
 
     Px=X2-X1; Py=Y2-Y1; P=sqrt(Px*Px+Py*Py);
-    P1=X1*Px+Y1*Py; P2=X2*Px+Y2*Py;
-    A1=Cx*Px+Cy*Py;
-    Amax=A1+Cr*P; Amin=A1-Cr*P;
-
+    P1=X1*Px/P+Y1*Py/P; P2=X2*Px/P+Y2*Py/P;
+    A1=Cx*Px/P+Cy*Py/P;
+    Amax=A1+Cr; Amin=A1-Cr;
     if(Amax<P1 && Amin<P2) return 0;
     if(Amax>P1 && Amin>P2) return 0;
 
     Px=X3-X2; Py=Y3-Y2; P=sqrt(Px*Px+Py*Py);
-    P1=X2*Px+Y2*Py; P2=X3*Px+Y3*Py;
-    A1=Cx*Px+Cy*Py;
-    Amax=A1+Cr*P; Amin=A1-Cr*P;
+    P1=X2*Px/P+Y2*Py/P; P2=X3*Px/P+Y3*Py/P;
+    A1=Cx*Px/P+Cy*Py/P;
+    Amax=A1+Cr; Amin=A1-Cr;
     if(Amax<P1 && Amin<P2) return 0;
     if(Amax>P1 && Amin>P2) return 0;
+
+    /*checking aganist corners */
+
+    Px=Cx-X1; Py=Cy-Y1; P=sqrt(Px*Px+Py*Py);
+    P1=X1*Px/P+Y1*Py/P; P2=X2*Px/P+Y2*Py/P; P3=X3*Px/P+Y3*Py/P; P4=X4*Px/P+Y4*Py/P;
+    Pmax=std::max(P1, std::max(P2, std::max(P3, P4))); Pmin=std::min(P1, std::min(P2, std::min(P3, P4)));
+    A1=Cx*Px/P+Cy*Py/P; Amax=A1+Cr; Amin=A1-Cr;
+    if(Amax<Pmax && Amin<Pmin) return 0;
+    if(Amax>Pmin && Amin>Pmax) return 0;
+
+    Px=Cx-X2; Py=Cy-Y2; P=sqrt(Px*Px+Py*Py);
+    P1=X1*Px/P+Y1*Py/P; P2=X2*Px/P+Y2*Py/P; P3=X3*Px/P+Y3*Py/P; P4=X4*Px/P+Y4*Py/P;
+    Pmax=std::max(P1, std::max(P2, std::max(P3, P4))); Pmin=std::min(P1, std::min(P2, std::min(P3, P4)));
+    A1=Cx*Px/P+Cy*Py/P; Amax=A1+Cr; Amin=A1-Cr;
+    if(Amax<Pmax && Amin<Pmin) return 0;
+    if(Amax>Pmin && Amin>Pmax) return 0;
+
+    Px=Cx-X3; Py=Cy-Y3; P=sqrt(Px*Px+Py*Py);
+    P1=X1*Px/P+Y1*Py/P; P2=X2*Px/P+Y2*Py/P; P3=X3*Px/P+Y3*Py/P; P4=X4*Px/P+Y4*Py/P;
+    Pmax=std::max(P1, std::max(P2, std::max(P3, P4))); Pmin=std::min(P1, std::min(P2, std::min(P3, P4)));
+    A1=Cx*Px/P+Cy*Py/P; Amax=A1+Cr; Amin=A1-Cr;
+    if(Amax<Pmax && Amin<Pmin) return 0;
+    if(Amax>Pmin && Amin>Pmax) return 0;
+
+    Px=Cx-X4; Py=Cy-Y4; P=sqrt(Px*Px+Py*Py);
+    P1=X1*Px/P+Y1*Py/P; P2=X2*Px/P+Y2*Py/P; P3=X3*Px/P+Y3*Py/P; P4=X4*Px/P+Y4*Py/P;
+    Pmax=std::max(P1, std::max(P2, std::max(P3, P4))); Pmin=std::min(P1, std::min(P2, std::min(P3, P4)));
+    A1=Cx*Px/P+Cy*Py/P; Amax=A1+Cr; Amin=A1-Cr;
+    if(Amax<Pmax && Amin<Pmin) return 0;
+    if(Amax>Pmin && Amin>Pmax) return 0;
 
     return damage;
 };
