@@ -8,7 +8,3 @@ BasicBullet::BasicBullet(int ntype, double nx, double ny, double nv, double nang
 {
     angle=nangle+90;
 }
-
-BasicBullet::~BasicBullet()
-{
-}

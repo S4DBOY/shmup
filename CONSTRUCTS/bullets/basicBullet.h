@@ -7,7 +7,7 @@ class BasicBullet : public Bullet
 {
     public:
         BasicBullet(int ntype, double nx, double ny, double nv, double nangle);
-        ~BasicBullet();
+        ~BasicBullet(){};
     protected:
     private:
 };

@@ -11,11 +11,6 @@ ComplexBullet::ComplexBullet(int n_type, double n_x, double n_y,
     angle=n_angle+90;
 }
 
-ComplexBullet::~ComplexBullet()
-{
-
-}
-
 void ComplexBullet::Move()
 {
     time++;

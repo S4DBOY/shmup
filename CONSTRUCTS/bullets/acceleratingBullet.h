@@ -9,7 +9,7 @@ class AcceleratingBullet : public Bullet
         AcceleratingBullet(int n_type, double n_x, double n_y,
                         double n_v, double n_angle,
                         double n_accel, double n_minmaxV);
-        ~AcceleratingBullet();
+        ~AcceleratingBullet(){};
 
         void Move();
     protected:

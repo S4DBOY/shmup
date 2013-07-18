@@ -10,7 +10,7 @@ class AcceleratingBulletXY : public Bullet
                         double n_vx, double n_vy,
                         double n_accelX, double n_accelY,
                         double n_minmaxX, double n_minmaxY);
-        ~AcceleratingBulletXY();
+        ~AcceleratingBulletXY(){};
 
         void Move();
     protected:

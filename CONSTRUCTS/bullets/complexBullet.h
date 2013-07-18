@@ -4,7 +4,6 @@
 #include "bullet.h"
 #include <vector>
 
-
 struct instructionStruct
 {
     int time;
@@ -19,7 +18,7 @@ class ComplexBullet : public Bullet
         ComplexBullet(int n_type, double n_x, double n_y,
                         double n_v, double n_angle, double n_angularV,
                         double n_accel, double n_minmaxV);
-        ~ComplexBullet();
+        ~ComplexBullet(){};
 
         void Move();
         void AddData(int time, int instruction, int setOrChange, double data);

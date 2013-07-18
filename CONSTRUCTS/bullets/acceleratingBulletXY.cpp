@@ -10,11 +10,6 @@ AcceleratingBulletXY::AcceleratingBulletXY(int n_type, double n_x, double n_y,
         accelX(n_accelX), accelY(n_accelY), minmaxX(n_minmaxX), minmaxY(n_minmaxY)
     {}
 
-AcceleratingBulletXY::~AcceleratingBulletXY()
-{
-    //dtor
-}
-
 void AcceleratingBulletXY::Move()
 {
     time++;

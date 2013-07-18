@@ -9,11 +9,6 @@ AcceleratingBullet::AcceleratingBullet(int n_type, double n_x, double n_y,
         v(n_v), accel(n_accel), minmaxV(n_minmaxV)
     {}
 
-AcceleratingBullet::~AcceleratingBullet()
-{
-    //dtor
-}
-
 void AcceleratingBullet::Move()
 {
     time++;
