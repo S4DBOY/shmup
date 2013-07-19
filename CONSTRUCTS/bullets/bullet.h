@@ -15,7 +15,7 @@ class Bullet
 
         virtual void Move();
         bool CheckBounds();
-        int IsRectHit(SDL_Rect *r);
+        int IsRectHit(SDL_Rect r);
         int IsCircleHit(double x, double y, double r);
         void Draw();
 

@@ -21,7 +21,7 @@ class BulletManager
         void Move();
         void Logic();
         void Draw();
-        int IsEnemyHit(SDL_Rect *loc);
+        int IsEnemyHit(SDL_Rect loc);
         int IsPlayerHit(double x, double y, double radius);
 
         void AddEnemyBulletXY(int type, double x, double y, double vx, double vy);

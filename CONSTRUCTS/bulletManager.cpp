@@ -47,7 +47,7 @@ void BulletManager::Draw()
     for(int i=0; i<int(enemyBullets.size()); i++){ enemyBullets[i]->Draw();}
 }
 
-int BulletManager::IsEnemyHit(SDL_Rect *loc)
+int BulletManager::IsEnemyHit(SDL_Rect loc)
 {
     int change,damage=0;
     for(int i=0; i<int(playerBullets.size()); i++)
