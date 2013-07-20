@@ -1,5 +1,4 @@
 #include "../STATES/states.h"
-#include "../BASIC/system.h"
 
 #include "../RESOURCES/images.h"
 
@@ -15,22 +14,18 @@ MainMenu::~MainMenu()
 
 void MainMenu::Handle_events()
 {
-    while(SDL_PollEvent(&event))
+    if(event.type==SDL_KEYDOWN)
     {
-        SDLsystem->Input();
-        if(event.type==SDL_KEYDOWN)
-        {
-            SDL_Keycode key=event.key.keysym.sym;
-            if(key==SDLK_RETURN) nextState=State::GAME;
-            if(key == SDLK_ESCAPE ) nextState = State::EXIT;
-        }
-
+        SDL_Keycode key=event.key.keysym.sym;
+        if(key==SDLK_RETURN) nextState=State::GAME;
+        if(key == SDLK_ESCAPE ) nextState = State::EXIT;
     }
-    if(frameCounter==30) nextState=State::GAME;
+    //temporary!
 }
 
 void MainMenu::Logic()
 {
+    if(frameCounter==30) nextState=State::GAME;
 }
 
 void MainMenu::Render()

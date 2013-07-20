@@ -1,5 +1,4 @@
 #include "../STATES/states.h"
-#include "../BASIC/system.h"
 
 #include "../CONSTRUCTS/managers.h"
 
@@ -19,16 +18,12 @@ Game::~Game()
 
 void Game::Handle_events()
 {
-    while(SDL_PollEvent(&event))
+    playerManager->Input();
+    if( event.type == SDL_KEYDOWN )
     {
-        SDLsystem->Input();
-        playerManager->Input();
-        if( event.type == SDL_KEYDOWN )
-        {
-            SDL_Keycode key=event.key.keysym.sym;
-            if(key == SDLK_ESCAPE )
-                {nextState = State::EXIT;}
-        }
+        SDL_Keycode key=event.key.keysym.sym;
+        if(key == SDLK_ESCAPE )
+            {nextState = State::EXIT;}
     }
 }
 

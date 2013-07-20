@@ -1,7 +1,7 @@
 #ifndef SOUND_H
 #define SOUND_H
 
-#include "../BASIC/globals.h"
+#include "SDL2/SDL.h"
 
 void LoadSounds();
 void UnloadSounds();

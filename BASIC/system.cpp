@@ -77,7 +77,7 @@ bool System::RegulateFPS()
     return 0;
 }
 
-void System::Input()
+void System::Handle_events()
 {
     if( event.type == SDL_QUIT ) {stateID = State::EXIT; return;}
     if( event.type == SDL_KEYDOWN )

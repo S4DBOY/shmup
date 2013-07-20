@@ -73,6 +73,8 @@
 		<Unit filename="STATES/mainmenu.cpp" />
 		<Unit filename="STATES/states.cpp" />
 		<Unit filename="STATES/states.h" />
+		<Unit filename="UTILITIES/collision.cpp" />
+		<Unit filename="UTILITIES/collision.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

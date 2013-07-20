@@ -9,7 +9,7 @@ class System
     public:
         System();
         ~System();
-        void Input();
+        void Handle_events();
 
         bool RegulateFPS();
     protected:

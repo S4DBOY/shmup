@@ -16,7 +16,11 @@ int main(int argc, char *argv[])
 
     while( stateID != State::EXIT )
     {
-        currentState->Handle_events();
+        while(SDL_PollEvent(&event))
+        {
+            SDLsystem->Handle_events();
+            currentState->Handle_events();
+        }
 
             /*   FPS limiter   */
         if(VSYNC==0) if( SDLsystem->RegulateFPS()) continue;

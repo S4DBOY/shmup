@@ -1,7 +1,7 @@
 #ifndef COLLISION_H
 #define COLLISION_H
 
-#include "../BASIC/globals.h"
+#include "SDL2/SDL.h"
 
 /*
     Checks for a collision between a rotated rect and a non-rotated rect.

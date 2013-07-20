@@ -1,7 +1,7 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include "../../BASIC/globals.h"
+#include "SDL2/SDL.h"
 
 class Player
 {
