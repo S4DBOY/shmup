@@ -21,7 +21,7 @@ void AcceleratingBullet::Move()
         v+=accel;
         CalculateVelocity();
     }
-    else
+    else if(accel)
     {
         v=minmaxV;
         CalculateVelocity();
@@ -30,6 +30,6 @@ void AcceleratingBullet::Move()
 
 void AcceleratingBullet::CalculateVelocity()
 {
-    vx=v*cos((angle-90)*(M_PI/180));
-    vy=v*sin((angle-90)*(M_PI/180));
+    vx=v*cos((angle)*(M_PI/180));
+    vy=v*sin((angle)*(M_PI/180));
 }

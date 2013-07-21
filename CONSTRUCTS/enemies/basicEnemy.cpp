@@ -24,13 +24,13 @@ void BasicEnemy::Logic()
     }
         /*for(int i=0;i<360;i+=15)
         {
-            bulletManager->AddEnemyComplexBullet(B_BULLET1, x, y, basev, i-a, 0, 0, 0);
+            bulletManager->AddEnemyComplexBullet(B_BULLET1, x, y, basev, i-a, 0, 0);
             bulletManager->AddEnemyBulletData(45, BULLET_ANGULAR_VELOCITY, SET, 5);
             bulletManager->AddEnemyBulletData(45, BULLET_ACCEL, SET, -0.7);
             bulletManager->AddEnemyBulletData(55, BULLET_ANGULAR_VELOCITY, SET, 0);
             bulletManager->AddEnemyBulletData(55, BULLET_ACCEL, SET, 0);
 
-            bulletManager->AddEnemyComplexBullet(B_BULLET1, x, y, basev, i+a, 0, 0, 0);
+            bulletManager->AddEnemyComplexBullet(B_BULLET1, x, y, basev, i+a, 0, 0);
             bulletManager->AddEnemyBulletData(45, BULLET_ANGULAR_VELOCITY, SET, -5);
             bulletManager->AddEnemyBulletData(45, BULLET_ACCEL, SET, -0.7);
             bulletManager->AddEnemyBulletData(55, BULLET_ANGULAR_VELOCITY, SET, 0);

@@ -13,7 +13,7 @@ Bullet::Bullet(int ntype, double nx, double ny, double nvx, double nvy):
     loc.x=x-32/2; loc.y=y-32/2;
     loc.w=32; loc.h=32;
 
-    angle=atan2(vy, vx)*(180/M_PI)+90;
+    angle=atan2(vy, vx)*(180/M_PI);
 
     hitbox.w=12; hitbox.h=20;
 }
@@ -68,7 +68,7 @@ void Bullet::Draw()
     if(time<delay) return;
     if(y-loc.h/2>SCREEN_HEIGHT|| y<-loc.h/2 || x<-loc.w/2 || x>SCREEN_WIDTH+loc.w/2) return;
     loc.x=x-32/2; loc.y=y-32/2;
-    SDL_RenderCopyEx(ren, bulletSheet, &source, &loc, angle, NULL, SDL_FLIP_NONE);
+    SDL_RenderCopyEx(ren, bulletSheet, &source, &loc, angle+90, NULL, SDL_FLIP_NONE);
 
     /*SDL_SetRenderDrawColor(ren, 255, 255, 255, 255);
     double t_cos=cos(angle*(M_PI/180)); double t_sin=sin(angle*(M_PI/180));

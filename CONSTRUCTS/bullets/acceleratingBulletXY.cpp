@@ -20,5 +20,5 @@ void AcceleratingBulletXY::Move()
     else if(accelX) vx=minmaxX;
     if((vy+accelY<minmaxY && accelY>0) || (vy+accelY>minmaxY && accelY<0)) vy+=accelY;
     else if(accelY) vy=minmaxY;
-    angle=atan2(vy, vx)*(180/M_PI)+90;
+    angle=atan2(vy, vx)*(180/M_PI);
 }

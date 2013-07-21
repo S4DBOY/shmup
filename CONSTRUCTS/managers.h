@@ -28,8 +28,7 @@ class BulletManager
         void AddEnemyAccelBullet(int type, double x, double y, double v, double angle, double accel, double minmaxV);
         void AddEnemyAccelBulletXY(int type, double x, double y, double vx, double vy, double accelX, double accelY,
                                         double minmaxX, double minmaxY);
-        void AddEnemyComplexBullet(int type, double x, double y, double v, double angle, double angularV,
-                                    double accel, double minmaxV);
+        void AddEnemyComplexBullet(int type, double x, double y, double v, double angle, double angularV, double accel);
 
         void AddEnemyBulletData(int time, int instruction, int setOrChange, double data);
         void SetEnemyBulletTiming(int delay, int lifetime);
