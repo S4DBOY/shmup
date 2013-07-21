@@ -22,18 +22,17 @@ BulletManager::~BulletManager()
 
 void BulletManager::Move()
 {
-    for(int i=0; i<int(enemyBullets.size()); i++) {enemyBullets[i]->Move();}
-    for(int i=0; i<int(playerBullets.size()); i++) {playerBullets[i]->Move();}
+    for(unsigned int i=0; i<enemyBullets.size(); ++i) {enemyBullets[i]->Move();}
+    for(unsigned int i=0; i<playerBullets.size(); ++i) {playerBullets[i]->Move();}
 }
 
 void BulletManager::Logic()
 {
-    if(int(enemyBullets.size())>maxBullets) maxBullets=enemyBullets.size();
-    for(int i=0; i<int(enemyBullets.size()); i++)
+    for(unsigned int i=0; i<enemyBullets.size(); ++i)
     {
         if(enemyBullets[i]->CheckBounds()) {enemyBullets.erase(enemyBullets.begin()+i); i=i-1;}
     }
-    for(int i=0; i<int(playerBullets.size()); i++)
+    for(unsigned int i=0; i<playerBullets.size(); ++i)
     {
         if(playerBullets[i]->CheckBounds()) {playerBullets.erase(playerBullets.begin()+i); i=i-1;}
     }
@@ -42,15 +41,15 @@ void BulletManager::Logic()
 void BulletManager::Draw()
 {
     SDL_SetTextureAlphaMod(bulletSheet, 128);
-    for(int i=0; i<int(playerBullets.size()); i++){ playerBullets[i]->Draw();}
+    for(unsigned int i=0; i<playerBullets.size(); ++i){ playerBullets[i]->Draw();}
     SDL_SetTextureAlphaMod(bulletSheet, 255);
-    for(int i=0; i<int(enemyBullets.size()); i++){ enemyBullets[i]->Draw();}
+    for(unsigned int i=0; i<enemyBullets.size(); ++i){ enemyBullets[i]->Draw();}
 }
 
 int BulletManager::IsEnemyHit(SDL_Rect loc)
 {
     int change,damage=0;
-    for(int i=0; i<int(playerBullets.size()); i++)
+    for(unsigned int i=0; i<playerBullets.size(); ++i)
     {
         change=playerBullets[i]->IsRectHit(loc);
         damage+=change;
@@ -62,7 +61,7 @@ int BulletManager::IsEnemyHit(SDL_Rect loc)
 int BulletManager::IsPlayerHit(double x, double y, double radius)
 {
     bool result=0;
-    for(int i=0; i<int(enemyBullets.size()); i++)
+    for(unsigned int i=0; i<enemyBullets.size(); ++i)
     {
         if(enemyBullets[i]->IsCircleHit(x, y, radius))
         {

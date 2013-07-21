@@ -4,6 +4,7 @@
 #  include <windows.h>
 #endif
 
+#include "../BASIC/globals.h"
 #include "../BASIC/system.h"
 #include "../STATES/states.h"
 

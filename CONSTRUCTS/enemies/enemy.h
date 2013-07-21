@@ -1,7 +1,7 @@
 #ifndef ENEMY_H
 #define ENEMY_H
 
-#include "../../BASIC/globals.h"
+#include "SDL2/SDL.h"
 
 class Enemy
 {
@@ -15,7 +15,7 @@ class Enemy
         bool IsDead(){return health<0;}
         void ReduceHealth(int damage){health-=damage;}
         SDL_Rect GetLoc(){return loc;}
-        virtual void Draw()=0;
+        virtual void Draw();
     protected:
         int type;
         int health;

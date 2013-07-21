@@ -25,6 +25,3 @@ int InitializeGlobals()
 
     return 0;
 }
-
-
-int maxBullets=0;

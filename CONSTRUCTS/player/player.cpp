@@ -1,5 +1,6 @@
 #include "player.h"
 
+#include "../../BASIC/globals.h"
 #include "../../RESOURCES/images.h"
 #include "../../CONSTRUCTS/managers.h"
 
@@ -20,7 +21,7 @@ Player::~Player()
 
 void Player::Input()
 {
-    double v=5;
+    double v=6;
     if( event.type == SDL_KEYDOWN )
     {
         switch( event.key.keysym.sym)

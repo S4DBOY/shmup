@@ -1,17 +1,18 @@
 #include "../BASIC/system.h"
 
+#include "../BASIC/globals.h"
 #include "../RESOURCES/images.h"
 #include "../RESOURCES/sound.h"
-#include "../CONSTRUCTS/managers.h"
+#include "../CONSTRUCTS/managers.h"     //I'd love to get rid of it someday. Singleton pattern, maybe?
 #include "../STATES/states.h"
 
 #include "SDL2/SDL_mixer.h"
 #include "SDL2/SDL_image.h"
 
 #include <ctime>
-#include <cstdio>
-#include <sstream>
-#include <fstream>
+#include <sstream>      //to be deleted in release
+#include <fstream>      //to be deleted in release
+#include <cstdlib>
 
 System *SDLsystem;
 
@@ -45,13 +46,12 @@ System::~System()
     SDL_DestroyWindow(window);
     Mix_CloseAudio();
     SDL_Quit();
-
+        /*          performance data            */
     debugData<<std::endl;
     debugData<<"resolution: "<<SCREEN_WIDTH<<"/"<<SCREEN_HEIGHT<<", "<<FRAMES_PER_SECOND<<" FPS, vsync: "<<VSYNC<<", fullscreen: "<<FULLSCREEN<<std::endl;
     debugData<<std::endl;
     debugData<<sumEmptyLoops/(frameCounter-120)<<" empty loops per frame on average"<<std::endl;
     debugData<<nSlowDowns<<" slowdowns, "<<60*nSlowDowns/(frameCounter-120.0)<<" per sec"<<std::endl;
-    debugData<<"maximum: "<<maxBullets<<" bullets"<<std::endl;
     debugData<<"program lasted for "<<frameCounter<<" frames"<<std::endl;
     debugData.close();
 }
@@ -65,7 +65,7 @@ bool System::RegulateFPS()
     old = now;
 
         /*     FPS counter     */
-    std::stringstream performance;
+    std::ostringstream performance;
     performance << 1/dt<<" "<<emptyloop;
     SDL_SetWindowTitle(window, performance.str().c_str());
 
@@ -136,13 +136,11 @@ bool System::Setup()
     //SDL_Surface* icon = SDL_LoadBMP("icon.bmp");
     //SDL_SetWindowIcon(window, icon);
 
-    SDL_SetWindowTitle(window, "Pong");
+    SDL_SetWindowTitle(window, "Shmup");
 
     SDL_ShowCursor(SDL_DISABLE);
 
-    int mouse_x, mouse_y;
-    SDL_GetMouseState(&mouse_x, &mouse_y);
-    srand(time(0)+mouse_x+mouse_y);
+    srand(time(0));
 
     return 0;
 }

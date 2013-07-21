@@ -1,10 +1,9 @@
+#include "../../BASIC/globals.h"
 #include "../../RESOURCES/images.h"
-
 #include "../../UTILITIES/collision.h"
 
 #include "bullet.h"
 
-#include <algorithm>
 #include <cmath>
 
 Bullet::Bullet(int ntype, double nx, double ny, double nvx, double nvy):
@@ -16,7 +15,7 @@ Bullet::Bullet(int ntype, double nx, double ny, double nvx, double nvy):
 
     angle=atan2(vy, vx)*(180/M_PI)+90;
 
-    hitbox.w=12; hitbox.h=16;
+    hitbox.w=12; hitbox.h=20;
 }
 
 void Bullet::SetDamage(int n_damage)

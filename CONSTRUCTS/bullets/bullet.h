@@ -1,7 +1,7 @@
 #ifndef BULLET_H
 #define BULLET_H
 
-#include "../../BASIC/globals.h"
+#include "SDL2/SDL.h"
 
 class Bullet
 {

@@ -2,6 +2,17 @@
 
 #include <cmath>
 
+enum BULLET_INSTRUCTION{
+    BULLET_ANGLE,
+    BULLET_VELOCITY,
+    BULLET_ANGULAR_VELOCITY,
+    BULLET_ACCEL,
+};
+enum SET_OR_CHANGE{
+    SET,
+    CHANGE,
+};
+
 ComplexBullet::ComplexBullet(int n_type, double n_x, double n_y,
                         double n_v, double n_angle, double n_angularV,
                         double n_accel, double n_minmaxV):

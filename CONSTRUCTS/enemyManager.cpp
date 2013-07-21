@@ -16,7 +16,7 @@ EnemyManager::~EnemyManager()
 
 void EnemyManager::Move()
 {
-    for(int i=0; i<int(enemies.size()); i++)
+    for(unsigned int i=0; i<enemies.size(); ++i)
     {
         enemies[i]->Move();
     }
@@ -24,7 +24,7 @@ void EnemyManager::Move()
 
 void EnemyManager::Logic()
 {
-    for(int i=0; i<int(enemies.size()); i++)
+    for(unsigned int i=0; i<enemies.size(); ++i)
     {
         enemies[i]->Logic();
         enemies[i]->ReduceHealth(bulletManager->IsEnemyHit(enemies[i]->GetLoc()));
@@ -34,7 +34,7 @@ void EnemyManager::Logic()
 
 void EnemyManager::Draw()
 {
-    for(int i=0; i<int(enemies.size()); i++) {enemies[i]->Draw();}
+    for(unsigned int i=0; i<enemies.size(); ++i) {enemies[i]->Draw();}
 }
 
 void EnemyManager::AddEnemy(int type, double x, double y, double vx, double vy)

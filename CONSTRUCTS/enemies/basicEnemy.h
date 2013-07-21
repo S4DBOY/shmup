@@ -7,11 +7,9 @@ class BasicEnemy : public Enemy
 {
     public:
         BasicEnemy(int ntype, double nx, double ny, double nvx, double nvy);
-        ~BasicEnemy();
+        ~BasicEnemy(){};
 
-        void Move();
         void Logic();
-        void Draw();
     protected:
     private:
 };

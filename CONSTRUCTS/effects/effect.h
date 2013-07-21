@@ -1,7 +1,7 @@
 #ifndef EFFECT_H
 #define EFFECT_H
 
-#include "../../BASIC/globals.h"
+#include "SDL2/SDL.h"
 
 class Effect
 {

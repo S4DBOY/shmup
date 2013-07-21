@@ -1,7 +1,7 @@
 #ifndef COLLISION_H
 #define COLLISION_H
 
-#include "SDL2/SDL.h"
+struct SDL_Rect;
 
 /*
     Checks for a collision between a rotated rect and a non-rotated rect.

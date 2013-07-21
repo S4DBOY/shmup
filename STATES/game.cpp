@@ -1,8 +1,7 @@
+#include "../BASIC/globals.h"
 #include "../STATES/states.h"
-
 #include "../CONSTRUCTS/managers.h"
 
-#include "../RESOURCES/images.h"
 
 Game::Game()
 {
@@ -41,7 +40,8 @@ void Game::Logic()
 
 void Game::Render()
 {
-    SDL_RenderCopy(ren, background, NULL, NULL);
+    SDL_SetRenderDrawColor(ren, 0, 0, 0, 0);
+    SDL_RenderClear(ren);
     SDL_SetRenderDrawColor(ren, 255, 255, 255, 0);
 
     enemyManager->Draw();

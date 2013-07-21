@@ -1,5 +1,6 @@
 #include "../RESOURCES/images.h"
 
+#include "../BASIC/globals.h"
 #include "SDL2/SDL_image.h"
 #include <string>
 

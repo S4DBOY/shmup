@@ -1,8 +1,6 @@
 #ifndef STATES_H
 #define STATES_H
 
-#include "../BASIC/globals.h"
-
 class BulletManager;
 class EnemyManager;
 class EffectManager;

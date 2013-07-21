@@ -1,6 +1,5 @@
+#include "../BASIC/globals.h"
 #include "../STATES/states.h"
-
-#include "../RESOURCES/images.h"
 
 MainMenu::MainMenu()
 {
@@ -30,6 +29,7 @@ void MainMenu::Logic()
 
 void MainMenu::Render()
 {
-    SDL_RenderCopy(ren, background, NULL, NULL);
+    SDL_SetRenderDrawColor(ren, 0, 0, 0, 0);
+    SDL_RenderClear(ren);
     SDL_RenderPresent(ren);
 }

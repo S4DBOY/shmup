@@ -1,8 +1,7 @@
 #ifndef SYSTEM_H
 #define SYSTEM_H
 
-#include "../BASIC/globals.h"
-
+#include "SDL2/SDL.h"
 
 class System
 {
@@ -19,8 +18,9 @@ class System
 
         uint64_t now, old;
         double dt;
-        int emptyloop;
 
+        /*  debugging/performance analysis   */
+        int emptyloop;
         int sumEmptyLoops=0;
         int nSlowDowns=0;
     private:

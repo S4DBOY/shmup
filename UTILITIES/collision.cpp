@@ -1,7 +1,14 @@
 #include "collision.h"
 
+#define M_PI		3.14159265358979323846
 #include <cmath>
 #include <algorithm>
+
+struct SDL_Rect
+{
+    int x, y;
+    int w, h;
+};
 
 bool BoxBox(SDL_Rect hitbox, double angle, SDL_Rect r)
 {

@@ -16,7 +16,7 @@ EffectManager::~EffectManager()
 
 void EffectManager::Logic()
 {
-    for(int i=0; i<int(effects.size()); i++)
+    for(unsigned int i=0; i<effects.size(); ++i)
     {
         //if(effects[i]->time>effects[i]->life)  {effects.erase(effects.begin()+i); i=i-1;}
     }
@@ -24,7 +24,7 @@ void EffectManager::Logic()
 
 void EffectManager::Draw()
 {
-    for(int i=0; i<int(effects.size()); i++){ effects[i]->Draw();}
+    for(unsigned int i=0; i<effects.size(); ++i){ effects[i]->Draw();}
 }
 
 void EffectManager::AddEffect(int type, double x, double y)

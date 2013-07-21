@@ -1,7 +1,7 @@
 #ifndef IMAGES_H
 #define IMAGES_H
 
-#include "../BASIC/globals.h"
+#include "SDL2/SDL.h"
 
 extern SDL_Texture *bulletSheet;
 extern SDL_Texture *background;

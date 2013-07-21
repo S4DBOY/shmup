@@ -1,11 +1,10 @@
 #ifndef MANAGERS_H
 #define MANAGERS_H
 
-#include "../BASIC/globals.h"
-
 #include <vector>
 #include <memory>
 
+struct SDL_Rect;
 
 class Bullet;
 class Effect;
@@ -45,8 +44,7 @@ class BulletManager
         std::vector<std::unique_ptr<Bullet>> playerBullets;
 };
 
-enum BULLET_TYPE
-{
+enum BULLET_TYPE{
     B_BULLET1
 };
 
@@ -65,8 +63,7 @@ class EffectManager
         std::vector<std::unique_ptr<Effect>> effects;
 };
 
-enum EFFECT_TYPE
-{
+enum EFFECT_TYPE{
     EF_EFFECT1
 };
 
@@ -86,8 +83,7 @@ class EnemyManager
         std::vector<std::unique_ptr<Enemy>> enemies;
 };
 
-enum ENEMY_TYPE
-{
+enum ENEMY_TYPE{
     E_ENEMY1
 };
 
