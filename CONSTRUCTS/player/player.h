@@ -3,6 +3,9 @@
 
 #include "SDL2/SDL.h"
 
+/**
+    Will become the base class for choosable characters in the future
+*/
 class Player
 {
     public:

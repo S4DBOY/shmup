@@ -3,6 +3,9 @@
 
 #include "SDL2/SDL.h"
 
+/**
+    The base Enemy class
+*/
 class Enemy
 {
     public:

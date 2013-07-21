@@ -3,6 +3,9 @@
 
 #include "bullet.h"
 
+/**
+    \brief A a simple bullet, the only difference from its parent being the construction arguments.
+*/
 class BasicBullet : public Bullet
 {
     public:

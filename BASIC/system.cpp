@@ -72,18 +72,17 @@ bool System::RegulateFPS()
     if(frameCounter>120) sumEmptyLoops+=emptyloop;
     if(frameCounter>120 && 1/dt<59.9) {debugData<<"frame "<<frameCounter<<" , "<<emptyloop<<" "<<1/dt<<std::endl; nSlowDowns++;}
 
-
     emptyloop=0;
     return 0;
 }
 
 void System::Handle_events()
 {
-    if( event.type == SDL_QUIT ) {stateID = State::EXIT; return;}
+    if( event.type == SDL_QUIT ) {SetNextState(State::EXIT); return;}
     if( event.type == SDL_KEYDOWN )
     {
         if(event.key.keysym.sym == SDLK_F4 && ( event.key.keysym.mod & KMOD_ALT) )
-            {nextState = State::EXIT; return;}
+            {SetNextState(State::EXIT); return;}
     }
     /*if(event.type==SDL_WINDOWEVENT)
     {
@@ -93,6 +92,7 @@ void System::Handle_events()
     }*/
 
 }
+
 
 void System::ToggleFullscreen()
 {
@@ -106,6 +106,7 @@ void System::ToggleFullscreen()
     ren = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
     LoadImages();
 }
+
 
 bool System::Setup()
 {

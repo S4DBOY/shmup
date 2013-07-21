@@ -11,6 +11,10 @@ class Effect;
 class Enemy;
 class Player;
 
+
+/**
+    \brief A wrapper for a Bullet type vector
+*/
 class BulletManager
 {
     public:
@@ -43,11 +47,16 @@ class BulletManager
         std::vector<std::unique_ptr<Bullet>> playerBullets;
 };
 
+/**
+    \brief List of possible bullet types, which determine their graphic and hitbox
+*/
 enum BULLET_TYPE{
     B_BULLET1
 };
 
-
+/**
+    \brief A wrapper for a Effect type vector
+*/
 class EffectManager
 {
     public:
@@ -62,10 +71,16 @@ class EffectManager
         std::vector<std::unique_ptr<Effect>> effects;
 };
 
+/**
+    \brief List of possible effect types, which determine their graphics and behaviour
+*/
 enum EFFECT_TYPE{
     EF_EFFECT1
 };
 
+/**
+    \brief A wrapper for a Enemy type vector
+*/
 class EnemyManager
 {
     public:
@@ -82,10 +97,16 @@ class EnemyManager
         std::vector<std::unique_ptr<Enemy>> enemies;
 };
 
+/**
+    \brief List of possible enemy types, which determine their graphic and hitbox. May be deleted in the future
+*/
 enum ENEMY_TYPE{
     E_ENEMY1
 };
 
+/**
+    \brief A wrapper for the Player type opject
+*/
 class PlayerManager
 {
     public:

@@ -15,8 +15,15 @@ extern SDL_Event event;
 
 extern int frameCounter;
 
+/**
+    \brief Loads configuration data from the config file.
+    Currently uses Windows API funcions, I may search for an cross-platform solution in the future.
+*/
 int InitializeGlobals();
 
+/**
+    \brief Holds possible instructions for the pseudo-scripted bullets (ComplexBullet).
+*/
 enum BULLET_INSTRUCTION{
     BULLET_ANGLE,
     BULLET_VELOCITY,

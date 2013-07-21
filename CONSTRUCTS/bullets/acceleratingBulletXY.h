@@ -3,6 +3,9 @@
 
 #include "bullet.h"
 
+/**
+    \brief A bullet able to change its velocity in X and Y axid independently
+*/
 class AcceleratingBulletXY : public Bullet
 {
     public:

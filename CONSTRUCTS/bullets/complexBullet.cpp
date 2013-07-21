@@ -2,6 +2,9 @@
 
 #include <cmath>
 
+/**
+    \brief Holds possible instructions for the pseudo-scripted bullets (ComplexBullet).
+*/
 enum BULLET_INSTRUCTION{
     BULLET_ANGLE,
     BULLET_VELOCITY,
@@ -33,7 +36,7 @@ void ComplexBullet::Move()
 
     if(instructions.size()!=0)
     {
-        instructionStruct i=instructions.front();
+        InstructionStruct i=instructions.front();
         while(time==i.time)
         {
             int c=i.setOrChange;
@@ -52,7 +55,7 @@ void ComplexBullet::Move()
 
 void ComplexBullet::AddData(int time, int instruction, int setOrChange, double data)
 {
-    instructionStruct i={time, instruction, setOrChange, data};
+    InstructionStruct i={time, instruction, setOrChange, data};
     instructions.push_back(i);
 }
 

@@ -12,8 +12,8 @@ int main(int argc, char *argv[])
 {
     SDLsystem = new System();
 
-    stateID = State::MAINMENU;
-    currentState = new MainMenu();
+    SetNextState(State::MAINMENU);
+    ChangeState();
 
     while( stateID != State::EXIT )
     {
@@ -29,8 +29,8 @@ int main(int argc, char *argv[])
         frameCounter++;
 
         currentState->Logic();
-        change_state();
         currentState->Render();
+        ChangeState();
 
         SDL_Delay(1);
     }

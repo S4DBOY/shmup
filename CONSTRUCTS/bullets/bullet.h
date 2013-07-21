@@ -3,6 +3,10 @@
 
 #include "SDL2/SDL.h"
 
+/**
+    \brief A a simple bullet, defined by its
+    The base class for other bullet subclasses.
+*/
 class Bullet
 {
     public:
@@ -27,8 +31,8 @@ class Bullet
         double angle;
         SDL_Rect loc, source, hitbox;
         int damage=1;
+
     private:
 };
 
 #endif // BULLET_H
-

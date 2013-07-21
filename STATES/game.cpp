@@ -21,8 +21,7 @@ void Game::Handle_events()
     if( event.type == SDL_KEYDOWN )
     {
         SDL_Keycode key=event.key.keysym.sym;
-        if(key == SDLK_ESCAPE )
-            {nextState = State::EXIT;}
+        if(key == SDLK_ESCAPE ) SetNextState(State::EXIT);
     }
 }
 

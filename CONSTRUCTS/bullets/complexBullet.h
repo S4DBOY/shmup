@@ -4,14 +4,24 @@
 #include "bullet.h"
 #include <vector>
 
-struct instructionStruct
+/**
+    \brief a struct for keeping instructions for the bullet to follow
+*/
+struct InstructionStruct
 {
+    /// Interval since the bullet's creation (in frames) after which the instruction will be executed
     int time;
+    /// The bullet's value to change
     int instruction;
+    /// Determines whether the value will be set to a value or changed by the value
     int setOrChange;
+    /// New value
     double data;
 };
 
+/**
+    \brief A bullet with a complex set of instructions
+*/
 class ComplexBullet : public Bullet
 {
     public:
@@ -27,7 +37,7 @@ class ComplexBullet : public Bullet
         double v;
         double angularV;
         double accel;
-        std::vector<instructionStruct> instructions;
+        std::vector<InstructionStruct> instructions;
 
         void CalculateVelocity();
 };

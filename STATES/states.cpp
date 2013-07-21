@@ -4,24 +4,22 @@ State stateID = State::EMPTY;
 State nextState = State::EMPTY;
 GameState *currentState = nullptr;
 
-//used code is copied from LazyFoo's tutorial's
 
-void set_next_state( State newState )
+void SetNextState(State newState)
 {
-    if( nextState != State::EXIT )
+    if( nextState!=State::EXIT )
     {
-        nextState = newState;
+        nextState=newState;
     }
 }
 
-
-void change_state()
+void ChangeState()
 {
-    if( nextState != State::EMPTY )
+    if(nextState!=State::EMPTY)
     {
-        if( nextState != State::EXIT )
+        if(nextState!=State::EXIT)
         {
-            delete currentState;
+            if(currentState!=nullptr) delete currentState;
         }
         switch( nextState )
         {
@@ -33,7 +31,7 @@ void change_state()
                 break;
             default:{}
         }
-        stateID = nextState;
-        nextState = State::EMPTY;
+        stateID=nextState;
+        nextState=State::EMPTY;
     }
 }

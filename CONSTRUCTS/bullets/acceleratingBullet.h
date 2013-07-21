@@ -3,6 +3,9 @@
 
 #include "bullet.h"
 
+/**
+    \brief A bullet able to change its velocity while keeping constant direction.
+*/
 class AcceleratingBullet : public Bullet
 {
     public:

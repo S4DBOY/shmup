@@ -3,6 +3,9 @@
 
 #include "SDL2/SDL.h"
 
+/**
+    The base Effect class. Mostly a placeholder right now.
+*/
 class Effect
 {
     public:

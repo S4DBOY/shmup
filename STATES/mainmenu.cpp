@@ -16,15 +16,15 @@ void MainMenu::Handle_events()
     if(event.type==SDL_KEYDOWN)
     {
         SDL_Keycode key=event.key.keysym.sym;
-        if(key==SDLK_RETURN) nextState=State::GAME;
-        if(key == SDLK_ESCAPE ) nextState = State::EXIT;
+        if(key==SDLK_RETURN) SetNextState(State::GAME);
+        if(key == SDLK_ESCAPE ) SetNextState(State::EXIT);
     }
     //temporary!
 }
 
 void MainMenu::Logic()
 {
-    if(frameCounter==30) nextState=State::GAME;
+    if(frameCounter==30) SetNextState(State::GAME);
 }
 
 void MainMenu::Render()

@@ -6,6 +6,9 @@ class EnemyManager;
 class EffectManager;
 class Player;
 
+/**
+    \brief holds all the possible program states.
+*/
 enum class State
 {
     EMPTY,
@@ -15,6 +18,9 @@ enum class State
     EXIT
 };
 
+/**
+    An abstract class for a state. Used only to create subclasses.
+*/
 class GameState
 {
     public:
@@ -25,10 +31,16 @@ class GameState
 };
 
 extern State stateID;
-extern State nextState;
 
-void set_next_state( int newState );
-void change_state();
+/**
+    \brief prepares to change to the new state. Makes sure that the state won't be changed after setting State::EXIT.
+*/
+void SetNextState(State newState);
+
+/**
+    \brief sets the new state.
+*/
+void ChangeState();
 
 extern GameState *currentState;
 
