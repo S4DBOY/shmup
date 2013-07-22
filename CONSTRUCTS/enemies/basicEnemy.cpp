@@ -36,7 +36,7 @@ void BasicEnemy::Logic()
             bulletManager->AddEnemyBulletData(55, BULLET_ANGULAR_VELOCITY, SET, 0);
             bulletManager->AddEnemyBulletData(55, BULLET_ACCEL, SET, 0);
         }*/
-    /*double angle=GetAngleToPlayer();
+    /*double angle=GetAngleToPlayer(x, y);
     if(frameCounter%120==0)
         for(int i=-3;i<=3;i+=1)
             bulletManager->AddEnemyBullet(B_BULLET1, x, y, basev, angle+i);*/

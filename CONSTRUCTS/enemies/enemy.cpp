@@ -4,18 +4,18 @@
 #include "../../BASIC/globals.h"
 #include "../managers.h"
 
-void Enemy::GetVectorToPlayer(double &nx, double &ny)
+void Enemy::GetVectorToPlayer(double x, double y, double &vectorX, double &vectorY)
 {
-    double px=0, py=0;
-    playerManager->GetPlayerLocation(px, py);
-    nx=px-x; ny=py-y;
+    double playerX=0, playerY=0;
+    playerManager->GetPlayerLocation(playerX, playerY);
+    vectorX=playerX-x; vectorY=playerY-y;
 }
 
-double Enemy::GetAngleToPlayer()
+double Enemy::GetAngleToPlayer(double x, double y)
 {
-    double x=0, y=0;
-    GetVectorToPlayer(x, y);
-    return atan2(-x, y)*(180/M_PI)+90;
+    double vectorX=0, vectorY=0;
+    GetVectorToPlayer(x, y, vectorX, vectorY);
+    return atan2(vectorY, vectorX)*(180/M_PI);
 }
 
 void Enemy::Draw()
