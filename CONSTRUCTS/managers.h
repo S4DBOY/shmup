@@ -125,9 +125,9 @@ class PlayerManager
         Player *player;
 };
 
-extern BulletManager *bulletManager;
-extern EffectManager *effectManager;
-extern EnemyManager *enemyManager;
-extern PlayerManager *playerManager;
+extern BulletManager bulletManager;
+extern EffectManager effectManager;
+extern EnemyManager enemyManager;
+extern PlayerManager playerManager;
 
 #endif // MANAGERS_H

@@ -2,7 +2,7 @@
 
 #include "../CONSTRUCTS/enemies/basicEnemy.h"
 
-EnemyManager *enemyManager;
+EnemyManager enemyManager;
 
 EnemyManager::EnemyManager()
 {
@@ -27,7 +27,7 @@ void EnemyManager::Logic()
     for(unsigned int i=0; i<enemies.size(); ++i)
     {
         enemies[i]->Logic();
-        enemies[i]->ReduceHealth(bulletManager->IsEnemyHit(enemies[i]->GetLoc()));
+        enemies[i]->ReduceHealth(bulletManager.IsEnemyHit(enemies[i]->GetLoc()));
         if(enemies[i]->IsDead()) {enemies.erase(enemies.begin()+i); i=i-1;}
     }
 }

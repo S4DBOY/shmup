@@ -2,7 +2,7 @@
 
 #include "../CONSTRUCTS/player/player.h"
 
-PlayerManager *playerManager;
+PlayerManager playerManager;
 
 PlayerManager::~PlayerManager()
 {if(player) delete player; player=nullptr;}

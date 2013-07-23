@@ -5,9 +5,9 @@
 
 Game::Game()
 {
-    playerManager->AddPlayer(0);
+    playerManager.AddPlayer(0);
     frameCounter=0;
-    enemyManager->AddEnemy(E_ENEMY1, SCREEN_WIDTH/2, 200, 0, 0);
+    enemyManager.AddEnemy(E_ENEMY1, SCREEN_WIDTH/2, 200, 0, 0);
 }
 
 Game::~Game()
@@ -17,7 +17,7 @@ Game::~Game()
 
 void Game::Handle_events()
 {
-    playerManager->Input();
+    playerManager.Input();
     if( event.type == SDL_KEYDOWN )
     {
         SDL_Keycode key=event.key.keysym.sym;
@@ -27,14 +27,14 @@ void Game::Handle_events()
 
 void Game::Logic()
 {
-    playerManager->Move();
-    enemyManager->Move();
-    bulletManager->Move();
+    playerManager.Move();
+    enemyManager.Move();
+    bulletManager.Move();
 
-    playerManager->Logic();
-    bulletManager->Logic();
-    enemyManager->Logic();
-    effectManager->Logic();
+    playerManager.Logic();
+    bulletManager.Logic();
+    enemyManager.Logic();
+    effectManager.Logic();
 }
 
 void Game::Render()
@@ -43,13 +43,13 @@ void Game::Render()
     SDL_RenderClear(ren);
     SDL_SetRenderDrawColor(ren, 255, 255, 255, 0);
 
-    enemyManager->Draw();
+    enemyManager.Draw();
 
-    playerManager->Draw();
+    playerManager.Draw();
 
-    bulletManager->Draw();
-    effectManager->Draw();
-    playerManager->DrawHitBox();
+    bulletManager.Draw();
+    effectManager.Draw();
+    playerManager.DrawHitBox();
 
     SDL_RenderPresent(ren);
 }

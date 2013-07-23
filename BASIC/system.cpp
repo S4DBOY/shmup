@@ -3,7 +3,6 @@
 #include "../BASIC/globals.h"
 #include "../RESOURCES/images.h"
 #include "../RESOURCES/sound.h"
-#include "../CONSTRUCTS/managers.h"     //I'd love to get rid of it someday. Singleton pattern, maybe?
 #include "../STATES/states.h"
 
 #include "SDL2/SDL_mixer.h"
@@ -24,11 +23,6 @@ System::System()
     if(Setup()==1)  stateID = State::EXIT;
     LoadImages();
     LoadSounds();
-    enemyManager=new EnemyManager();
-    bulletManager=new BulletManager();
-    effectManager=new EffectManager();
-    playerManager=new PlayerManager();
-
 
     old=SDL_GetPerformanceCounter();
 }
@@ -37,10 +31,6 @@ System::~System()
 {
     UnloadImages();
     UnloadSounds();
-    delete enemyManager;
-    delete bulletManager;
-    delete effectManager;
-    delete playerManager;
 
     SDL_DestroyRenderer(ren);
     SDL_DestroyWindow(window);

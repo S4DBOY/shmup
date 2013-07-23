@@ -7,7 +7,7 @@
 void Enemy::GetVectorToPlayer(double x, double y, double &vectorX, double &vectorY)
 {
     double playerX=0, playerY=0;
-    playerManager->GetPlayerLocation(playerX, playerY);
+    playerManager.GetPlayerLocation(playerX, playerY);
     vectorX=playerX-x; vectorY=playerY-y;
 }
 

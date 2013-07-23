@@ -6,7 +6,7 @@
 #include "../CONSTRUCTS/bullets/complexBullet.h"
 #include "../RESOURCES/images.h"
 
-BulletManager *bulletManager;
+BulletManager bulletManager;
 
 BulletManager::BulletManager()
 {

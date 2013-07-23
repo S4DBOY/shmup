@@ -19,7 +19,7 @@ void BasicEnemy::Logic()
         int a=100; int a1=40; int a2=1;
         for(int i=0;i<30;++i)
         {
-            bulletManager->AddEnemyBullet(B_BULLET1, a, y, basev, 90); a+=a1; a1-=a2;
+            bulletManager.AddEnemyBullet(B_BULLET1, a, y, basev, 90); a+=a1; a1-=a2;
         }
     }
         /*for(int i=0;i<360;i+=15)

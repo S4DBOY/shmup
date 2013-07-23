@@ -2,7 +2,7 @@
 
 #include "../CONSTRUCTS/effects/basicEffect.h"
 
-EffectManager *effectManager;
+EffectManager effectManager;
 
 EffectManager::EffectManager()
 {
