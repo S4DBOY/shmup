@@ -21,7 +21,7 @@ class Enemy
         virtual void Draw();
     protected:
         int type;
-        int health;
+        int maxHealth, health;
         double x, y;
         double vx, vy;
         SDL_Rect loc, source;

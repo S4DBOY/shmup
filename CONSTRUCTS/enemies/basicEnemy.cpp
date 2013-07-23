@@ -7,7 +7,8 @@ BasicEnemy::BasicEnemy(int ntype, double nx, double ny, double nvx, double nvy):
     Enemy(ntype, nx, ny, nvx, nvy)
 {
     loc.w=50; loc.h=50;
-    health=3000;
+    maxHealth=3000;
+    health=maxHealth;
 }
 
 void BasicEnemy::Logic()

@@ -20,7 +20,7 @@ double Enemy::GetAngleToPlayer(double x, double y)
 
 void Enemy::Draw()
 {
-    SDL_Rect a={int(x)-100, int(y)-35, int(200*(health/3000.0)), 5};
+    SDL_Rect a={int(x)-100, int(y)-35, (200*health)/maxHealth, 5};
     SDL_RenderFillRect(ren, &a);
     a.w=200; SDL_RenderDrawRect(ren, &a);
 

@@ -74,21 +74,21 @@ void BulletManager::AddBasicBulletXY(int type, int damage,
                                     double x, double y, double vx, double vy)
 {
     DetermineOwner().push_back(std::unique_ptr<Bullet>(new BasicBulletXY(type, x, y, vx, vy)));
-    if(!(damage-1)) DetermineOwner().back()->SetDamage(damage);
+    DetermineOwner().back()->SetDamage(damage);
 }
 
 void BulletManager::AddBasicBullet(int type, int damage,
                                     double x, double y, double v, double angle)
 {
     DetermineOwner().push_back(std::unique_ptr<Bullet>(new BasicBullet(type, x, y, v, angle)));
-    if(!(damage-1)) DetermineOwner().back()->SetDamage(damage);
+    DetermineOwner().back()->SetDamage(damage);
 }
 
 void BulletManager::AddAccelBullet(int type, int damage,
                                     double x, double y, double v, double angle, double accel, double minmaxV)
 {
     DetermineOwner().push_back(std::unique_ptr<Bullet>(new AcceleratingBullet(type, x, y, v, angle, accel, minmaxV)));
-    if(!(damage-1)) DetermineOwner().back()->SetDamage(damage);
+    DetermineOwner().back()->SetDamage(damage);
 }
 
 void BulletManager::AddAccelBulletXY(int type, int damage,
@@ -96,14 +96,14 @@ void BulletManager::AddAccelBulletXY(int type, int damage,
                                     double minmaxX, double minmaxY)
 {
     DetermineOwner().push_back(std::unique_ptr<Bullet>(new AcceleratingBulletXY(type, x, y, vx, vy, accelX, accelY, minmaxX, minmaxY)));
-    if(!(damage-1)) DetermineOwner().back()->SetDamage(damage);
+    DetermineOwner().back()->SetDamage(damage);
 }
 
 void BulletManager::AddComplexBullet(int type, int damage,
                                     double x, double y, double v, double angle, double angularV, double accel)
 {
     DetermineOwner().push_back(std::unique_ptr<Bullet>(new ComplexBullet(type, x, y, v, angle, angularV, accel)));
-    if(!(damage-1)) DetermineOwner().back()->SetDamage(damage);
+    DetermineOwner().back()->SetDamage(damage);
 }
 
 void BulletManager::AddBulletData(int time, int instruction, int setOrChange, double data)
