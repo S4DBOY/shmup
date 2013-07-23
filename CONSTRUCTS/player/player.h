@@ -30,7 +30,7 @@ class Player
         double vx, vy;
         SDL_Rect loc;
         double hitboxRadius;
-        int maxHealth=1, health=maxHealth;
+        int maxHealth=1000, health=maxHealth;
 
         bool shooting=0;
         bool focus=0;

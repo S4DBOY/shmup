@@ -15,7 +15,7 @@ Bullet::Bullet(int ntype, double nx, double ny, double nvx, double nvy):
 
     angle=atan2(vy, vx)*(180/M_PI);
 
-    hitbox.w=12; hitbox.h=20;
+    hitbox.w=20; hitbox.h=12;
 }
 
 void Bullet::SetDamage(int n_damage)
@@ -72,10 +72,11 @@ void Bullet::Draw()
 
     /*SDL_SetRenderDrawColor(ren, 255, 255, 255, 255);
     double t_cos=cos(angle*(M_PI/180)); double t_sin=sin(angle*(M_PI/180));
-    dx1=(hitbox.w/2)*t_cos-(hitbox.h/2)*t_sin;
-    dy1=(hitbox.w/2)*t_sin+(hitbox.h/2)*t_cos;
-    dx2=(hitbox.w/2)*t_cos+(hitbox.h/2)*t_sin;
-    dy2=(hitbox.w/2)*t_sin-(hitbox.h/2)*t_cos;
+    double dx1=(hitbox.w/2)*t_cos-(hitbox.h/2)*t_sin;
+    double dy1=(hitbox.w/2)*t_sin+(hitbox.h/2)*t_cos;
+    double dx2=(hitbox.w/2)*t_cos+(hitbox.h/2)*t_sin;
+    double dy2=(hitbox.w/2)*t_sin-(hitbox.h/2)*t_cos;
+    double X1, X2, X3, X4, Y1, Y2, Y3, Y4;
     X1=x+dx1; Y1=y+dy1; X3=x-dx1; Y3=y-dy1;
     X2=x+dx2; Y2=y+dy2; X4=x-dx2; Y4=y-dy2;
     SDL_RenderDrawLine(ren, X1, Y1, X2, Y2);

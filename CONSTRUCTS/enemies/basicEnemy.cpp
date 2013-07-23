@@ -16,7 +16,7 @@ void BasicEnemy::Logic()
     double basev=2;
     if(frameCounter%20==0)
     {
-        int a=100; int a1=40; int a2=1;
+        int a=107; int a1=40; int a2=1;
         for(int i=0;i<30;++i)
         {
             bulletManager.AddBasicBullet(B_BULLET1, 1, a, y, basev, 90); a+=a1; a1-=a2;
