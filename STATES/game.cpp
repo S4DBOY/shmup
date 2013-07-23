@@ -31,7 +31,10 @@ void Game::Logic()
     enemyManager.Move();
     bulletManager.Move();
 
+    bulletManager.SetOwner(0);
     playerManager.Logic();
+
+    bulletManager.SetOwner(1);
     bulletManager.Logic();
     enemyManager.Logic();
     effectManager.Logic();

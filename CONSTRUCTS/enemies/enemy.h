@@ -15,7 +15,7 @@ class Enemy
 
         void Move(){x+=vx;y+=vy;};
         virtual void Logic()=0;
-        bool IsDead(){return health<0;}
+        bool IsDying(){return health<=0;}
         void ReduceHealth(int damage){health-=damage;}
         SDL_Rect GetLoc(){return loc;}
         virtual void Draw();

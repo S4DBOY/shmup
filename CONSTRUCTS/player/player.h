@@ -19,6 +19,10 @@ class Player
         void DrawHitBox();
 
         void GetLocation(double &nx, double &ny){nx=x; ny=y; return;};
+        void GetHitBox(double &Cx, double &Cy, double &Cr){Cx=x;Cy=y;Cr=hitboxRadius;};
+        bool IsDying(){return health<=0;}
+        void ReduceHealth(int damage){health-=damage;}
+        void Die();
     protected:
     private:
         int type;
@@ -26,6 +30,7 @@ class Player
         double vx, vy;
         SDL_Rect loc;
         double hitboxRadius;
+        int maxHealth=1, health=maxHealth;
 
         bool shooting=0;
         bool focus=0;

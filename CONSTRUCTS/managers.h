@@ -27,22 +27,32 @@ class BulletManager
         int IsEnemyHit(SDL_Rect loc);
         int IsPlayerHit(double x, double y, double radius);
 
-        void AddEnemyBulletXY(int type, double x, double y, double vx, double vy);
-        void AddEnemyBullet(int type, double x, double y, double v, double angle);
-        void AddEnemyAccelBullet(int type, double x, double y, double v, double angle, double accel, double minmaxV);
-        void AddEnemyAccelBulletXY(int type, double x, double y, double vx, double vy, double accelX, double accelY,
-                                        double minmaxX, double minmaxY);
-        void AddEnemyComplexBullet(int type, double x, double y, double v, double angle, double angularV, double accel);
+        void AddBasicBulletXY(int type, int damage,
+                        double x, double y, double vx, double vy);
+        void AddBasicBullet(int type, int damage,
+                        double x, double y, double v, double angle);
+        void AddAccelBullet(int type, int damage,
+                        double x, double y, double v, double angle, double accel, double minmaxV);
+        void AddAccelBulletXY(int type, int damage,
+                        double x, double y, double vx, double vy, double accelX, double accelY, double minmaxX, double minmaxY);
+        void AddComplexBullet(int type, int damage,
+                        double x, double y, double v, double angle, double angularV, double accel);
 
-        void AddEnemyBulletData(int time, int instruction, int setOrChange, double data);
-        void SetEnemyBulletTiming(int delay, int lifetime);
+        void AddBulletData(int time, int instruction, int setOrChange, double data);
 
-        void AddPlayerBullet(int type, double x, double y, double vx, double vy, int damage);
+        void SetBulletTiming(int delay, int lifetime);
 
+        void SetOwner(bool owner){currentOwner=owner;};
 
         void EraseAllBullets();
     protected:
     private:
+        bool currentOwner;  //determines whether the last bullet added belonged to the enemy or to the player
+        /**
+            if currentOwner is 0, returns reference to playerBullets. Otherwise, enemyBullets.
+        */
+        std::vector<std::unique_ptr<Bullet>> &DetermineOwner();
+
         std::vector<std::unique_ptr<Bullet>> enemyBullets;
         std::vector<std::unique_ptr<Bullet>> playerBullets;
 };

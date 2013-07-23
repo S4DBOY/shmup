@@ -64,20 +64,25 @@ void Player::Move()
 
 void Player::Logic()
 {
-    if(bulletManager.IsPlayerHit(x, y, hitboxRadius)) {/*bulletManager->EraseAllBullets(); return;*/ }
     int v=-32, v1=-28;
     int mod=!focus;
     if((shooting==1 || shootingCounter<1) && (frameCounter%4==0))
     {
-        bulletManager.AddPlayerBullet(B_BULLET1, x+10, y, 0, v, 5);
-        bulletManager.AddPlayerBullet(B_BULLET1, x-10, y, 0, v, 5);
+        bulletManager.AddBasicBulletXY(B_BULLET1, 5, x+10, y, 0, v);
+        bulletManager.AddBasicBulletXY(B_BULLET1, 5, x-10, y, 0, v);
 
-        bulletManager.AddPlayerBullet(B_BULLET1, x+50, y-40, 5*mod-2, v1, 2);
-        bulletManager.AddPlayerBullet(B_BULLET1, x-50, y-40, -5*mod+2, v1, 2);
-        bulletManager.AddPlayerBullet(B_BULLET1, x+80, y+20, 10*mod-4, v1, 2);
-        bulletManager.AddPlayerBullet(B_BULLET1, x-80, y+20, -10*mod+4, v1, 2);
+        bulletManager.AddBasicBulletXY(B_BULLET1, 2, x+50, y-40, 5*mod-2, v1);
+        bulletManager.AddBasicBulletXY(B_BULLET1, 2, x-50, y-40, -5*mod+2, v1);
+        bulletManager.AddBasicBulletXY(B_BULLET1, 2, x+80, y+20, 10*mod-4, v1);
+        bulletManager.AddBasicBulletXY(B_BULLET1, 2, x-80, y+20, -10*mod+4, v1);
         shootingCounter=1;
     }
+}
+
+void Player::Die()
+{
+    health=maxHealth;
+    x=SCREEN_WIDTH/2;y=SCREEN_HEIGHT-50;
 }
 
 void Player::DrawHitBox()

@@ -35,4 +35,6 @@ class Bullet
     private:
 };
 
+typedef Bullet BasicBulletXY;
+
 #endif // BULLET_H

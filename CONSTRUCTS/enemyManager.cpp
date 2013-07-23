@@ -26,9 +26,9 @@ void EnemyManager::Logic()
 {
     for(unsigned int i=0; i<enemies.size(); ++i)
     {
-        enemies[i]->Logic();
         enemies[i]->ReduceHealth(bulletManager.IsEnemyHit(enemies[i]->GetLoc()));
-        if(enemies[i]->IsDead()) {enemies.erase(enemies.begin()+i); i=i-1;}
+        if(enemies[i]->IsDying()) {enemies.erase(enemies.begin()+i); i=i-1;}
+        enemies[i]->Logic();
     }
 }
 

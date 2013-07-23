@@ -14,7 +14,18 @@ void PlayerManager::Move()
 {player->Move();}
 
 void PlayerManager::Logic()
-{player->Logic();}
+{
+    double x, y, r;
+    player->GetHitBox(x, y, r);
+    player->ReduceHealth(bulletManager.IsPlayerHit(x, y, r));
+    if(player->IsDying())
+    {
+        bulletManager.EraseAllBullets();
+        player->Die();
+    }
+
+    player->Logic();
+}
 
 void PlayerManager::Draw()
 {player->Draw();}
