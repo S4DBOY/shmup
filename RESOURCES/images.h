@@ -9,6 +9,10 @@ extern SDL_Texture *imgplayer;
 extern SDL_Texture *effectsSheet;
 //extern SDL_Texture *backgroundOverlay;
 
+
+void InitImageLibrary();
+void CloseImageLibrary();
+
 /**
 \brief Loads all images and converts them to textures.
 */

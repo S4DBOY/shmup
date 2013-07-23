@@ -1,7 +1,8 @@
 #ifndef SOUND_H
 #define SOUND_H
 
-#include "SDL2/SDL.h"
+void InitSoundLibrary();
+void CloseSoundLibrary();
 
 /**
 \brief Loads all sound files.

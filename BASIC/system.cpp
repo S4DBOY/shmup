@@ -5,9 +5,6 @@
 #include "../RESOURCES/sound.h"
 #include "../STATES/states.h"
 
-#include "SDL2/SDL_mixer.h"
-#include "SDL2/SDL_image.h"
-
 #include <ctime>
 #include <sstream>      //to be deleted in release
 #include <fstream>      //to be deleted in release
@@ -34,7 +31,9 @@ System::~System()
 
     SDL_DestroyRenderer(ren);
     SDL_DestroyWindow(window);
-    Mix_CloseAudio();
+
+    CloseImageLibrary();
+    CloseSoundLibrary();
     SDL_Quit();
         /*          performance data            */
     debugData<<std::endl;
@@ -103,9 +102,9 @@ bool System::Setup()
     if (SDL_Init( SDL_INIT_EVERYTHING ) < 0)
         {printf("SDL_Init: %s\n", SDL_GetError()); return 1;}
 
-    IMG_Init(IMG_INIT_PNG);
+    InitImageLibrary();
 
-    Mix_OpenAudio( 22050, MIX_DEFAULT_FORMAT, 2, 512 );
+    InitSoundLibrary();
 
     SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 1);
     SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 4);

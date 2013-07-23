@@ -2,8 +2,6 @@
 
 #include "../BASIC/globals.h"
 #include "SDL2/SDL_image.h"
-#include <string>
-
 
 SDL_Texture *bulletSheet=nullptr;
 SDL_Texture *background=nullptr;
@@ -11,10 +9,19 @@ SDL_Texture *imgplayer=nullptr;
 SDL_Texture *effectsSheet=nullptr;
 //SDL_Texture *backgroundOverlay=nullptr;
 
-
-SDL_Texture *LoadImage( std::string filename)
+void InitImageLibrary()
 {
-    SDL_Surface* loadedImage = IMG_Load(filename.c_str());
+    IMG_Init(IMG_INIT_PNG);
+}
+void CloseImageLibrary()
+{
+    IMG_Quit();
+}
+
+
+SDL_Texture *LoadImage(const char *filename)
+{
+    SDL_Surface* loadedImage = IMG_Load(filename);  //the function needs C-style strings
     return SDL_CreateTextureFromSurface(ren, loadedImage);
 }
 
