@@ -21,7 +21,9 @@ ComplexBullet::ComplexBullet(int n_type, double n_x, double n_y,
                         double n_accel):
         Bullet(n_type, n_x, n_y, n_v*cos((n_angle)*(M_PI/180)), n_v*sin((n_angle)*(M_PI/180))),
         v(n_v), angularV(n_angularV), accel(n_accel)
-    {}
+    {
+        angle=n_angle;
+    }
 
 void ComplexBullet::Move()
 {

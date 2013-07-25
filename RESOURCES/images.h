@@ -3,11 +3,7 @@
 
 #include "SDL2/SDL.h"
 
-extern SDL_Texture *bulletSheet;
-extern SDL_Texture *background;
-extern SDL_Texture *imgplayer;
-extern SDL_Texture *effectsSheet;
-//extern SDL_Texture *backgroundOverlay;
+extern SDL_Texture *textures[4];
 
 
 void InitImageLibrary();
@@ -22,5 +18,13 @@ void LoadImages();
 \brief Frees all textures.
 */
 void UnloadImages();
+
+enum SPRITESHEETS
+{
+    BACKGROUND1,
+    BULLETSHEET1,
+    EFFECTSHEET1,
+    PLAYERSHEET1
+};
 
 #endif // IMAGES_H

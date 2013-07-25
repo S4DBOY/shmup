@@ -91,7 +91,7 @@ void Player::DrawHitBox()
     {
         SDL_Rect loc1={int(x)-64, int(y)-64, 128, 128};
         SDL_Rect source1={0, 16, 64, 64};
-        SDL_RenderCopy(ren, effectsSheet, &source1, &loc1);
+        SDL_RenderCopy(ren, textures[EFFECTSHEET1], &source1, &loc1);
     }
 }
 
@@ -99,15 +99,15 @@ void Player::Draw()
 {
     loc.x=int(x)-32; loc.y=int(y)-48;
     SDL_Rect source={0, 0, 32, 48};
-    SDL_RenderCopy(ren, imgplayer, &source, &loc);
+    SDL_RenderCopy(ren, textures[PLAYERSHEET1], &source, &loc);
 
     SDL_Rect loc1={int(x)-80-16, int(y)+20-16, 32, 32};
     SDL_Rect source1={64, 144, 16, 16};
-    SDL_RenderCopy(ren, imgplayer, &source1, &loc1);
+    SDL_RenderCopy(ren, textures[PLAYERSHEET1], &source1, &loc1);
     loc1.x=int(x)+80-16; loc1.y=int(y)+20-16;
-    SDL_RenderCopy(ren, imgplayer, &source1, &loc1);
+    SDL_RenderCopy(ren, textures[PLAYERSHEET1], &source1, &loc1);
     loc1.x=int(x)+50-16; loc1.y=int(y)-40-16;
-    SDL_RenderCopy(ren, imgplayer, &source1, &loc1);
+    SDL_RenderCopy(ren, textures[PLAYERSHEET1], &source1, &loc1);
     loc1.x=int(x)-50-16; loc1.y=int(y)-40-16;
-    SDL_RenderCopy(ren, imgplayer, &source1, &loc1);
+    SDL_RenderCopy(ren, textures[PLAYERSHEET1], &source1, &loc1);
 }

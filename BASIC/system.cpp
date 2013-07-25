@@ -120,8 +120,6 @@ bool System::Setup()
 
     if (ren == 0){printf("SDL_CreateRenderer: %s\n", SDL_GetError()); return 1;}
 
-    SDL_SetHint( SDL_HINT_RENDER_SCALE_QUALITY, "1" );
-
         /* placeholder for loading program icon */
     //SDL_Surface* icon = SDL_LoadBMP("icon.bmp");
     //SDL_SetWindowIcon(window, icon);

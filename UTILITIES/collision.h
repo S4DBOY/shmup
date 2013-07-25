@@ -23,4 +23,11 @@ bool BoxBox(SDL_Rect hitbox, double angle, SDL_Rect r);
  */
 bool BoxCircle (SDL_Rect hitbox, double angle, double Cx, double Cy, double Cr);
 
+inline bool CircleCircle (double x1, double y1, double r1, double x2, double y2, double r2)
+{
+    double dx=x2-x1; double dy=y2-y1;
+    if( (dx*dx+dy*dy)    >   ((r1+r2)*(r1+r2))  ) return 0;
+    return 1;
+}
+
 #endif // COLLISION_H

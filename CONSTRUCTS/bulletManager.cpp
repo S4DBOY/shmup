@@ -40,9 +40,9 @@ void BulletManager::Logic()
 
 void BulletManager::Draw()
 {
-    SDL_SetTextureAlphaMod(bulletSheet, 128);
+    SDL_SetTextureAlphaMod(textures[BULLETSHEET1], 128);
     for(unsigned int i=0; i<playerBullets.size(); ++i){ playerBullets[i]->Draw();}
-    SDL_SetTextureAlphaMod(bulletSheet, 255);
+    SDL_SetTextureAlphaMod(textures[BULLETSHEET1], 255);
     for(unsigned int i=0; i<enemyBullets.size(); ++i){ enemyBullets[i]->Draw();}
 }
 

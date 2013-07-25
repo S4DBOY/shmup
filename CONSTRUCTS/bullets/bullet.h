@@ -24,13 +24,15 @@ class Bullet
         void Draw();
 
     protected:
-        int type;
         double x, y;
         double vx, vy;
         int time=0, delay=0, lifetime=0;
         double angle;
         SDL_Rect loc, source, hitbox;
         int damage=1;
+
+        int usedSpriteSheet;
+        int spriteOrientation;
 
     private:
 };

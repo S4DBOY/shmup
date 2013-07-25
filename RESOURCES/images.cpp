@@ -3,11 +3,7 @@
 #include "../BASIC/globals.h"
 #include "SDL2/SDL_image.h"
 
-SDL_Texture *bulletSheet=nullptr;
-SDL_Texture *background=nullptr;
-SDL_Texture *imgplayer=nullptr;
-SDL_Texture *effectsSheet=nullptr;
-//SDL_Texture *backgroundOverlay=nullptr;
+SDL_Texture *textures[4];
 
 void InitImageLibrary()
 {
@@ -27,18 +23,17 @@ SDL_Texture *LoadImage(const char *filename)
 
 void LoadImages()
 {
-    bulletSheet=LoadImage("data/bullet.dat");
-    background=LoadImage("data/bg.dat");
-    //backgroundOverlay=LoadImage("data/bgOverlay.dat");
-    imgplayer=LoadImage("data/player.dat");
-    effectsSheet=LoadImage("data/effects.dat");
+    textures[0]=LoadImage("data/bg.dat");
+    textures[1]=LoadImage("data/bullet.dat");
+    textures[2]=LoadImage("data/effects.dat");
+    textures[3]=LoadImage("data/player.dat");
 }
 
 void UnloadImages()
 {
-    SDL_DestroyTexture(bulletSheet);
-    SDL_DestroyTexture(background);
-    //SDL_DestroyTexture(backgroundOverlay);
-    SDL_DestroyTexture(imgplayer);
-    SDL_DestroyTexture(effectsSheet);
+    for (unsigned i=0;i<4;++i)
+    {
+        SDL_DestroyTexture(textures[i]);
+        textures[i]=nullptr;
+    }
 }
