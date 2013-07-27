@@ -12,7 +12,7 @@ struct SDL_Rect
 
 bool BoxBox(SDL_Rect hitbox, double angle, SDL_Rect r)
 {
-    double X1, Y1, X2, Y2, X3, Y3, X4, Y4;  //real hitbox corner coordinates
+    volatile double X1, Y1, X2, Y2, X3, Y3, X4, Y4;  //real hitbox corner coordinates
     double dx1, dx2, dy1, dy2;              //used to calculate X1, Y1...
     double Px, Py;              //vector we are checking against
     double P1, P2;              //distance on that vector
@@ -62,10 +62,11 @@ bool BoxBox(SDL_Rect hitbox, double angle, SDL_Rect r)
     return 1;
 }
 
+#include <iostream>
 
 bool BoxCircle (SDL_Rect hitbox, double angle, double Cx, double Cy, double Cr)
 {
-    double X1, Y1, X2, Y2, X3, Y3, X4, Y4;  //real hitbox corner coordinates
+    volatile double X1, Y1, X2, Y2, X3, Y3, X4, Y4;  //real hitbox corner coordinates
     double dx1, dx2, dy1, dy2;              //used to calculate X1, Y1...
     double Px, Py;          //vector we are checking against
     double P1, P2, P3, P4, P, Pmax, Pmin;   //distance on that vector
