@@ -14,7 +14,7 @@ void BasicEnemy::Logic()
 {
     double a=(frameCounter/10)%360;
     double basev=4;
-    if(frameCounter%2==1)
+    if(frameCounter%20==1)
     {
         for(int i=0;i<360;i+=15)
         {
