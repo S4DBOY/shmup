@@ -1,10 +1,10 @@
 #ifndef SYSTEM_H
 #define SYSTEM_H
 
-#include "SDL2/SDL.h"
+#include "SFML/graphics.hpp"
 
 /**
-    \brief A wrapper for SDL window handling, FPS control and resource initialization/destruction.
+    \brief A wrapper for SFML window handling, FPS control and resource initialization/destruction.
 */
 class System
 {
@@ -16,7 +16,7 @@ class System
 
         /**
             \brief Cleans up.
-            Frees all textures and audio, deleted managers, closes SDL.
+            Frees all textures and audio.
             Also, creates a performance analysis file.
         */
         ~System();
@@ -31,9 +31,10 @@ class System
             Also, prints the FPS to the window title.
         */
         bool RegulateFPS();
+
     protected:
         /**
-            \brief Initializes SDL and all important subsystems
+            \brief Initializes SFML and all important subsystems
         */
         bool Setup();
 
@@ -42,10 +43,8 @@ class System
         */
         void ToggleFullscreen();
 
-        SDL_Window *window;
-
-        uint64_t now, old;
-        double dt;
+        float dt;
+        sf::Clock clock;
 
         /*  debugging/performance analysis   */
         int emptyloop;
@@ -54,6 +53,6 @@ class System
     private:
 };
 
-extern System *SDLsystem;
+extern System *SFMLsystem;
 
 #endif // SYSTEM_H

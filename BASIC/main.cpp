@@ -10,21 +10,20 @@
 
 int main(int argc, char *argv[])
 {
-    SDLsystem = new System();
+    SFMLsystem = new System();
 
     SetNextState(State::MAINMENU);
     ChangeState();
 
     while( stateID != State::EXIT )
     {
-        while(SDL_PollEvent(&event))
+        while(window.pollEvent(event))
         {
-            SDLsystem->Handle_events();
+            SFMLsystem->Handle_events();
             currentState->Handle_events();
         }
 
-            /*   FPS limiter   */
-        if(VSYNC==0) if( SDLsystem->RegulateFPS()) continue;
+        if( SFMLsystem->RegulateFPS()) continue;
 
         frameCounter++;
 
@@ -32,9 +31,9 @@ int main(int argc, char *argv[])
         currentState->Render();
         ChangeState();
 
-        SDL_Delay(1);
+        sf::sleep(sf::milliseconds(5));
     }
 
-    delete SDLsystem;
+    delete SFMLsystem;
     return 0;
 }

@@ -1,7 +1,12 @@
 #include "../BASIC/globals.h"
 #include "../STATES/states.h"
-#include "../CONSTRUCTS/managers.h"
 
+#include "../CONSTRUCTS/playerManager.h"
+#include "../CONSTRUCTS/effectManager.h"
+#include "../CONSTRUCTS/enemyManager.h"
+#include "../CONSTRUCTS/bulletManager.h"
+
+#include "../RESOURCES/images.h"
 
 Game::Game()
 {
@@ -18,10 +23,9 @@ Game::~Game()
 void Game::Handle_events()
 {
     playerManager.Input();
-    if( event.type == SDL_KEYDOWN )
+    if( event.type == sf::Event::KeyPressed )
     {
-        SDL_Keycode key=event.key.keysym.sym;
-        if(key == SDLK_ESCAPE ) SetNextState(State::EXIT);
+        if(event.key.code == sf::Keyboard::Escape ) SetNextState(State::EXIT);
     }
 }
 
@@ -42,9 +46,7 @@ void Game::Logic()
 
 void Game::Render()
 {
-    SDL_SetRenderDrawColor(ren, 0, 0, 0, 0);
-    SDL_RenderClear(ren);
-    SDL_SetRenderDrawColor(ren, 255, 255, 255, 0);
+    window.draw(backgroundGraphic);
 
     enemyManager.Draw();
 
@@ -54,5 +56,5 @@ void Game::Render()
     effectManager.Draw();
     playerManager.DrawHitBox();
 
-    SDL_RenderPresent(ren);
+    window.display();
 }

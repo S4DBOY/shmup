@@ -1,4 +1,5 @@
-#include "managers.h"
+#include "playerManager.h"
+#include "bulletManager.h"
 
 #include "../CONSTRUCTS/player/player.h"
 

@@ -4,20 +4,21 @@
 #include <cmath>
 #include <algorithm>
 
-struct SDL_Rect
+struct Rect
 {
-    int x, y;
+    double x, y;
     int w, h;
 };
 
-bool BoxBox(SDL_Rect hitbox, double angle, SDL_Rect r)
+bool BoxBox(Rect hitbox, double angle, Rect r)
 {
     volatile double X1, Y1, X2, Y2, X3, Y3, X4, Y4;  //real hitbox corner coordinates
     double dx1, dx2, dy1, dy2;              //used to calculate X1, Y1...
     double Px, Py;              //vector we are checking against
     double P1, P2;              //distance on that vector
     double A1, A2, A3, A4, Amax, Amin;      //distance of the non-rotated rect on that vector
-    double x=hitbox.x+hitbox.w/2, y=hitbox.y+hitbox.h/2;
+    double x=hitbox.x, y=hitbox.y;
+    r.x-=r.w/2; r.y-=r.h/2;
 
     double t_cos=cos(angle*(M_PI/180)); double t_sin=sin(angle*(M_PI/180));
 
@@ -62,16 +63,14 @@ bool BoxBox(SDL_Rect hitbox, double angle, SDL_Rect r)
     return 1;
 }
 
-#include <iostream>
-
-bool BoxCircle (SDL_Rect hitbox, double angle, double Cx, double Cy, double Cr)
+bool BoxCircle (Rect hitbox, double angle, double Cx, double Cy, double Cr)
 {
     volatile double X1, Y1, X2, Y2, X3, Y3, X4, Y4;  //real hitbox corner coordinates
     double dx1, dx2, dy1, dy2;              //used to calculate X1, Y1...
     double Px, Py;          //vector we are checking against
     double P1, P2, P3, P4, P, Pmax, Pmin;   //distance on that vector
     double A1, Amax, Amin;                  //distance of the circle's center on that vector
-    double x=hitbox.x+hitbox.w/2, y=hitbox.y+hitbox.h/2;
+    double x=hitbox.x, y=hitbox.y;
 
     double t_cos=cos(angle*(M_PI/180)); double t_sin=sin(angle*(M_PI/180));
 

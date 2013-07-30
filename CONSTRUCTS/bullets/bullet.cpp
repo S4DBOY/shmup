@@ -3,14 +3,13 @@
 #include "../../UTILITIES/collision.h"
 
 #include "bullet.h"
-
 #include <cmath>
-#include <vector>
+#define M_PI		3.14159265358979323846
+
+struct Rect{double x, y; int w, h;};
 
 struct BulletType
 {
-    int spriteSheet;
-    SDL_Rect source;
     int numberOfSprites;
     int spriteChangeDelay;
     double hitboxWidth;
@@ -18,22 +17,23 @@ struct BulletType
 };
 
 std::vector<BulletType> bulletTypes={
-    BulletType{BULLETSHEET1, SDL_Rect{0, 128, 16, 16}, 0, 0, 10, 6},
+    BulletType{0, 0, 10, 6},
 };
 
 Bullet::Bullet(int ntype, double nx, double ny, double nvx, double nvy):
     x(nx), y(ny), vx(nvx), vy(nvy)
 {
     BulletType temp=bulletTypes[ntype];
-    usedSpriteSheet=temp.spriteSheet;
-    source=temp.source;
 
     angle=atan2(vy, vx)*(180/M_PI);
 
     int scale=2;
-    loc.w=source.w*scale; loc.h=source.h*scale;
 
-    hitbox.w=temp.hitboxWidth*scale; hitbox.h=temp.hitboxHeight*scale;
+    hitboxW=temp.hitboxWidth*scale; hitboxH=temp.hitboxHeight*scale;
+
+    hitbox.setSize(sf::Vector2f(hitboxW, hitboxH));
+    hitbox.setOutlineColor(sf::Color::Black); hitbox.setOutlineThickness(1);
+    hitbox.setOrigin(hitboxW/2, hitboxH/2);
 }
 
 void Bullet::SetDamage(int n_damage)
@@ -63,13 +63,11 @@ bool Bullet::CheckBounds()
     return 0;
 };
 
-int Bullet::IsRectHit(SDL_Rect r)
+int Bullet::IsRectHit(Rect r)
 {
     if(time<=delay) return 0;
 
-    hitbox.x=x-hitbox.w/2; hitbox.y=y-hitbox.h/2;
-
-    if(BoxBox(hitbox, angle, r)) return damage;
+    if(BoxBox(Rect{x, y, hitboxW, hitboxH}, angle, r)) return damage;
     else return 0;
 };
 
@@ -77,34 +75,19 @@ int Bullet::IsCircleHit(double Cx, double Cy, double Cr)
 {
     if(time<=delay) return 0;
 
-    hitbox.x=x-hitbox.w/2; hitbox.y=y-hitbox.h/2;
-
-    if(BoxCircle(hitbox, angle, Cx, Cy, Cr)) return damage;
+    if(BoxCircle(Rect{x, y, hitboxW, hitboxH}, angle, Cx, Cy, Cr)) return damage;
     else return 0;
 };
 
 void Bullet::Draw()
 {
     if(time<delay) return;
-    if(y-loc.h/2>SCREEN_HEIGHT|| y<-loc.h/2 || x<-loc.w/2 || x>SCREEN_WIDTH+loc.w/2) return;
-    loc.x=x-loc.w/2; loc.y=y-loc.h/2;
+    int temp_bounds=16;
+    if(y-temp_bounds/2>SCREEN_HEIGHT|| y<-temp_bounds/2 || x<-temp_bounds/2 || x>SCREEN_WIDTH+temp_bounds/2) return;
 
-    //uncomment to show the sprite
-    /*SDL_RenderCopyEx(ren, textures[usedSpriteSheet], &source, &loc, angle+90, NULL, SDL_FLIP_NONE);*/
+    bulletGraphic.setRotation(angle+90);
+    DrawSprite(bulletGraphic, x, y);
 
-
-    //comment the code below to hide the hitbox
-    SDL_SetRenderDrawColor(ren, 255, 255, 255, 255);
-    double t_cos=cos(angle*(M_PI/180)); double t_sin=sin(angle*(M_PI/180));
-    double dx1=(hitbox.w/2)*t_cos-(hitbox.h/2)*t_sin;
-    double dy1=(hitbox.w/2)*t_sin+(hitbox.h/2)*t_cos;
-    double dx2=(hitbox.w/2)*t_cos+(hitbox.h/2)*t_sin;
-    double dy2=(hitbox.w/2)*t_sin-(hitbox.h/2)*t_cos;
-    double X1, X2, X3, X4, Y1, Y2, Y3, Y4;
-    X1=x+dx1; Y1=y+dy1; X3=x-dx1; Y3=y-dy1;
-    X2=x+dx2; Y2=y+dy2; X4=x-dx2; Y4=y-dy2;
-    SDL_RenderDrawLine(ren, X1, Y1, X2, Y2);
-    SDL_RenderDrawLine(ren, X2, Y2, X3, Y3);
-    SDL_RenderDrawLine(ren, X3, Y3, X4, Y4);
-    SDL_RenderDrawLine(ren, X4, Y4, X1, Y1);
+    //hitbox.setRotation(angle);
+    //DrawRect(hitbox, x, y);
 };

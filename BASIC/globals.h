@@ -1,39 +1,24 @@
 #ifndef GLOBALS_H
 #define GLOBALS_H
 
-#include "SDL2/SDL.h"
+#include "SFML/graphics.hpp"
 
 extern bool FULLSCREEN;
-extern bool VSYNC;
 extern int  FRAMES_PER_SECOND;
 extern int  SCREEN_WIDTH;
 extern int  SCREEN_HEIGHT;
 
-extern SDL_Renderer *ren;
+extern sf::RenderWindow window;
 
-extern SDL_Event event;
+extern sf::Event event;
 
 extern int frameCounter;
 
 /**
     \brief Loads configuration data from the config file.
-    Currently uses Windows API funcions, I may search for an cross-platform solution in the future.
+    Currently uses Windows API functions, I may search for an cross-platform solution in the future.
 */
 int InitializeGlobals();
-
-/**
-    \brief Holds possible instructions for the pseudo-scripted bullets (ComplexBullet).
-*/
-enum BULLET_INSTRUCTION{
-    BULLET_ANGLE,
-    BULLET_VELOCITY,
-    BULLET_ANGULAR_VELOCITY,
-    BULLET_ACCEL,
-};
-enum SET_OR_CHANGE{
-    SET,
-    CHANGE,
-};
 
 
 #endif // GLOBALS_H

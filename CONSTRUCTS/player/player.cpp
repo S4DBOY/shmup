@@ -2,14 +2,13 @@
 
 #include "../../BASIC/globals.h"
 #include "../../RESOURCES/images.h"
-#include "../../CONSTRUCTS/managers.h"
+#include "../../CONSTRUCTS/bulletManager.h"
 
 Player::Player()
 {
     x=SCREEN_WIDTH/2;y=SCREEN_HEIGHT-50;
     left=0;right=0;up=0;down=0;
     vx=0;vy=0;
-    loc.w=64; loc.h= 96;
 
     hitboxRadius=2;
 }
@@ -22,29 +21,29 @@ Player::~Player()
 void Player::Input()
 {
     double v=6;
-    if( event.type == SDL_KEYDOWN )
+    if( event.type == sf::Event::KeyPressed )
     {
-        switch( event.key.keysym.sym)
+        switch( event.key.code)
        {
-            case SDLK_z: {shooting=1;} break;
-            case SDLK_LSHIFT: {focus=1;} break;
-            case SDLK_LEFT:     {vx =- v; left=1;} break;
-            case SDLK_RIGHT:    {vx = v; right=1;} break;
-            case SDLK_UP:       {vy =- v; up=1;} break;
-            case SDLK_DOWN:     {vy = v; down=1;} break;
+            case sf::Keyboard::Z: {shooting=1;} break;
+            case sf::Keyboard::LShift: {focus=1;} break;
+            case sf::Keyboard::Left:     {vx =- v; left=1;} break;
+            case sf::Keyboard::Right:    {vx = v; right=1;} break;
+            case sf::Keyboard::Up:       {vy =- v; up=1;} break;
+            case sf::Keyboard::Down:     {vy = v; down=1;} break;
             default: ;
        }
     }
-    if( event.type == SDL_KEYUP )
+    if( event.type == sf::Event::KeyReleased )
     {
-        switch( event.key.keysym.sym )
+        switch( event.key.code )
         {
-            case SDLK_z: {shooting=0;shootingCounter=0;} break;
-            case SDLK_LSHIFT: {focus=0;} break;
-            case SDLK_LEFT:     {left=0; if(right==1) vx=v; else vx = 0;} break;
-            case SDLK_RIGHT:    {right=0; if(left==1)vx=-v; else vx = 0;} break;
-            case SDLK_UP:       {up=0; if(down==1) vy=v; else vy = 0;} break;
-            case SDLK_DOWN:     {down=0; if(up==1) vy=-v; else vy = 0;}; break;
+            case sf::Keyboard::Z: {shooting=0;shootingCounter=0;} break;
+            case sf::Keyboard::LShift: {focus=0;} break;
+            case sf::Keyboard::Left:     {left=0; if(right==1) vx=v; else vx = 0;} break;
+            case sf::Keyboard::Right:    {right=0; if(left==1)vx=-v; else vx = 0;} break;
+            case sf::Keyboard::Up:       {up=0; if(down==1) vy=v; else vy = 0;} break;
+            case sf::Keyboard::Down:     {down=0; if(up==1) vy=-v; else vy = 0;}; break;
             default: ;
         }
     }
@@ -89,25 +88,21 @@ void Player::DrawHitBox()
 {
     if(focus)
     {
-        SDL_Rect loc1={int(x)-64, int(y)-64, 128, 128};
-        SDL_Rect source1={0, 16, 64, 64};
-        SDL_RenderCopy(ren, textures[EFFECTSHEET1], &source1, &loc1);
+        hitboxGraphic.setPosition(x, y);
+        float a=(frameCounter%180)*2;
+        hitboxGraphic.setRotation(a);
+        window.draw(hitboxGraphic);
+        hitboxGraphic.setRotation(-a);
+        window.draw(hitboxGraphic);
     }
 }
 
 void Player::Draw()
 {
-    loc.x=int(x)-32; loc.y=int(y)-48;
-    SDL_Rect source={0, 0, 32, 48};
-    SDL_RenderCopy(ren, textures[PLAYERSHEET1], &source, &loc);
+    DrawSprite(playerGraphic, x, y);
 
-    SDL_Rect loc1={int(x)-80-16, int(y)+20-16, 32, 32};
-    SDL_Rect source1={64, 144, 16, 16};
-    SDL_RenderCopy(ren, textures[PLAYERSHEET1], &source1, &loc1);
-    loc1.x=int(x)+80-16; loc1.y=int(y)+20-16;
-    SDL_RenderCopy(ren, textures[PLAYERSHEET1], &source1, &loc1);
-    loc1.x=int(x)+50-16; loc1.y=int(y)-40-16;
-    SDL_RenderCopy(ren, textures[PLAYERSHEET1], &source1, &loc1);
-    loc1.x=int(x)-50-16; loc1.y=int(y)-40-16;
-    SDL_RenderCopy(ren, textures[PLAYERSHEET1], &source1, &loc1);
+    DrawSprite(yinYangGraphic, x-80, y+20);
+    DrawSprite(yinYangGraphic, x+80, y+20);
+    DrawSprite(yinYangGraphic, x-50, y-40);
+    DrawSprite(yinYangGraphic, x+50, y-40);
 }

@@ -1,12 +1,15 @@
 #ifndef BULLET_H
 #define BULLET_H
 
-#include "SDL2/SDL.h"
+#include "SFML/graphics.hpp"
 
 /**
     \brief A a simple bullet, defined by its
     The base class for other bullet subclasses.
 */
+
+struct Rect;
+
 class Bullet
 {
     public:
@@ -19,7 +22,7 @@ class Bullet
 
         virtual void Move();
         bool CheckBounds();
-        int IsRectHit(SDL_Rect r);
+        int IsRectHit(Rect r);
         int IsCircleHit(double x, double y, double r);
         void Draw();
 
@@ -28,10 +31,11 @@ class Bullet
         double vx, vy;
         int time=0, delay=0, lifetime=0;
         double angle;
-        SDL_Rect loc, source, hitbox;
+        int hitboxW, hitboxH;
         int damage=1;
 
-        int usedSpriteSheet;
+        sf::RectangleShape hitbox;
+
         int spriteOrientation;
 
     private:

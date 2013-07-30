@@ -1,8 +1,23 @@
 #include "enemy.h"
 
+#include "../playerManager.h"
+#include "../../RESOURCES/images.h"
+
 #include <cmath>
-#include "../../BASIC/globals.h"
-#include "../managers.h"
+#define M_PI		3.14159265358979323846
+
+Enemy::Enemy(int ntype, double nx, double ny, double nvx, double nvy):
+            type(ntype), x(nx), y(ny), vx(nvx), vy(nvy)
+{
+    graphic.setSize(sf::Vector2f{50, 50});
+    graphic.setOrigin(50/2, 50/2);
+    graphic.setFillColor(sf::Color::White);
+
+    lifebar.setSize(sf::Vector2f{200, 5});
+    lifebar.setFillColor(sf::Color::Black);
+    lifebar.setOutlineColor(sf::Color::White);
+    lifebar.setOutlineThickness(1);
+}
 
 void Enemy::GetVectorToPlayer(double x, double y, double &vectorX, double &vectorY)
 {
@@ -20,10 +35,9 @@ double Enemy::GetAngleToPlayer(double x, double y)
 
 void Enemy::Draw()
 {
-    SDL_Rect a={int(x)-100, int(y)-35, (200*health)/maxHealth, 5};
-    SDL_RenderFillRect(ren, &a);
-    a.w=200; SDL_RenderDrawRect(ren, &a);
+    DrawRect(graphic, x, y);
 
-    loc.x=x-50/2; loc.y=y-50/2;
-    SDL_RenderFillRect(ren, &loc);
+    DrawRect(lifebar, x-100, y-35);
+    life.setSize(sf::Vector2f((200*health)/maxHealth, 5));
+    DrawRect(life, x-100, y-35);
 }

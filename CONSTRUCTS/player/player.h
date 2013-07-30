@@ -1,11 +1,10 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include "SDL2/SDL.h"
-
 /**
     Will become the base class for choosable characters in the future
 */
+
 class Player
 {
     public:
@@ -28,7 +27,6 @@ class Player
         int type;
         double x, y;
         double vx, vy;
-        SDL_Rect loc;
         double hitboxRadius;
         int maxHealth=1000, health=maxHealth;
 

@@ -10,7 +10,7 @@
 #include <fstream>      //to be deleted in release
 #include <cstdlib>
 
-System *SDLsystem;
+System *SFMLsystem;
 
 std::ofstream debugData ("debugData.txt");
 
@@ -21,23 +21,16 @@ System::System()
     LoadImages();
     LoadSounds();
 
-    old=SDL_GetPerformanceCounter();
+    clock.restart();
 }
 
 System::~System()
 {
-    UnloadImages();
-    UnloadSounds();
+    window.close();
 
-    SDL_DestroyRenderer(ren);
-    SDL_DestroyWindow(window);
-
-    CloseImageLibrary();
-    CloseSoundLibrary();
-    SDL_Quit();
         /*          performance data            */
     debugData<<std::endl;
-    debugData<<"resolution: "<<SCREEN_WIDTH<<"/"<<SCREEN_HEIGHT<<", "<<FRAMES_PER_SECOND<<" FPS, vsync: "<<VSYNC<<", fullscreen: "<<FULLSCREEN<<std::endl;
+    debugData<<"resolution: "<<SCREEN_WIDTH<<"/"<<SCREEN_HEIGHT<<", "<<FRAMES_PER_SECOND<<", fullscreen: "<<FULLSCREEN<<std::endl;
     debugData<<std::endl;
     debugData<<sumEmptyLoops/(frameCounter-120)<<" empty loops per frame on average"<<std::endl;
     debugData<<nSlowDowns<<" slowdowns, "<<60*nSlowDowns/(frameCounter-120.0)<<" per sec"<<std::endl;
@@ -47,16 +40,15 @@ System::~System()
 
 bool System::RegulateFPS()
 {
-    now = SDL_GetPerformanceCounter();
-    dt = (now - old) / (float)SDL_GetPerformanceFrequency();
+    dt = clock.getElapsedTime().asSeconds();
     if(dt<=1.0/(FRAMES_PER_SECOND)) {emptyloop++; return 1;}
     if (dt > 0.1) dt = 0.0016;
-    old = now;
+    clock.restart();
 
         /*     FPS counter     */
     std::ostringstream performance;
     performance << 1/dt<<" "<<emptyloop;
-    SDL_SetWindowTitle(window, performance.str().c_str());
+    window.setTitle(performance.str());
 
     if(frameCounter>120) sumEmptyLoops+=emptyloop;
     if(frameCounter>120 && 1/dt<59.9) {debugData<<"frame "<<frameCounter<<" , "<<emptyloop<<" "<<1/dt<<std::endl; nSlowDowns++;}
@@ -67,68 +59,41 @@ bool System::RegulateFPS()
 
 void System::Handle_events()
 {
-    if( event.type == SDL_QUIT ) {SetNextState(State::EXIT); return;}
-    if( event.type == SDL_KEYDOWN )
+    if( event.type ==  sf::Event::Closed ) {SetNextState(State::EXIT); return;}
+    if( event.type == sf::Event::KeyPressed )
     {
-        if(event.key.keysym.sym == SDLK_F4 && ( event.key.keysym.mod & KMOD_ALT) )
+        if(event.key.code == sf::Keyboard::F4 && event.key.alt )
             {SetNextState(State::EXIT); return;}
+        if(event.key.code == sf::Keyboard::Return && event.key.alt)
+            ToggleFullscreen();
     }
-    /*if(event.type==SDL_WINDOWEVENT)
+    if(event.type==sf::Event::LostFocus)    //makeshift fix for SFML fullscreen window behavior when alt-tabbing
     {
-        if(event.window.event==SDL_WINDOWEVENT_FOCUS_LOST  || event.window.event==SDL_WINDOWEVENT_MINIMIZED);
-
-        if(event.window.event==SDL_WINDOWEVENT_FOCUS_GAINED || event.window.event==SDL_WINDOWEVENT_RESTORED);
-    }*/
-
+        if(FULLSCREEN) ToggleFullscreen();
+    }
 }
 
 
 void System::ToggleFullscreen()
 {
-    UnloadImages();
-    SDL_DestroyRenderer(ren);
-
     FULLSCREEN=!FULLSCREEN;
-    if(FULLSCREEN)  SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
-    else            {SDL_SetWindowFullscreen(window, 0); }//SDL_SetWindowSize(window, SCREEN_WIDTH, SCREEN_HEIGHT); }
+    window.close();
 
-    ren = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-    LoadImages();
+    if(FULLSCREEN) window.create( sf::VideoMode( SCREEN_WIDTH, SCREEN_HEIGHT, 32 ), "TEST SFML", sf::Style::Fullscreen );
+    else window.create( sf::VideoMode( SCREEN_WIDTH, SCREEN_HEIGHT, 32 ), "TEST SFML", sf::Style::Titlebar );
+    //window.setMouseCursorVisible(0);
 }
 
 
 bool System::Setup()
 {
-    if (SDL_Init( SDL_INIT_EVERYTHING ) < 0)
-        {printf("SDL_Init: %s\n", SDL_GetError()); return 1;}
+    if(FULLSCREEN) window.create( sf::VideoMode( SCREEN_WIDTH, SCREEN_HEIGHT, 32 ), "TEST SFML", sf::Style::Fullscreen );
+    else window.create( sf::VideoMode( SCREEN_WIDTH, SCREEN_HEIGHT, 32 ), "TEST SFML");
 
-    InitImageLibrary();
+    window.setPosition(sf::Vector2i{0, 0});
 
-    InitSoundLibrary();
-
-    SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 1);
-    SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 4);
-
-    if(FULLSCREEN)
-        window = SDL_CreateWindow("SDL2", 5, 30, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN | SDL_WINDOW_FULLSCREEN);
-    else window = SDL_CreateWindow("SDL2", 5, 30, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
-    if (window == 0){printf("SDL_CreateWINDOW: %s\n", SDL_GetError()); return 1;}
-
-    if(VSYNC) {ren = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED| SDL_RENDERER_PRESENTVSYNC);
-                FRAMES_PER_SECOND=60;}
-    else ren = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-
-    if (ren == 0){printf("SDL_CreateRenderer: %s\n", SDL_GetError()); return 1;}
-
-        /* placeholder for loading program icon */
-    //SDL_Surface* icon = SDL_LoadBMP("icon.bmp");
-    //SDL_SetWindowIcon(window, icon);
-
-    SDL_SetWindowTitle(window, "Shmup");
-
-    SDL_ShowCursor(SDL_DISABLE);
+    //window.setMouseCursorVisible(0);
 
     srand(time(0));
-
     return 0;
 }

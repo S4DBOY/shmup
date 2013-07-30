@@ -1,6 +1,7 @@
 #include "acceleratingBulletXY.h"
 
 #include <cmath>
+#define M_PI		3.14159265358979323846
 
 AcceleratingBulletXY::AcceleratingBulletXY(int n_type, double n_x, double n_y,
                         double n_vx, double n_vy,

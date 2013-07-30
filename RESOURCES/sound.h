@@ -1,17 +1,12 @@
 #ifndef SOUND_H
 #define SOUND_H
 
-void InitSoundLibrary();
-void CloseSoundLibrary();
+#include "SFML/Audio.hpp"
 
 /**
 \brief Loads all sound files.
 */
-void LoadSounds();
 
-/**
-\brief Frees sound memory.
-*/
-void UnloadSounds();
+void LoadSounds();
 
 #endif // SOUND_H

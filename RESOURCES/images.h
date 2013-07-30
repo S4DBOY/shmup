@@ -1,30 +1,26 @@
 #ifndef IMAGES_H
 #define IMAGES_H
 
-#include "SDL2/SDL.h"
+namespace sf
+{
+    class Sprite;
+    class RectangleShape;
+}
 
-extern SDL_Texture *textures[4];
-
-
-void InitImageLibrary();
-void CloseImageLibrary();
+extern sf::Sprite bulletGraphic;
+extern sf::Sprite playerGraphic;
+extern sf::Sprite hitboxGraphic;
+extern sf::Sprite yinYangGraphic;
+extern sf::Sprite backgroundGraphic;
 
 /**
 \brief Loads all images and converts them to textures.
 */
 void LoadImages();
 
-/**
-\brief Frees all textures.
-*/
-void UnloadImages();
-
-enum SPRITESHEETS
-{
-    BACKGROUND1,
-    BULLETSHEET1,
-    EFFECTSHEET1,
-    PLAYERSHEET1
-};
+void DrawRect(sf::RectangleShape shape);
+void DrawRect(sf::RectangleShape shape, float x, float y);
+void DrawSprite(sf::Sprite sprite);
+void DrawSprite(sf::Sprite sprite, float x, float y);
 
 #endif // IMAGES_H

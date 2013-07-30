@@ -1,6 +1,7 @@
 #include "complexBullet.h"
 
 #include <cmath>
+#define M_PI		3.14159265358979323846
 
 /**
     \brief Holds possible instructions for the pseudo-scripted bullets (ComplexBullet).

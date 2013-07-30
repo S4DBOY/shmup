@@ -1,6 +1,7 @@
 #include "acceleratingBullet.h"
 
 #include <cmath>
+#define M_PI		3.14159265358979323846
 
 AcceleratingBullet::AcceleratingBullet(int n_type, double n_x, double n_y,
                         double n_v, double n_angle,

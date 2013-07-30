@@ -1,10 +1,12 @@
-#include "managers.h"
+#include "bulletManager.h"
 
 #include "../CONSTRUCTS/bullets/basicBullet.h"
 #include "../CONSTRUCTS/bullets/acceleratingBullet.h"
 #include "../CONSTRUCTS/bullets/acceleratingBulletXY.h"
 #include "../CONSTRUCTS/bullets/complexBullet.h"
 #include "../RESOURCES/images.h"
+
+struct Rect{double x, y; int w, h;};
 
 BulletManager bulletManager;
 
@@ -40,13 +42,13 @@ void BulletManager::Logic()
 
 void BulletManager::Draw()
 {
-    SDL_SetTextureAlphaMod(textures[BULLETSHEET1], 128);
+    bulletGraphic.setColor(sf::Color{255, 255, 255, 128});
     for(unsigned int i=0; i<playerBullets.size(); ++i){ playerBullets[i]->Draw();}
-    SDL_SetTextureAlphaMod(textures[BULLETSHEET1], 255);
+    bulletGraphic.setColor(sf::Color{255, 255, 255, 255});
     for(unsigned int i=0; i<enemyBullets.size(); ++i){ enemyBullets[i]->Draw();}
 }
 
-int BulletManager::IsEnemyHit(SDL_Rect loc)
+int BulletManager::IsEnemyHit(Rect loc)
 {
     int change,damage=0;
     for(unsigned int i=0; i<playerBullets.size(); ++i)

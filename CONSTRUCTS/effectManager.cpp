@@ -1,4 +1,4 @@
-#include "managers.h"
+#include "effectManager.h"
 
 #include "../CONSTRUCTS/effects/basicEffect.h"
 

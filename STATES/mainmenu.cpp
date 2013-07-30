@@ -1,6 +1,8 @@
 #include "../BASIC/globals.h"
 #include "../STATES/states.h"
 
+#include "../RESOURCES/images.h"
+
 MainMenu::MainMenu()
 {
     frameCounter=0;
@@ -13,11 +15,10 @@ MainMenu::~MainMenu()
 
 void MainMenu::Handle_events()
 {
-    if(event.type==SDL_KEYDOWN)
+    if(event.type==sf::Event::KeyPressed)
     {
-        SDL_Keycode key=event.key.keysym.sym;
-        if(key==SDLK_RETURN) SetNextState(State::GAME);
-        if(key == SDLK_ESCAPE ) SetNextState(State::EXIT);
+        if(event.key.code==sf::Keyboard::Return) SetNextState(State::GAME);
+        if(event.key.code == sf::Keyboard::Escape ) SetNextState(State::EXIT);
     }
     //temporary!
 }
@@ -29,7 +30,6 @@ void MainMenu::Logic()
 
 void MainMenu::Render()
 {
-    SDL_SetRenderDrawColor(ren, 0, 0, 0, 0);
-    SDL_RenderClear(ren);
-    SDL_RenderPresent(ren);
+    window.draw(backgroundGraphic);
+    window.display();
 }
