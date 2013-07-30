@@ -10,22 +10,26 @@ struct Rect{double x, y; int w, h;};
 
 struct BulletType
 {
+    int drawingOrder;
     int numberOfSprites;
     int spriteChangeDelay;
     double hitboxWidth;
     double hitboxHeight;
 };
 
-std::vector<BulletType> bulletTypes={
-    BulletType{0, 0, 10, 6},
+std::map<std::string, BulletType> bulletTypes={
+    {"B_BULLET1", BulletType{2, 0, 0, 10, 6}},
+    {"B_BULLET1_P", BulletType{2, 0, 0, 10, 6}},
 };
 
-Bullet::Bullet(int ntype, double nx, double ny, double nvx, double nvy):
+Bullet::Bullet(std::string ntype, double nx, double ny, double nvx, double nvy):
     x(nx), y(ny), vx(nvx), vy(nvy)
 {
+    type=ntype;
     BulletType temp=bulletTypes[ntype];
 
     angle=atan2(vy, vx)*(180/M_PI);
+    drawingOrder=temp.drawingOrder;
 
     int scale=2;
 
@@ -85,8 +89,7 @@ void Bullet::Draw()
     int temp_bounds=16;
     if(y-temp_bounds/2>SCREEN_HEIGHT|| y<-temp_bounds/2 || x<-temp_bounds/2 || x>SCREEN_WIDTH+temp_bounds/2) return;
 
-    bulletGraphic.setRotation(angle+90);
-    DrawSprite(bulletGraphic, x, y);
+    DrawSprite(type, x, y, angle+90);
 
     //hitbox.setRotation(angle);
     //DrawRect(hitbox, x, y);

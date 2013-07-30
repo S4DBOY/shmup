@@ -3,18 +3,12 @@
 
 #include <vector>
 #include <memory>
+#include <string>
 
 class Bullet;
 struct Rect;
 class BulletManager;
 extern BulletManager bulletManager;
-
-/**
-    \brief List of possible bullet types, which determine their graphic and hitbox
-*/
-enum BULLET_TYPE{
-    B_BULLET1
-};
 
 /**
     \brief Holds possible instructions for the pseudo-scripted bullets (ComplexBullet).
@@ -45,15 +39,15 @@ class BulletManager
         int IsEnemyHit(Rect loc);
         int IsPlayerHit(double x, double y, double radius);
 
-        void AddBasicBulletXY(int type, int damage,
+        void AddBasicBulletXY(std::string type, int damage,
                         double x, double y, double vx, double vy);
-        void AddBasicBullet(int type, int damage,
+        void AddBasicBullet(std::string type, int damage,
                         double x, double y, double v, double angle);
-        void AddAccelBullet(int type, int damage,
+        void AddAccelBullet(std::string type, int damage,
                         double x, double y, double v, double angle, double accel, double minmaxV);
-        void AddAccelBulletXY(int type, int damage,
+        void AddAccelBulletXY(std::string type, int damage,
                         double x, double y, double vx, double vy, double accelX, double accelY, double minmaxX, double minmaxY);
-        void AddComplexBullet(int type, int damage,
+        void AddComplexBullet(std::string type, int damage,
                         double x, double y, double v, double angle, double angularV, double accel);
 
         void AddBulletData(int time, int instruction, int setOrChange, double data);

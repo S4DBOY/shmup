@@ -9,7 +9,7 @@
 class BasicBullet : public Bullet
 {
     public:
-        BasicBullet(int ntype, double nx, double ny, double nv, double nangle);
+        BasicBullet(std::string ntype, double nx, double ny, double nv, double nangle);
         ~BasicBullet(){};
     protected:
     private:

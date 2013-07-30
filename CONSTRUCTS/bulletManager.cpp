@@ -42,10 +42,15 @@ void BulletManager::Logic()
 
 void BulletManager::Draw()
 {
-    bulletGraphic.setColor(sf::Color{255, 255, 255, 128});
-    for(unsigned int i=0; i<playerBullets.size(); ++i){ playerBullets[i]->Draw();}
-    bulletGraphic.setColor(sf::Color{255, 255, 255, 255});
-    for(unsigned int i=0; i<enemyBullets.size(); ++i){ enemyBullets[i]->Draw();}
+    for(unsigned int i=0; i<playerBullets.size(); ++i) playerBullets[i]->Draw();
+
+    for(int drawOrder=0; drawOrder<3; ++drawOrder)
+    {
+        for(unsigned int i=0; i<enemyBullets.size(); ++i)
+        {
+            if(enemyBullets[i]->drawingOrder==drawOrder) enemyBullets[i]->Draw();
+        }
+    }
 }
 
 int BulletManager::IsEnemyHit(Rect loc)
@@ -72,28 +77,28 @@ int BulletManager::IsPlayerHit(double x, double y, double radius)
     return damage;
 }
 
-void BulletManager::AddBasicBulletXY(int type, int damage,
+void BulletManager::AddBasicBulletXY(std::string type, int damage,
                                     double x, double y, double vx, double vy)
 {
     DetermineOwner().push_back(std::unique_ptr<Bullet>(new BasicBulletXY(type, x, y, vx, vy)));
     DetermineOwner().back()->SetDamage(damage);
 }
 
-void BulletManager::AddBasicBullet(int type, int damage,
+void BulletManager::AddBasicBullet(std::string type, int damage,
                                     double x, double y, double v, double angle)
 {
     DetermineOwner().push_back(std::unique_ptr<Bullet>(new BasicBullet(type, x, y, v, angle)));
     DetermineOwner().back()->SetDamage(damage);
 }
 
-void BulletManager::AddAccelBullet(int type, int damage,
+void BulletManager::AddAccelBullet(std::string type, int damage,
                                     double x, double y, double v, double angle, double accel, double minmaxV)
 {
     DetermineOwner().push_back(std::unique_ptr<Bullet>(new AcceleratingBullet(type, x, y, v, angle, accel, minmaxV)));
     DetermineOwner().back()->SetDamage(damage);
 }
 
-void BulletManager::AddAccelBulletXY(int type, int damage,
+void BulletManager::AddAccelBulletXY(std::string type, int damage,
                                     double x, double y, double vx, double vy, double accelX, double accelY,
                                     double minmaxX, double minmaxY)
 {
@@ -101,7 +106,7 @@ void BulletManager::AddAccelBulletXY(int type, int damage,
     DetermineOwner().back()->SetDamage(damage);
 }
 
-void BulletManager::AddComplexBullet(int type, int damage,
+void BulletManager::AddComplexBullet(std::string type, int damage,
                                     double x, double y, double v, double angle, double angularV, double accel)
 {
     DetermineOwner().push_back(std::unique_ptr<Bullet>(new ComplexBullet(type, x, y, v, angle, angularV, accel)));

@@ -17,7 +17,7 @@ enum SET_OR_CHANGE{
     CHANGE,
 };
 
-ComplexBullet::ComplexBullet(int n_type, double n_x, double n_y,
+ComplexBullet::ComplexBullet(std::string n_type, double n_x, double n_y,
                         double n_v, double n_angle, double n_angularV,
                         double n_accel):
         Bullet(n_type, n_x, n_y, n_v*cos((n_angle)*(M_PI/180)), n_v*sin((n_angle)*(M_PI/180))),

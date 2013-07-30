@@ -46,7 +46,7 @@ void Game::Logic()
 
 void Game::Render()
 {
-    window.draw(backgroundGraphic);
+    DrawSprite("BACKGROUND");
 
     enemyManager.Draw();
 

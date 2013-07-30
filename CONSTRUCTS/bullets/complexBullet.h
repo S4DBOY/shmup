@@ -25,7 +25,7 @@ struct InstructionStruct
 class ComplexBullet : public Bullet
 {
     public:
-        ComplexBullet(int n_type, double n_x, double n_y,
+        ComplexBullet(std::string n_type, double n_x, double n_y,
                         double n_v, double n_angle, double n_angularV,
                         double n_accel);
         ~ComplexBullet(){};

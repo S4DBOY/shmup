@@ -2,6 +2,7 @@
 #define BULLET_H
 
 #include "SFML/graphics.hpp"
+#include <string>
 
 /**
     \brief A a simple bullet, defined by its
@@ -13,7 +14,7 @@ struct Rect;
 class Bullet
 {
     public:
-        Bullet(int ntype, double nx, double ny, double nvx, double nvy);
+        Bullet(std::string ntype, double nx, double ny, double nvx, double nvy);
         virtual ~Bullet() {};
         void SetDamage(int n_damage);
         void SetTiming(int n_delay, int n_lifetime);
@@ -26,17 +27,18 @@ class Bullet
         int IsCircleHit(double x, double y, double r);
         void Draw();
 
+        int drawingOrder;
     protected:
+        std::string type;
         double x, y;
         double vx, vy;
-        int time=0, delay=0, lifetime=0;
         double angle;
+
+        int time=0, delay=0, lifetime=0;
+
         int hitboxW, hitboxH;
-        int damage=1;
-
         sf::RectangleShape hitbox;
-
-        int spriteOrientation;
+        int damage=1;
 
     private:
 };

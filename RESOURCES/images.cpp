@@ -1,25 +1,25 @@
 #include "../RESOURCES/images.h"
 #include "../BASIC/globals.h"
 
+#include <map>
+#include <string>
+
+std::map<std::string, sf::Sprite> sprites;
+std::map <int, sf::Texture> textures;
+
 typedef sf::IntRect Rect;
 
-sf::Texture bulletSheet;
-sf::Sprite bulletGraphic;
+enum textures{
+    bulletSheet,
+    playerSheet,
+    effectSheet,
+    background
+};
 
-sf::Texture playerSheet;
-sf::Sprite playerGraphic;
-sf::Sprite yinYangGraphic;
-
-sf::Texture effectSheet;
-sf::Sprite hitboxGraphic;
-
-sf::Texture background;
-sf::Sprite backgroundGraphic;
-
-sf::Sprite createSprite(sf::Texture &texture, Rect source)
+sf::Sprite CreateSprite(int textureNo, Rect source)
 {
     sf::Sprite temp;
-    temp.setTexture(texture);
+    temp.setTexture(textures[textureNo]);
     temp.setTextureRect(source);
     temp.setOrigin(source.width/2, source.height/2);
     temp.setScale(2, 2);
@@ -28,18 +28,22 @@ sf::Sprite createSprite(sf::Texture &texture, Rect source)
 
 void LoadImages()
 {
-    bulletSheet.loadFromFile("data/bullet.dat");
-    playerSheet.loadFromFile("data/player.dat");
-    effectSheet.loadFromFile("data/effects.dat");
-    background.loadFromFile("data/bg.dat");
+    textures[bulletSheet].loadFromFile("data/bullet.dat");
+    textures[playerSheet].loadFromFile("data/player.dat");
+    textures[effectSheet].loadFromFile("data/effects.dat");
+    textures[background].loadFromFile("data/bg.dat");
 
-    bulletGraphic=createSprite(bulletSheet, Rect{0, 112, 16, 16});
-    playerGraphic=createSprite(playerSheet, Rect{0, 0, 32, 48});
-    yinYangGraphic=createSprite(playerSheet, Rect{64, 144, 16, 16});
-    hitboxGraphic=createSprite(effectSheet, Rect{0, 16, 64, 64});
+    sprites["B_BULLET1"]=CreateSprite(bulletSheet, Rect{0, 112, 16, 16});
+    sprites["PLAYER"]=CreateSprite(playerSheet, Rect{0, 0, 32, 48});
+    sprites["B_BULLET1_P"]=CreateSprite(bulletSheet, Rect{0, 112, 16, 16}); sprites["B_BULLET1_P"].setColor(sf::Color{255, 255, 255, 128});
+    sprites["YINYANGOPTION"]=CreateSprite(playerSheet, Rect{64, 144, 16, 16});
+    sprites["HITBOX"]=CreateSprite(effectSheet, Rect{0, 16, 64, 64});
 
-    backgroundGraphic.setTexture(background);
-    backgroundGraphic.setScale(SCREEN_WIDTH/256.0f, SCREEN_HEIGHT/256.0f);
+    sf::Sprite temp;
+    temp.setTexture(textures[background]);
+    temp.setScale(SCREEN_WIDTH/256.0f, SCREEN_HEIGHT/256.0f);
+    sprites["BACKGROUND"]=temp;
+
 }
 
 void DrawRect(sf::RectangleShape shape)
@@ -49,9 +53,11 @@ void DrawRect(sf::RectangleShape shape, float x, float y)
 {shape.setPosition(x, y);
     window.draw(shape);}
 
-void DrawSprite(sf::Sprite sprite)
-{window.draw(sprite);}
 
-void DrawSprite(sf::Sprite sprite, float x, float y)
-{sprite.setPosition(x, y);
-    window.draw(sprite);}
+void DrawSprite(std::string type, float x, float y, float angle)
+{
+    sf::Sprite &temp=sprites[type];
+    temp.setRotation(angle);
+    temp.setPosition(x, y);
+    window.draw(temp);
+}

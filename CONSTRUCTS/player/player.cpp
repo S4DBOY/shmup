@@ -67,13 +67,13 @@ void Player::Logic()
     int mod=!focus;
     if((shooting==1 || shootingCounter<1) && (frameCounter%4==0))
     {
-        bulletManager.AddBasicBulletXY(B_BULLET1, 5, x+10, y, 0, v);
-        bulletManager.AddBasicBulletXY(B_BULLET1, 5, x-10, y, 0, v);
+        bulletManager.AddBasicBulletXY("B_BULLET1_P", 5, x+10, y, 0, v);
+        bulletManager.AddBasicBulletXY("B_BULLET1_P", 5, x-10, y, 0, v);
 
-        bulletManager.AddBasicBulletXY(B_BULLET1, 2, x+50, y-40, 5*mod-2, v1);
-        bulletManager.AddBasicBulletXY(B_BULLET1, 2, x-50, y-40, -5*mod+2, v1);
-        bulletManager.AddBasicBulletXY(B_BULLET1, 2, x+80, y+20, 10*mod-4, v1);
-        bulletManager.AddBasicBulletXY(B_BULLET1, 2, x-80, y+20, -10*mod+4, v1);
+        bulletManager.AddBasicBulletXY("B_BULLET1_P", 2, x+50, y-40, 5*mod-2, v1);
+        bulletManager.AddBasicBulletXY("B_BULLET1_P", 2, x-50, y-40, -5*mod+2, v1);
+        bulletManager.AddBasicBulletXY("B_BULLET1_P", 2, x+80, y+20, 10*mod-4, v1);
+        bulletManager.AddBasicBulletXY("B_BULLET1_P", 2, x-80, y+20, -10*mod+4, v1);
         shootingCounter=1;
     }
 }
@@ -88,21 +88,18 @@ void Player::DrawHitBox()
 {
     if(focus)
     {
-        hitboxGraphic.setPosition(x, y);
         float a=(frameCounter%180)*2;
-        hitboxGraphic.setRotation(a);
-        window.draw(hitboxGraphic);
-        hitboxGraphic.setRotation(-a);
-        window.draw(hitboxGraphic);
+        DrawSprite("HITBOX", x, y, a);
+        DrawSprite("HITBOX", x, y, -a);
     }
 }
 
 void Player::Draw()
 {
-    DrawSprite(playerGraphic, x, y);
+    DrawSprite("PLAYER", x, y);
 
-    DrawSprite(yinYangGraphic, x-80, y+20);
-    DrawSprite(yinYangGraphic, x+80, y+20);
-    DrawSprite(yinYangGraphic, x-50, y-40);
-    DrawSprite(yinYangGraphic, x+50, y-40);
+    DrawSprite("YINYANGOPTION", x-80, y+20);
+    DrawSprite("YINYANGOPTION", x+80, y+20);
+    DrawSprite("YINYANGOPTION", x-50, y-40);
+    DrawSprite("YINYANGOPTION", x+50, y-40);
 }

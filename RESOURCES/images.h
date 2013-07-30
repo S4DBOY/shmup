@@ -1,17 +1,12 @@
 #ifndef IMAGES_H
 #define IMAGES_H
 
+#include <string>
+
 namespace sf
 {
-    class Sprite;
     class RectangleShape;
 }
-
-extern sf::Sprite bulletGraphic;
-extern sf::Sprite playerGraphic;
-extern sf::Sprite hitboxGraphic;
-extern sf::Sprite yinYangGraphic;
-extern sf::Sprite backgroundGraphic;
 
 /**
 \brief Loads all images and converts them to textures.
@@ -20,7 +15,7 @@ void LoadImages();
 
 void DrawRect(sf::RectangleShape shape);
 void DrawRect(sf::RectangleShape shape, float x, float y);
-void DrawSprite(sf::Sprite sprite);
-void DrawSprite(sf::Sprite sprite, float x, float y);
+
+void DrawSprite(std::string type, float x=0.0f, float y=0.0f, float angle=0.0f);
 
 #endif // IMAGES_H

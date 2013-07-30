@@ -30,6 +30,6 @@ void MainMenu::Logic()
 
 void MainMenu::Render()
 {
-    window.draw(backgroundGraphic);
+    DrawSprite("BACKGROUND");
     window.display();
 }
