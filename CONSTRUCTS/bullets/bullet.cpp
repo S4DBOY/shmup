@@ -11,15 +11,15 @@ struct Rect{double x, y; int w, h;};
 struct BulletType
 {
     int drawingOrder;
-    int numberOfSprites;
-    int spriteChangeDelay;
+    int animationFrames;
+    int animationDelay;
     double hitboxWidth;
     double hitboxHeight;
 };
 
 std::map<std::string, BulletType> bulletTypes={
-    {"B_BULLET1", BulletType{2, 0, 0, 10, 6}},
-    {"B_BULLET1_P", BulletType{2, 0, 0, 10, 6}},
+    {"B_BULLET1", BulletType{2, 16, 10, 10, 6}},
+    {"B_BULLET1_P", BulletType{2, 1, 1, 10, 6}},
 };
 
 Bullet::Bullet(std::string ntype, double nx, double ny, double nvx, double nvy):
@@ -30,6 +30,8 @@ Bullet::Bullet(std::string ntype, double nx, double ny, double nvx, double nvy):
 
     angle=atan2(vy, vx)*(180/M_PI);
     drawingOrder=temp.drawingOrder;
+    animationFrames=temp.animationFrames;
+    animationDelay=temp.animationDelay;
 
     int scale=2;
 
@@ -88,8 +90,9 @@ void Bullet::Draw()
     if(time<delay) return;
     int temp_bounds=16;
     if(y-temp_bounds/2>SCREEN_HEIGHT|| y<-temp_bounds/2 || x<-temp_bounds/2 || x>SCREEN_WIDTH+temp_bounds/2) return;
+    int currentFrame=(frameCounter/animationDelay)%animationFrames;
 
-    DrawSprite(type, x, y, angle+90);
+    DrawSprite(type, x, y, angle+90, currentFrame);
 
     //hitbox.setRotation(angle);
     //DrawRect(hitbox, x, y);

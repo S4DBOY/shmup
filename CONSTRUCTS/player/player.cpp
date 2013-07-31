@@ -2,7 +2,7 @@
 
 #include "../../BASIC/globals.h"
 #include "../../RESOURCES/images.h"
-#include "../../CONSTRUCTS/bulletManager.h"
+#include "../../CONSTRUCTS/managers.h"
 
 Player::Player()
 {

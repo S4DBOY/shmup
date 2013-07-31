@@ -1,10 +1,10 @@
 #include "bulletManager.h"
 
-#include "../CONSTRUCTS/bullets/basicBullet.h"
-#include "../CONSTRUCTS/bullets/acceleratingBullet.h"
-#include "../CONSTRUCTS/bullets/acceleratingBulletXY.h"
-#include "../CONSTRUCTS/bullets/complexBullet.h"
-#include "../RESOURCES/images.h"
+#include "basicBullet.h"
+#include "acceleratingBullet.h"
+#include "acceleratingBulletXY.h"
+#include "complexBullet.h"
+#include "../../RESOURCES/images.h"
 
 struct Rect{double x, y; int w, h;};
 
@@ -130,6 +130,6 @@ std::vector<std::unique_ptr<Bullet>> &BulletManager::DetermineOwner()
 
 void BulletManager::EraseAllBullets()
 {
-    enemyBullets.clear();
-    playerBullets.clear();
+    enemyBullets.resize(0);
+    playerBullets.resize(0);
 }

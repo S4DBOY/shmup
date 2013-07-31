@@ -1,8 +1,8 @@
 #include "enemyManager.h"
 
-#include "bulletManager.h"
+#include "../bullets/bulletManager.h"
 
-#include "../CONSTRUCTS/enemies/basicEnemy.h"
+#include "basicEnemy.h"
 
 EnemyManager enemyManager;
 

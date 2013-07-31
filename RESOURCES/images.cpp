@@ -54,9 +54,11 @@ void DrawRect(sf::RectangleShape shape, float x, float y)
     window.draw(shape);}
 
 
-void DrawSprite(std::string type, float x, float y, float angle)
+void DrawSprite(std::string type, float x, float y, float angle, int animationFrame)
 {
-    sf::Sprite &temp=sprites[type];
+    sf::Sprite temp=sprites[type];
+    Rect t=temp.getTextureRect();
+    temp.setTextureRect(Rect{t.left+t.width*animationFrame, t.top, t.width, t.height});
     temp.setRotation(angle);
     temp.setPosition(x, y);
     window.draw(temp);

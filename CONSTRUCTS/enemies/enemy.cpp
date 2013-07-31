@@ -1,6 +1,6 @@
 #include "enemy.h"
 
-#include "../playerManager.h"
+#include "../managers.h"
 #include "../../RESOURCES/images.h"
 
 #include <cmath>

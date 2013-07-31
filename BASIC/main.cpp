@@ -29,6 +29,7 @@ int main(int argc, char *argv[])
 
         currentState->Logic();
         currentState->Render();
+        window.display();
         ChangeState();
 
         sf::sleep(sf::milliseconds(5));

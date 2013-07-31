@@ -1,7 +1,7 @@
 #include "basicEnemy.h"
 
 #include "../../BASIC/globals.h"
-#include "../../CONSTRUCTS/bulletManager.h"
+#include "../../CONSTRUCTS/managers.h"
 
 BasicEnemy::BasicEnemy(int ntype, double nx, double ny, double nvx, double nvy):
     Enemy(ntype, nx, ny, nvx, nvy)

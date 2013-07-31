@@ -1,8 +1,6 @@
 #include "../BASIC/globals.h"
 #include "../STATES/states.h"
 
-#include "../RESOURCES/images.h"
-
 MainMenu::MainMenu()
 {
     frameCounter=0;
@@ -30,6 +28,5 @@ void MainMenu::Logic()
 
 void MainMenu::Render()
 {
-    DrawSprite("BACKGROUND");
-    window.display();
+
 }

@@ -1,7 +1,7 @@
 #include "playerManager.h"
-#include "bulletManager.h"
+#include "../bullets/bulletManager.h"
 
-#include "../CONSTRUCTS/player/player.h"
+#include "player.h"
 
 PlayerManager playerManager;
 

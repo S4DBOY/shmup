@@ -1,18 +1,14 @@
 #include "../BASIC/globals.h"
 #include "../STATES/states.h"
 
-#include "../CONSTRUCTS/playerManager.h"
-#include "../CONSTRUCTS/effectManager.h"
-#include "../CONSTRUCTS/enemyManager.h"
-#include "../CONSTRUCTS/bulletManager.h"
-
-#include "../RESOURCES/images.h"
+#include "../CONSTRUCTS/managers.h"
 
 Game::Game()
 {
     playerManager.AddPlayer(0);
     frameCounter=0;
     enemyManager.AddEnemy(E_ENEMY1, SCREEN_WIDTH/2, 200, 0, 0);
+    backgroundManager.SetBackground();
 }
 
 Game::~Game()
@@ -31,6 +27,7 @@ void Game::Handle_events()
 
 void Game::Logic()
 {
+    backgroundManager.Logic();
     playerManager.Move();
     enemyManager.Move();
     bulletManager.Move();
@@ -46,15 +43,10 @@ void Game::Logic()
 
 void Game::Render()
 {
-    DrawSprite("BACKGROUND");
-
+    backgroundManager.Draw();
     enemyManager.Draw();
-
     playerManager.Draw();
-
-    bulletManager.Draw();
     effectManager.Draw();
+    bulletManager.Draw();
     playerManager.DrawHitBox();
-
-    window.display();
 }

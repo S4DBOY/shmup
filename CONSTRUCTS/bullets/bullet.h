@@ -35,6 +35,7 @@ class Bullet
         double angle;
 
         int time=0, delay=0, lifetime=0;
+        int animationFrames, animationDelay;
 
         int hitboxW, hitboxH;
         sf::RectangleShape hitbox;
