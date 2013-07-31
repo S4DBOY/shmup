@@ -1,8 +1,9 @@
 #include "../STATES/states.h"
 
-State stateID = State::EMPTY;
 State nextState = State::EMPTY;
-GameState *currentState = nullptr;
+
+std::stack<GameState*> states;
+bool done=0;
 
 
 void SetNextState(State newState)
@@ -17,21 +18,23 @@ void ChangeState()
 {
     if(nextState!=State::EMPTY)
     {
-        if(nextState!=State::EXIT)
-        {
-            if(currentState!=nullptr) delete currentState;
-        }
         switch( nextState )
         {
             case State::GAME:
-                currentState = new Game();
+                states.push(new Game());
                 break;
             case State::MAINMENU:
-                currentState = new MainMenu();
+                states.push(new MainMenu());
+                break;
+            case State::PAUSE:
+                states.push(new Pause());
+                break;
+            case State::EXIT:
+                states.push(new Exit());
                 break;
             default:{}
         }
-        stateID=nextState;
         nextState=State::EMPTY;
     }
 }
+

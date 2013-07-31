@@ -11,12 +11,8 @@ AcceleratingBulletXY::AcceleratingBulletXY(std::string n_type, double n_x, doubl
         accelX(n_accelX), accelY(n_accelY), minmaxX(n_minmaxX), minmaxY(n_minmaxY)
     {}
 
-void AcceleratingBulletXY::Move()
+void AcceleratingBulletXY::MovePattern()
 {
-    time++;
-    if(time<=delay) return;
-    x+=vx;
-    y+=vy;
     if((vx+accelX<minmaxX && accelX>0) || (vx+accelX>minmaxX && accelX<0)) vx+=accelX;
     else if(accelX) vx=minmaxX;
     if((vy+accelY<minmaxY && accelY>0) || (vy+accelY>minmaxY && accelY<0)) vy+=accelY;

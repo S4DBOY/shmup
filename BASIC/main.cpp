@@ -15,24 +15,32 @@ int main(int argc, char *argv[])
     SetNextState(State::MAINMENU);
     ChangeState();
 
-    while( stateID != State::EXIT )
+    while(!done)
     {
         while(window.pollEvent(event))
         {
             SFMLsystem->Handle_events();
-            currentState->Handle_events();
+            states.top()->Handle_events();
         }
 
         if( SFMLsystem->RegulateFPS()) continue;
 
         frameCounter++;
 
-        currentState->Logic();
-        currentState->Render();
+        states.top()->Logic();
+
+        states.top()->Render();
         window.display();
+
         ChangeState();
 
         sf::sleep(sf::milliseconds(5));
+    }
+
+    while(!states.empty())
+    {
+        GameState *next = states.top();
+        states.pop(); delete next;
     }
 
     delete SFMLsystem;

@@ -10,13 +10,8 @@ AcceleratingBullet::AcceleratingBullet(std::string n_type, double n_x, double n_
         v(n_v), accel(n_accel), minmaxV(n_minmaxV)
     {}
 
-void AcceleratingBullet::Move()
+void AcceleratingBullet::MovePattern()
 {
-    time++;
-    if(time<=delay) return;
-    x+=vx;
-    y+=vy;
-
     if((v+accel<minmaxV && accel>0) || (v+accel>minmaxV && accel<0))
     {
         v+=accel;

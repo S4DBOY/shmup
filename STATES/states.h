@@ -1,6 +1,9 @@
 #ifndef STATES_H
 #define STATES_H
 
+#include <stack>
+#include <memory>
+
 class BulletManager;
 class EnemyManager;
 class EffectManager;
@@ -15,6 +18,7 @@ enum class State
     INTRO,
     MAINMENU,
     GAME,
+    PAUSE,
     EXIT
 };
 
@@ -24,13 +28,15 @@ enum class State
 class GameState
 {
     public:
-    virtual void Handle_events() = 0;
-    virtual void Logic() = 0;
-    virtual void Render() = 0;
-    virtual ~GameState(){};
+        virtual void Handle_events(){};
+        virtual void Logic(){};
+        virtual void Render(){};
+        virtual ~GameState(){};
+    protected:
+        int stateFrameCounter=0;
 };
 
-extern State stateID;
+extern bool done;
 
 /**
     \brief prepares to change to the new state. Makes sure that the state won't be changed after setting State::EXIT.
@@ -42,51 +48,49 @@ void SetNextState(State newState);
 */
 void ChangeState();
 
-extern GameState *currentState;
+extern std::stack<GameState*> states;
 
 /*class Intro : public GameState
 {
-    private:
-
     public:
     Intro();
     ~Intro();
-
     void Handle_events();
     void Logic();
     void Render();
-    private:
 };*/
-
 class MainMenu : public GameState
 {
-    private:
-
     public:
     MainMenu();
     ~MainMenu();
-
     void Handle_events();
     void Logic();
     void Render();
-
-    private:
 };
-
 class Game : public GameState
 {
-    private:
-
     public:
     Game();
     ~Game();
-
     void Handle_events();
     void Logic();
     void Render();
-
-    private:
+};
+class Pause : public GameState
+{
+    public:
+    Pause();
+    ~Pause();
+    void Handle_events();
+    void Logic();
+    void Render();
+};
+class Exit : public GameState
+{
+    public:
+    void Logic();
+    void Render();
 };
 
 #endif
-

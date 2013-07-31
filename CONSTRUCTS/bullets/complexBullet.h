@@ -30,10 +30,10 @@ class ComplexBullet : public Bullet
                         double n_accel);
         ~ComplexBullet(){};
 
-        void Move();
         void AddData(int time, int instruction, int setOrChange, double data);
     protected:
     private:
+        void MovePattern();
         double v;
         double angularV;
         double accel;

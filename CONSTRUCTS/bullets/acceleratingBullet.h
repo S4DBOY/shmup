@@ -14,9 +14,9 @@ class AcceleratingBullet : public Bullet
                         double n_accel, double n_minmaxV);
         ~AcceleratingBullet(){};
 
-        void Move();
     protected:
     private:
+        void MovePattern();
         double v;
         double accel;
         double minmaxV;

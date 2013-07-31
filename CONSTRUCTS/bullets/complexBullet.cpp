@@ -26,13 +26,8 @@ ComplexBullet::ComplexBullet(std::string n_type, double n_x, double n_y,
         angle=n_angle;
     }
 
-void ComplexBullet::Move()
+void ComplexBullet::MovePattern()
 {
-    time++;
-    if(time<=delay) return;
-    x+=vx;
-    y+=vy;
-
     angle+=angularV;
     v+=accel;
     if(accel || angularV) CalculateVelocity();

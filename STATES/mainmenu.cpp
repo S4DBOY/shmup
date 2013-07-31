@@ -1,9 +1,10 @@
 #include "../BASIC/globals.h"
 #include "../STATES/states.h"
 
+#include "../CONSTRUCTS/managers.h"
+
 MainMenu::MainMenu()
 {
-    frameCounter=0;
 
 }
 
@@ -23,7 +24,8 @@ void MainMenu::Handle_events()
 
 void MainMenu::Logic()
 {
-    if(frameCounter==30) SetNextState(State::GAME);
+    stateFrameCounter++;
+    if(stateFrameCounter==30) SetNextState(State::GAME);
 }
 
 void MainMenu::Render()

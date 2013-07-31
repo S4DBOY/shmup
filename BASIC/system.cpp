@@ -17,7 +17,7 @@ std::ofstream debugData ("debugData.txt");
 System::System()
 {
     InitializeGlobals();
-    if(Setup()==1)  stateID = State::EXIT;
+    if(Setup()==1)  done=1;
     LoadImages();
     LoadSounds();
 

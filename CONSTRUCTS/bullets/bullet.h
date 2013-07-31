@@ -21,7 +21,7 @@ class Bullet
 
         virtual void AddData(int, int, int, double){};
 
-        virtual void Move();
+        void Move();
         bool CheckBounds();
         int IsRectHit(Rect r);
         int IsCircleHit(double x, double y, double r);
@@ -29,13 +29,15 @@ class Bullet
 
         int drawingOrder;
     protected:
+        virtual void MovePattern(){};
+
         std::string type;
         double x, y;
         double vx, vy;
         double angle;
 
         int time=0, delay=0, lifetime=0;
-        int animationFrames, animationDelay;
+        int animationFrames, animationDelay, currentFrame;
 
         int hitboxW, hitboxH;
         sf::RectangleShape hitbox;

@@ -14,10 +14,9 @@ class AcceleratingBulletXY : public Bullet
                         double n_accelX, double n_accelY,
                         double n_minmaxX, double n_minmaxY);
         ~AcceleratingBulletXY(){};
-
-        void Move();
     protected:
     private:
+        void MovePattern();
         double accelX, accelY;
         double minmaxX, minmaxY;
 };

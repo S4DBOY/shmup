@@ -6,7 +6,6 @@
 Game::Game()
 {
     playerManager.AddPlayer(0);
-    frameCounter=0;
     enemyManager.AddEnemy(E_ENEMY1, SCREEN_WIDTH/2, 200, 0, 0);
     backgroundManager.SetBackground();
 }
@@ -21,7 +20,7 @@ void Game::Handle_events()
     playerManager.Input();
     if( event.type == sf::Event::KeyPressed )
     {
-        if(event.key.code == sf::Keyboard::Escape ) SetNextState(State::EXIT);
+        if(event.key.code == sf::Keyboard::Escape ) SetNextState(State::PAUSE);
     }
 }
 

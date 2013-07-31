@@ -60,6 +60,8 @@ void Bullet::Move()
     if(time<=delay) return;
     x+=vx;
     y+=vy;
+    currentFrame=(frameCounter/animationDelay)%animationFrames;
+    MovePattern();
 };
 
 bool Bullet::CheckBounds()
@@ -90,8 +92,6 @@ void Bullet::Draw()
     if(time<delay) return;
     int temp_bounds=16;
     if(y-temp_bounds/2>SCREEN_HEIGHT|| y<-temp_bounds/2 || x<-temp_bounds/2 || x>SCREEN_WIDTH+temp_bounds/2) return;
-    int currentFrame=(frameCounter/animationDelay)%animationFrames;
-
     DrawSprite(type, x, y, angle+90, currentFrame);
 
     //hitbox.setRotation(angle);
