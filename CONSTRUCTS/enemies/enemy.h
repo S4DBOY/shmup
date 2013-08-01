@@ -14,7 +14,7 @@ class Enemy
         Enemy(int ntype, double nx, double ny, double nvx, double nvy);
         virtual ~Enemy() {};
 
-        void Move(){x+=vx;y+=vy;};
+        void Move(){x+=vx;y+=vy; frame++;};
         virtual void Logic()=0;
         bool IsDying(){return health<=0;}
         void ReduceHealth(int damage){health-=damage;}
@@ -23,6 +23,7 @@ class Enemy
     protected:
         int type;
         int maxHealth, health;
+        int frame;
         double x, y;
         double vx, vy;
 

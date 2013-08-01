@@ -12,9 +12,9 @@ BasicEnemy::BasicEnemy(int ntype, double nx, double ny, double nvx, double nvy):
 
 void BasicEnemy::Logic()
 {
-    double a=(frameCounter/10)%360;
+    double a=(frame/10)%360;
     double basev=4;
-    if(frameCounter%20==1)
+    if(frame%20==1)
     {
         for(int i=0;i<360;i+=15)
         {
@@ -32,7 +32,7 @@ void BasicEnemy::Logic()
         }
     }
     double angle=GetAngleToPlayer(x, y);
-    if(frameCounter%120==0)
+    if(frame%120==0)
         for(int i=-3;i<=3;i+=1)
             bulletManager.AddBasicBullet("B_BULLET1", 1, x, y, basev, angle+i);
 }
