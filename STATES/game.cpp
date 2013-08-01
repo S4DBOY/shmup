@@ -22,6 +22,7 @@ void Game::Handle_events()
     {
         if(event.key.code == sf::Keyboard::Escape ) SetNextState(State::PAUSE);
     }
+    if(event.type==sf::Event::LostFocus) SetNextState(State::PAUSE);
 }
 
 void Game::Logic()

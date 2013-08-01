@@ -7,7 +7,7 @@
 #include "../BASIC/globals.h"
 #include "../BASIC/system.h"
 #include "../STATES/states.h"
-
+#include "../RESOURCES/sound.h"
 int main(int argc, char *argv[])
 {
     SFMLsystem = new System();
@@ -31,6 +31,8 @@ int main(int argc, char *argv[])
 
         states.top()->Render();
         window.display();
+
+        CleanSounds();  //I wish there was a better place for it
 
         ChangeState();
 
