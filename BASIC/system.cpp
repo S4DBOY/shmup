@@ -26,6 +26,12 @@ System::System()
 
 System::~System()
 {
+    while(!states.empty())
+    {
+        GameState *next = states.top();
+        states.pop(); delete next;
+    }
+
     window.close();
 
         /*          performance data            */

@@ -25,8 +25,6 @@ int main(int argc, char *argv[])
 
         if( SFMLsystem->RegulateFPS()) continue;
 
-        frameCounter++;
-
         states.top()->Logic();
 
         states.top()->Render();
@@ -36,13 +34,9 @@ int main(int argc, char *argv[])
 
         ChangeState();
 
-        sf::sleep(sf::milliseconds(5));
-    }
+        frameCounter++;
 
-    while(!states.empty())
-    {
-        GameState *next = states.top();
-        states.pop(); delete next;
+        sf::sleep(sf::milliseconds(5));
     }
 
     delete SFMLsystem;

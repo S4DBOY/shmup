@@ -89,6 +89,8 @@
 		<Unit filename="STATES/intro.cpp" />
 		<Unit filename="STATES/mainmenu.cpp" />
 		<Unit filename="STATES/pause.cpp" />
+		<Unit filename="STATES/stages/stage1.cpp" />
+		<Unit filename="STATES/stages/stages.h" />
 		<Unit filename="STATES/states.cpp" />
 		<Unit filename="STATES/states.h" />
 		<Unit filename="UTILITIES/collision.cpp" />

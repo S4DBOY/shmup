@@ -23,7 +23,7 @@ class Enemy
     protected:
         int type;
         int maxHealth, health;
-        int frame;
+        int frame=0;
         double x, y;
         double vx, vy;
 

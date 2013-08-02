@@ -1,4 +1,5 @@
 #include "../STATES/states.h"
+#include "../STATES/stages/stages.h"
 
 State nextState = State::EMPTY;
 
@@ -20,8 +21,8 @@ void ChangeState()
     {
         switch( nextState )
         {
-            case State::GAME:
-                states.push(new Game());
+            case State::GAMESTAGE1:
+                states.push(new GameStage1());
                 break;
             case State::MAINMENU:
                 states.push(new MainMenu());

@@ -18,6 +18,7 @@ enum class State
     INTRO,
     MAINMENU,
     GAME,
+    GAMESTAGE1,
     PAUSE,
     EXIT
 };
@@ -72,11 +73,14 @@ class Game : public GameState
 {
     public:
     Game();
-    ~Game();
+    virtual ~Game();
     void Handle_events();
     void Logic();
     void Render();
+    private:
+    virtual void StageLogic(){};
 };
+
 class Pause : public GameState
 {
     public:

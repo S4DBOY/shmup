@@ -5,8 +5,6 @@
 
 Game::Game()
 {
-    playerManager.AddPlayer(0);
-    enemyManager.AddEnemy(E_ENEMY1, SCREEN_WIDTH/2, 200, 0, 0);
     backgroundManager.SetBackground();
 }
 
@@ -39,6 +37,9 @@ void Game::Logic()
     bulletManager.Logic();
     enemyManager.Logic();
     effectManager.Logic();
+
+    StageLogic();
+    stateFrameCounter++;
 }
 
 void Game::Render()

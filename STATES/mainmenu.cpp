@@ -25,7 +25,7 @@ void MainMenu::Handle_events()
 void MainMenu::Logic()
 {
     stateFrameCounter++;
-    if(stateFrameCounter==30) SetNextState(State::GAME);
+    if(stateFrameCounter==30) SetNextState(State::GAMESTAGE1);
 }
 
 void MainMenu::Render()
