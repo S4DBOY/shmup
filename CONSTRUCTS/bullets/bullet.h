@@ -28,6 +28,7 @@ class Bullet
         void Draw();
 
         int drawingOrder;
+        int owner;
     protected:
         virtual void MovePattern(){};
 

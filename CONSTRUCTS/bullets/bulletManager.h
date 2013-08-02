@@ -60,13 +60,8 @@ class BulletManager
     protected:
     private:
         bool currentOwner;  //determines whether the last bullet added belonged to the enemy or to the player
-        /**
-            if currentOwner is 0, returns reference to playerBullets. Otherwise, enemyBullets.
-        */
-        inline std::vector<std::unique_ptr<Bullet>> &DetermineOwner();
 
-        std::vector<std::unique_ptr<Bullet>> enemyBullets;
-        std::vector<std::unique_ptr<Bullet>> playerBullets;
+        std::vector<std::unique_ptr<Bullet>> bullets;
 };
 
 
