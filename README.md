@@ -5,10 +5,11 @@ A simple shmup foundation thingy. Made purely for learning purposes (for now).
 
 ####TODO:
 
-- Bullet sprite&hitbox choosing
+- Make the enemies' movements more flexible, like the Complex Bullets
+- Add enemy lifetime
+- Rething the "being hit" and damage system?
 - Separate players
 - Effects
-- Divide into levels
 - GUI
 - ...
 - Actual enemies
