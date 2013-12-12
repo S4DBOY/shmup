@@ -62,14 +62,14 @@ void Bullet::Move()
     y+=vy;
     currentFrame=(frameCounter/animationDelay)%animationFrames;
     MovePattern();
-};
+}
 
 bool Bullet::CheckBounds()
 {
     if(y>SCREEN_HEIGHT+50|| y<-200 || x<-80 || x>SCREEN_WIDTH+80) return 1;
     if(lifetime!=0 && time>lifetime) return 1;
     return 0;
-};
+}
 
 int Bullet::IsRectHit(Rect r)
 {
@@ -77,7 +77,7 @@ int Bullet::IsRectHit(Rect r)
 
     if(BoxBox(Rect{x, y, hitboxW, hitboxH}, angle, r)) return damage;
     else return 0;
-};
+}
 
 int Bullet::IsCircleHit(double Cx, double Cy, double Cr)
 {
@@ -85,7 +85,7 @@ int Bullet::IsCircleHit(double Cx, double Cy, double Cr)
 
     if(BoxCircle(Rect{x, y, hitboxW, hitboxH}, angle, Cx, Cy, Cr)) return damage;
     else return 0;
-};
+}
 
 void Bullet::Draw()
 {
@@ -96,4 +96,4 @@ void Bullet::Draw()
 
     //hitbox.setRotation(angle);
     //DrawRect(hitbox, x, y);
-};
+}
