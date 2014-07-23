@@ -1,5 +1,0 @@
-#include "bullets/bulletManager.h"
-#include "enemies/enemyManager.h"
-#include "player/playerManager.h"
-#include "effects/effectManager.h"
-#include "background/backgroundManager.h"

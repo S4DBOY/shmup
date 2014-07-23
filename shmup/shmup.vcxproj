@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{59CB3748-E3C1-4CCF-BF6C-BC4E2A1127DF}</ProjectGuid>
+    <RootNamespace>shmup</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>sfml-graphics-d.lib;sfml-audio-d.lib;sfml-window-d.lib;sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>sfml-graphics.lib;sfml-audio.lib;sfml-window.lib;sfml-system.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="BASIC\globals.cpp" />
+    <ClCompile Include="BASIC\main.cpp" />
+    <ClCompile Include="BASIC\system.cpp" />
+    <ClCompile Include="CONSTRUCTS\background\backgroundManager.cpp" />
+    <ClCompile Include="CONSTRUCTS\background\stage1background.cpp" />
+    <ClCompile Include="CONSTRUCTS\bullets\acceleratingBullet.cpp" />
+    <ClCompile Include="CONSTRUCTS\bullets\acceleratingBulletXY.cpp" />
+    <ClCompile Include="CONSTRUCTS\bullets\basicBullet.cpp" />
+    <ClCompile Include="CONSTRUCTS\bullets\bullet.cpp" />
+    <ClCompile Include="CONSTRUCTS\bullets\bulletManager.cpp" />
+    <ClCompile Include="CONSTRUCTS\bullets\complexBullet.cpp" />
+    <ClCompile Include="CONSTRUCTS\effects\basicEffect.cpp" />
+    <ClCompile Include="CONSTRUCTS\effects\effectManager.cpp" />
+    <ClCompile Include="CONSTRUCTS\enemies\basicEnemy.cpp" />
+    <ClCompile Include="CONSTRUCTS\enemies\enemy.cpp" />
+    <ClCompile Include="CONSTRUCTS\enemies\enemyManager.cpp" />
+    <ClCompile Include="CONSTRUCTS\gameGui\gameGui.cpp" />
+    <ClCompile Include="CONSTRUCTS\player\player.cpp" />
+    <ClCompile Include="CONSTRUCTS\player\playerManager.cpp" />
+    <ClCompile Include="RESOURCES\images.cpp" />
+    <ClCompile Include="RESOURCES\sound.cpp" />
+    <ClCompile Include="STATES\exit.cpp" />
+    <ClCompile Include="STATES\game.cpp" />
+    <ClCompile Include="STATES\intro.cpp" />
+    <ClCompile Include="STATES\mainmenu.cpp" />
+    <ClCompile Include="STATES\pause.cpp" />
+    <ClCompile Include="STATES\stages\stage1.cpp" />
+    <ClCompile Include="STATES\states.cpp" />
+    <ClCompile Include="UTILITIES\collision.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BASIC\globals.h" />
+    <ClInclude Include="BASIC\system.h" />
+    <ClInclude Include="CONSTRUCTS\background\backgroundManager.h" />
+    <ClInclude Include="CONSTRUCTS\background\backgroundSet.h" />
+    <ClInclude Include="CONSTRUCTS\background\stage1background.h" />
+    <ClInclude Include="CONSTRUCTS\bullets\acceleratingBullet.h" />
+    <ClInclude Include="CONSTRUCTS\bullets\acceleratingBulletXY.h" />
+    <ClInclude Include="CONSTRUCTS\bullets\basicBullet.h" />
+    <ClInclude Include="CONSTRUCTS\bullets\bullet.h" />
+    <ClInclude Include="CONSTRUCTS\bullets\bulletManager.h" />
+    <ClInclude Include="CONSTRUCTS\bullets\complexBullet.h" />
+    <ClInclude Include="CONSTRUCTS\effects\basicEffect.h" />
+    <ClInclude Include="CONSTRUCTS\effects\effect.h" />
+    <ClInclude Include="CONSTRUCTS\effects\effectManager.h" />
+    <ClInclude Include="CONSTRUCTS\enemies\basicEnemy.h" />
+    <ClInclude Include="CONSTRUCTS\enemies\enemy.h" />
+    <ClInclude Include="CONSTRUCTS\enemies\enemyManager.h" />
+    <ClInclude Include="CONSTRUCTS\gameGui\gameGui.h" />
+    <ClInclude Include="CONSTRUCTS\managers.h" />
+    <ClInclude Include="CONSTRUCTS\player\player.h" />
+    <ClInclude Include="CONSTRUCTS\player\playerManager.h" />
+    <ClInclude Include="RESOURCES\images.h" />
+    <ClInclude Include="RESOURCES\sound.h" />
+    <ClInclude Include="STATES\stages\stages.h" />
+    <ClInclude Include="STATES\states.h" />
+    <ClInclude Include="UTILITIES\collision.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Config.ini" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="debugData.txt" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
