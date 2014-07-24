@@ -69,22 +69,10 @@
     <ClCompile Include="CONSTRUCTS\effects\effectManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CONSTRUCTS\bullets\acceleratingBullet.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CONSTRUCTS\bullets\acceleratingBulletXY.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CONSTRUCTS\bullets\basicBullet.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="CONSTRUCTS\bullets\bullet.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CONSTRUCTS\bullets\bulletManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CONSTRUCTS\bullets\complexBullet.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CONSTRUCTS\background\backgroundManager.cpp">
@@ -149,22 +137,10 @@
     <ClInclude Include="CONSTRUCTS\effects\effectManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CONSTRUCTS\bullets\acceleratingBullet.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CONSTRUCTS\bullets\acceleratingBulletXY.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CONSTRUCTS\bullets\basicBullet.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CONSTRUCTS\bullets\bullet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CONSTRUCTS\bullets\bulletManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CONSTRUCTS\bullets\complexBullet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CONSTRUCTS\background\backgroundManager.h">

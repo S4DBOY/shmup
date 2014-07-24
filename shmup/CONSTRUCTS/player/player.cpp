@@ -3,6 +3,7 @@
 #include "BASIC/globals.h"
 #include "RESOURCES/images.h"
 #include "CONSTRUCTS/managers.h"
+#include "CONSTRUCTS\bullets\bullet.h"
 
 Player::Player()
 {
@@ -62,13 +63,13 @@ void Player::Logic()
 	int mod = !focus;
 	if ((shooting == 1 || shootingCounter < 1) && (frameCounter % 4 == 0))
 	{
-		bulletManager.AddBasicBulletXY("B_BULLET1_P", 5, x + 10, y, 0, v);
-		bulletManager.AddBasicBulletXY("B_BULLET1_P", 5, x - 10, y, 0, v);
+		bulletManager.AddBullet(std::make_unique<BulletXY>(B_BULLET1_P, x + 10, y, 0, v), true, 5);
+		bulletManager.AddBullet(std::make_unique<BulletXY>(B_BULLET1_P, x - 10, y, 0, v), true, 5);
 
-		bulletManager.AddBasicBulletXY("B_BULLET1_P", 2, x + 50, y - 40, 5 * mod - 2, v1);
-		bulletManager.AddBasicBulletXY("B_BULLET1_P", 2, x - 50, y - 40, -5 * mod + 2, v1);
-		bulletManager.AddBasicBulletXY("B_BULLET1_P", 2, x + 80, y + 20, 10 * mod - 4, v1);
-		bulletManager.AddBasicBulletXY("B_BULLET1_P", 2, x - 80, y + 20, -10 * mod + 4, v1);
+		bulletManager.AddBullet(std::make_unique<BulletXY>(B_BULLET1_P, x + 50, y - 40, 5 * mod - 2, v1), true, 2);
+		bulletManager.AddBullet(std::make_unique<BulletXY>(B_BULLET1_P, x - 50, y - 40, -5 * mod + 2, v1), true, 2);
+		bulletManager.AddBullet(std::make_unique<BulletXY>(B_BULLET1_P, x + 80, y + 20, 10 * mod - 4, v1), true, 2);
+		bulletManager.AddBullet(std::make_unique<BulletXY>(B_BULLET1_P, x - 80, y + 20, -10 * mod + 4, v1), true, 2);
 		shootingCounter = 1;
 	}
 }

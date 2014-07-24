@@ -44,6 +44,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>D:\ADRIAN\C\shmup\shmup;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -72,12 +73,8 @@
     <ClCompile Include="BASIC\system.cpp" />
     <ClCompile Include="CONSTRUCTS\background\backgroundManager.cpp" />
     <ClCompile Include="CONSTRUCTS\background\stage1background.cpp" />
-    <ClCompile Include="CONSTRUCTS\bullets\acceleratingBullet.cpp" />
-    <ClCompile Include="CONSTRUCTS\bullets\acceleratingBulletXY.cpp" />
-    <ClCompile Include="CONSTRUCTS\bullets\basicBullet.cpp" />
     <ClCompile Include="CONSTRUCTS\bullets\bullet.cpp" />
     <ClCompile Include="CONSTRUCTS\bullets\bulletManager.cpp" />
-    <ClCompile Include="CONSTRUCTS\bullets\complexBullet.cpp" />
     <ClCompile Include="CONSTRUCTS\effects\basicEffect.cpp" />
     <ClCompile Include="CONSTRUCTS\effects\effectManager.cpp" />
     <ClCompile Include="CONSTRUCTS\enemies\basicEnemy.cpp" />
@@ -103,12 +100,8 @@
     <ClInclude Include="CONSTRUCTS\background\backgroundManager.h" />
     <ClInclude Include="CONSTRUCTS\background\backgroundSet.h" />
     <ClInclude Include="CONSTRUCTS\background\stage1background.h" />
-    <ClInclude Include="CONSTRUCTS\bullets\acceleratingBullet.h" />
-    <ClInclude Include="CONSTRUCTS\bullets\acceleratingBulletXY.h" />
-    <ClInclude Include="CONSTRUCTS\bullets\basicBullet.h" />
     <ClInclude Include="CONSTRUCTS\bullets\bullet.h" />
     <ClInclude Include="CONSTRUCTS\bullets\bulletManager.h" />
-    <ClInclude Include="CONSTRUCTS\bullets\complexBullet.h" />
     <ClInclude Include="CONSTRUCTS\effects\basicEffect.h" />
     <ClInclude Include="CONSTRUCTS\effects\effect.h" />
     <ClInclude Include="CONSTRUCTS\effects\effectManager.h" />

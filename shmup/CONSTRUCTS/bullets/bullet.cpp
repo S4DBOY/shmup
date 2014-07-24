@@ -8,69 +8,61 @@
 
 struct Rect{ double x, y; int w, h; };
 
-struct BulletType
+struct BulletInfo
 {
+	std::string spriteName;
 	int drawingOrder;
 	int animationFrames;
 	int animationDelay;
-	double hitboxWidth;
-	double hitboxHeight;
+	int hitboxWidth;
+	int hitboxHeight;
 };
 
-std::map<std::string, BulletType> bulletTypes = {
-		{ "B_BULLET1", BulletType{ 2, 16, 10, 10, 6 } },
-		{ "B_BULLET1_P", BulletType{ 2, 1, 1, 10, 6 } },
+std::map<BulletType, BulletInfo> bulletTypes = {
+		{ B_BULLET1, BulletInfo{ "B_BULLET1", 2, 16, 10, 10, 6 } },
+		{ B_BULLET1_P, BulletInfo{ "B_BULLET1_P", 2, 1, 1, 10, 6 } },
 };
 
-Bullet::Bullet(const std::string &type, double x, double y, double vx, double vy) :
-	x(x), y(y), vx(vx), vy(vy), type(type)
+BulletBase::BulletBase(BulletType type, double x, double y) :
+	type(type), x(x), y(y)
 {
-	BulletType temp = bulletTypes[type];
+	BulletInfo info = bulletTypes[type];
 
-	angle = atan2(vy, vx)*(180 / M_PI);
-	drawingOrder = temp.drawingOrder;
-	animationFrames = temp.animationFrames;
-	animationDelay = temp.animationDelay;
+	drawingOrder = info.drawingOrder;
+	animationFrames = info.animationFrames;
+	animationDelay = info.animationDelay;
 
 	int scale = 2;
 
-	hitboxW = temp.hitboxWidth*scale; hitboxH = temp.hitboxHeight*scale;
-
-	hitbox.setSize(sf::Vector2f(hitboxW, hitboxH));
-	hitbox.setOutlineColor(sf::Color::Black); hitbox.setOutlineThickness(1);
-	hitbox.setOrigin(hitboxW / 2, hitboxH / 2);
+	hitboxW = info.hitboxWidth*scale; hitboxH = info.hitboxHeight*scale;
+	hitbox.setSize(sf::Vector2f((float)hitboxW, (float)hitboxH));
+	hitbox.setOutlineColor(sf::Color::Black);
+	hitbox.setOutlineThickness(1);
+	hitbox.setOrigin(hitboxW / 2.0f, hitboxH / 2.0f);
 }
 
-void Bullet::SetDamage(int n_damage)
-{
-	damage = n_damage;
-}
-
-void Bullet::SetTiming(int n_delay, int n_lifetime)
+void BulletBase::SetTiming(int n_delay, int n_lifetime)
 {
 	time = 0;
 	delay = n_delay;
 	lifetime = n_lifetime;
 }
 
-void Bullet::Move()
+void BulletBase::Move()
 {
-	time++;
-	if (time <= delay) return;
-	x += vx;
-	y += vy;
 	currentFrame = (frameCounter / animationDelay) % animationFrames;
+	//hitbox.setRotation(angle);
 	MovePattern();
 }
 
-bool Bullet::CheckBounds() const
+bool BulletBase::CheckBounds() const
 {
 	if (y > SCREEN_HEIGHT + 50 || y<-200 || x<-80 || x>SCREEN_WIDTH + 80) return 1;
 	if (lifetime != 0 && time>lifetime) return 1;
 	return 0;
 }
 
-int Bullet::IsRectHit(Rect r) const
+int BulletBase::IsRectHit(Rect r) const
 {
 	if (time <= delay) return 0;
 
@@ -78,7 +70,7 @@ int Bullet::IsRectHit(Rect r) const
 	else return 0;
 }
 
-int Bullet::IsCircleHit(double Cx, double Cy, double Cr) const
+int BulletBase::IsCircleHit(double Cx, double Cy, double Cr) const
 {
 	if (time <= delay) return 0;
 
@@ -86,13 +78,46 @@ int Bullet::IsCircleHit(double Cx, double Cy, double Cr) const
 	else return 0;
 }
 
-void Bullet::Draw() const
+void BulletBase::Draw() const
 {
 	if (time < delay) return;
-	int temp_bounds = 16;
-	if (y - temp_bounds / 2 > SCREEN_HEIGHT || y < -temp_bounds / 2 || x<-temp_bounds / 2 || x>SCREEN_WIDTH + temp_bounds / 2) return;
-	DrawSprite(type, x, y, angle + 90, currentFrame);
+	DrawSprite(bulletTypes[type].spriteName, x, y, angle + 90, currentFrame);
 
-	//hitbox.setRotation(angle);
 	//DrawRect(hitbox, x, y);
+}
+
+BulletXY::BulletXY(BulletType type, double x, double y, double vx, double vy) :
+	BulletBase(type, x, y),
+	vx(vx), vy(vy)
+{
+	angle = atan2(vy, vx)*(180 / M_PI);
+}
+
+void BulletXY::Move(){
+	time++;
+	if (time <= delay) return;
+	x += vx;
+	y += vy;
+	vx += accelX;
+	vy += accelY;
+
+	BulletBase::Move();
+}
+
+Bullet::Bullet(BulletType type, double x, double y, double v, double angle) :
+	BulletBase(type, x, y),
+	v(v)
+{
+	this->angle = angle;
+}
+
+void Bullet::Move(){
+	time++;
+	if (time <= delay) return;
+	x += v*cos((angle)*(M_PI / 180));
+	y += v*sin((angle)*(M_PI / 180));
+	v += accel;
+	angle += angularV;
+
+	BulletBase::Move();
 }
