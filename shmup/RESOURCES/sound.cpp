@@ -9,7 +9,6 @@ std::queue<sf::Sound> sounds;
 
 sf::Music placeholder;
 
-
 void LoadSounds()
 {
 
@@ -17,12 +16,12 @@ void LoadSounds()
 
 void CleanSounds()
 {
-    if(sounds.empty()) return;
-    if(sounds.front().getStatus()==sf::Sound::Stopped) sounds.pop();
+	if (sounds.empty()) return;
+	if (sounds.front().getStatus() == sf::Sound::Stopped) sounds.pop();
 }
 
 void PlaySound(int name)
 {
-    sounds.push(sf::Sound(samples[name]));
-    sounds.back().play();
+	sounds.push(sf::Sound(samples[name]));
+	sounds.back().play();
 }

@@ -1,13 +1,10 @@
-#ifndef BACKGROUNDSET
-#define BACKGROUNDSET
+#pragma once
 
 class BackgroundSet
 {
-    public:
-        BackgroundSet(){};
-        virtual ~BackgroundSet(){};
-        virtual void Logic()=0;
-        virtual void Draw()=0;
+public:
+	BackgroundSet(){};
+	virtual ~BackgroundSet(){};
+	virtual void Logic() = 0;
+	virtual void Draw() const = 0;
 };
-
-#endif

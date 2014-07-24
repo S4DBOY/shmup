@@ -4,29 +4,17 @@
 
 BackgroundManager backgroundManager;
 
-BackgroundManager::BackgroundManager()
-{
-    background=nullptr;
-}
-
-BackgroundManager::~BackgroundManager()
-{
-    if(background) delete background;
-    background=nullptr;
-}
-
 void BackgroundManager::SetBackground()
 {
-    if(background) delete background;
-    background=new Stage1;
+	background = std::make_unique<Stage1>();
 }
 
 void BackgroundManager::Logic()
 {
-    if(background) background->Logic();
+	if (background) background->Logic();
 }
 
-void BackgroundManager::Draw()
+void BackgroundManager::Draw() const
 {
-    if(background) background->Draw();
+	if (background) background->Draw();
 }

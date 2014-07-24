@@ -1,44 +1,50 @@
 #include "playerManager.h"
-#include "../bullets/bulletManager.h"
+#include "CONSTRUCTS/bullets/bulletManager.h"
 
 #include "player.h"
 
 PlayerManager playerManager;
 
-PlayerManager::~PlayerManager()
-{if(player) delete player; player=nullptr;}
-
-void PlayerManager::Input()
-{player->Input();}
+void PlayerManager::Input(const sf::Event &event)
+{
+	player->Input(event);
+}
 
 void PlayerManager::Move()
-{player->Move();}
+{
+	player->Move();
+}
 
 void PlayerManager::Logic()
 {
-    double x, y, r;
-    player->GetHitBox(x, y, r);
-    player->ReduceHealth(bulletManager.IsPlayerHit(x, y, r));
-    if(player->IsDying())
-    {
-        bulletManager.EraseAllBullets();
-        player->Die();
-    }
+	double x, y, r;
+	player->GetHitBox(x, y, r);
+	player->ReduceHealth(bulletManager.IsPlayerHit(x, y, r));
+	if (player->IsDying())
+	{
+		bulletManager.EraseAllBullets();
+		player->Die();
+	}
 
-    player->Logic();
+	player->Logic();
 }
 
-void PlayerManager::Draw()
-{player->Draw();}
+void PlayerManager::Draw() const
+{
+	player->Draw();
+}
 
-void PlayerManager::DrawHitBox()
-{player->DrawHitBox();}
+void PlayerManager::DrawHitBox() const
+{
+	player->DrawHitBox();
+}
 
 void PlayerManager::AddPlayer(int type)
-{player=new Player();}
-
-
-void PlayerManager::GetPlayerLocation(double &x, double &y)
 {
-    player->GetLocation(x, y);
+	player.reset(new Player());
+}
+
+void PlayerManager::GetPlayerLocation(double &x, double &y) const
+{
+	player->GetLocation(x, y);
 }

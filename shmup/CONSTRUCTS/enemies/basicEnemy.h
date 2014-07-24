@@ -1,17 +1,14 @@
-#ifndef BASICENEMY_H
-#define BASICENEMY_H
+#pragma once
 
 #include "enemy.h"
 
 class BasicEnemy : public Enemy
 {
-    public:
-        BasicEnemy(int ntype, double nx, double ny, double nvx, double nvy);
-        ~BasicEnemy(){};
+public:
+	BasicEnemy(int ntype, double nx, double ny, double nvx, double nvy);
+	~BasicEnemy(){};
 
-        void Logic();
-    protected:
-    private:
+	void Logic();
+protected:
+private:
 };
-
-#endif // BASICENEMY_H

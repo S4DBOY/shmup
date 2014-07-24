@@ -1,5 +1,6 @@
-#ifndef BACKGROUNDMANAGER_H
-#define BACKGROUNDMANAGER_H
+#pragma once
+
+#include <memory>
 
 class BackgroundSet;
 class BackgroundManager;
@@ -7,17 +8,12 @@ extern BackgroundManager backgroundManager;
 
 class BackgroundManager
 {
-    public:
-        BackgroundManager();
-        ~BackgroundManager();
+public:
+	void SetBackground();
 
-        void SetBackground();
-
-        void Logic();
-        void Draw();
-    protected:
-    private:
-        BackgroundSet *background;
+	void Logic();
+	void Draw() const;
+protected:
+private:
+	std::unique_ptr<BackgroundSet> background;
 };
-
-#endif

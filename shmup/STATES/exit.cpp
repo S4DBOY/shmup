@@ -5,7 +5,7 @@ void Exit::Logic()
     done=1;
 }
 
-void Exit::Render()
+void Exit::Render() const
 {
 
 }

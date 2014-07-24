@@ -1,29 +1,27 @@
-#ifndef PLAYERMANAGER_H
-#define PLAYERMANAGER_H
+#pragma once
+
+#include <memory>
 
 class Player;
 class PlayerManager;
 extern PlayerManager playerManager;
 
-/**
-    \brief A wrapper for the Player type opject
-*/
+namespace sf{
+	class Event;
+}
+
 class PlayerManager
 {
-    public:
-        PlayerManager(){};
-        ~PlayerManager();
-        void Input();
-        void Move();
-        void Logic();
-        void Draw();
-        void DrawHitBox();
-        void AddPlayer(int type);
+public:
+	void Input(const sf::Event &event);
+	void Move();
+	void Logic();
+	void Draw() const;
+	void DrawHitBox() const;
+	void AddPlayer(int type);
 
-        void GetPlayerLocation(double &x, double &y);
-    protected:
-    private:
-        Player *player;
+	void GetPlayerLocation(double &x, double &y) const;
+protected:
+private:
+	std::unique_ptr<Player> player;
 };
-
-#endif

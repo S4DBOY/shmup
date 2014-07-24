@@ -1,8 +1,8 @@
-#include "../BASIC/globals.h"
+#include "BASIC/globals.h"
 #include "states.h"
 
-#include "../CONSTRUCTS/managers.h"
-#include "../RESOURCES/images.h"
+#include "CONSTRUCTS/managers.h"
+#include "RESOURCES/images.h"
 
 Pause::Pause()
 {
@@ -14,15 +14,14 @@ Pause::~Pause()
 
 }
 
-void Pause::Handle_events()
+void Pause::Handle_events(const sf::Event &event)
 {
-    playerManager.Input();
+    playerManager.Input(event);
     if( event.type == sf::Event::KeyPressed )
     {
         if(event.key.code == sf::Keyboard::Escape ) SetNextState(State::EXIT);
         if(event.key.code == sf::Keyboard::Return )
         {
-            delete states.top();
             states.pop();
         }
     }
@@ -33,7 +32,7 @@ void Pause::Logic()
     stateFrameCounter++;
 }
 
-void Pause::Render()
+void Pause::Render() const
 {
     backgroundManager.Draw();
     enemyManager.Draw();

@@ -1,7 +1,7 @@
-#include "../BASIC/globals.h"
-#include "../STATES/states.h"
+#include "BASIC/globals.h"
+#include "STATES/states.h"
 
-#include "../CONSTRUCTS/managers.h"
+#include "CONSTRUCTS/managers.h"
 
 Game::Game()
 {
@@ -13,9 +13,9 @@ Game::~Game()
 
 }
 
-void Game::Handle_events()
+void Game::Handle_events(const sf::Event &event)
 {
-    playerManager.Input();
+    playerManager.Input(event);
     if( event.type == sf::Event::KeyPressed )
     {
         if(event.key.code == sf::Keyboard::Escape ) SetNextState(State::PAUSE);
@@ -42,7 +42,7 @@ void Game::Logic()
     stateFrameCounter++;
 }
 
-void Game::Render()
+void Game::Render() const
 {
     backgroundManager.Draw();
     enemyManager.Draw();

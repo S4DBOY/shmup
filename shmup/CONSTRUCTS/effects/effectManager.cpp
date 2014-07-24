@@ -4,30 +4,21 @@
 
 EffectManager effectManager;
 
-EffectManager::EffectManager()
-{
-    //ctor
-}
-
-EffectManager::~EffectManager()
-{
-    effects.clear();
-}
-
 void EffectManager::Logic()
 {
-    for(unsigned int i=0; i<effects.size(); ++i)
-    {
-        //if(effects[i]->time>effects[i]->life)  {effects.erase(effects.begin()+i); i=i-1;}
-    }
+	for (unsigned int i = 0; i < effects.size(); ++i)
+	{
+		//if(effects[i]->time>effects[i]->life)  {effects.erase(effects.begin()+i); i=i-1;}
+	}
 }
 
-void EffectManager::Draw()
+void EffectManager::Draw() const
 {
-    for(unsigned int i=0; i<effects.size(); ++i){ effects[i]->Draw();}
+	for (auto& effect : effects)
+		effect->Draw();
 }
 
 void EffectManager::AddEffect(int type, double x, double y)
 {
-    effects.push_back(std::unique_ptr<BasicEffect>(new BasicEffect(type, x, y, 5)));
+	effects.push_back(std::make_unique<BasicEffect>(type, x, y, 5));
 }

@@ -1,7 +1,7 @@
-#include "../../BASIC/globals.h"
+#include "BASIC/globals.h"
 #include "stages.h"
 
-#include "../../CONSTRUCTS/managers.h"
+#include "CONSTRUCTS/managers.h"
 
 GameStage1::GameStage1()
 {

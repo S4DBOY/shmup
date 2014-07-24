@@ -1,21 +1,15 @@
-#ifndef IMAGES_H
-#define IMAGES_H
+#pragma once
 
 #include <string>
 
 namespace sf
 {
-    class RectangleShape;
+	class RectangleShape;
 }
 
-/**
-\brief Loads all images and converts them to textures.
-*/
 void LoadImages();
 
 void DrawRect(sf::RectangleShape shape);
-void DrawRect(sf::RectangleShape shape, float x, float y);
+void DrawRect(sf::RectangleShape shape, double x, double y);
 
-void DrawSprite(std::string type, float x=0.0f, float y=0.0f, float angle=0.0f, int animationFrame=0);
-
-#endif // IMAGES_H
+void DrawSprite(const std::string &type, double x = 0.0, double y = 0.0, double angle = 0.0, int animationFrame = 0);

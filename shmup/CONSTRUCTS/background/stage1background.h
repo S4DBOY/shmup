@@ -1,15 +1,10 @@
-#ifndef STAGE1BACKGROUND_H
-#define STAGE1BACKGROUND_H
+#pragma once
 
 #include "backgroundSet.h"
 
 class Stage1 : public BackgroundSet
 {
-    public:
-        Stage1(){};
-        ~Stage1(){};
-        void Logic();
-        void Draw();
+public:
+	void Logic();
+	void Draw() const;
 };
-
-#endif

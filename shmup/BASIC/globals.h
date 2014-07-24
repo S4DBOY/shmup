@@ -1,5 +1,4 @@
-#ifndef GLOBALS_H
-#define GLOBALS_H
+#pragma once
 
 #include "SFML/graphics.hpp"
 
@@ -10,15 +9,6 @@ extern int  SCREEN_HEIGHT;
 
 extern sf::RenderWindow window;
 
-extern sf::Event event;
-
 extern int frameCounter;
 
-/**
-    \brief Loads configuration data from the config file.
-    Currently uses Windows API functions, I may search for an cross-platform solution in the future.
-*/
 int InitializeGlobals();
-
-
-#endif // GLOBALS_H
